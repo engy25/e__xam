@@ -14,7 +14,7 @@
                         <tr>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>UserName</th>
+                            <th>Email</th>
                             <th>Level</th>
                             <th>Department</th>
 
@@ -22,16 +22,19 @@
                             <th>Profile</th>
                         </tr>
                     </thead>
+                    @foreach($userDoctors as $userDoctore)
                     <tr>
-                        <td>Yomna</td>
-                        <td>Mohamed</td>
-                        <td>YomnaMohamed5</td>
+                    <td>{{$userDoctore->first_name}}</td>
+                        <td>{{$userDoctore->last_name}}</td>
+                        <td>{{$userDoctore->email}}</td>
+                        
                         <td>3</td>
                         <td>SE</td>
 
                         <td><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button></td>
                         <td><a class="btn btn-primary btn-xs" href="Admin-StudentProfile.html" style="font-weight:bolder;"><span>Visit</span></a></td>
                     </tr>
+                    @endforeach
                 </table>
             </div>
         </div>

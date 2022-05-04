@@ -38,6 +38,8 @@ Route::group(['prefix' => 'admin',  'middleware' =>['isAdmin','auth','PrevetBack
     Route::get('/teacherSubjects', [App\Http\Controllers\HomeController::class, 'teacherSubjects'])->name('adminTeacherSubjects');
     Route::post('/teacherSubjects', [App\Http\Controllers\HomeController::class, 'saveTeacherSubjects']);
     Route::get('/totalTeacher', [App\Http\Controllers\HomeController::class, 'totalTeacher'])->name('adminTotalTeacher');
+    Route::get('/delete/{id}', [App\Http\Controllers\HomeController::class, 'destroy'])->name('adminTotalTeacherdelete');
+    
     Route::get('/totalStudents', [App\Http\Controllers\HomeController::class, 'totalStudents'])->name('adminTotalStudents');
     Route::get('/allExams', [App\Http\Controllers\HomeController::class, 'allExams'])->name('adminAllExams');
    

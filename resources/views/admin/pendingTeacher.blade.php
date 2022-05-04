@@ -26,7 +26,7 @@
                    
                         <td> {{$userDoctore->first_name}}</td>
                        
-                        <td><img src="images/users/{{ $userDoctore->photo }}" width="100px"></td>
+                        <td> <img src="{{ asset('public/images/users/'.$userDoctore->photo) }}" width="100px"></td>
                         <td>{{$userDoctore->mobile}}</td>
                         
                         @endforeach

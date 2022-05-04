@@ -10,16 +10,18 @@ class Subject extends Model
     use HasFactory;
     protected $fillable = [
         'subject_id',
-        'doctor_id',
-        'user_id',
+        'level_id',
+        'department_id',
         'subject_name',
         
     
     ];
+    /*
 
 //// relationship between users(doctors) and subjects
     public function doctor()
     {
         return $this->belongsTo(User::class,'subject_id');
     }
+    */
 }

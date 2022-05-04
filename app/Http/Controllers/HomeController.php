@@ -70,12 +70,14 @@ class HomeController extends Controller
    
     public function departments()
     {
-        return view('admin\addDepartments');
+        $Admin=User::where('role_id',1)->get();
+        return view('admin\addDepartments',compact('Admin'));
        
     }
     public function subjects()
     {
-        return view('admin\addSubjects');
+        $Admin=User::where('role_id',1)->get();
+        return view('admin\addSubjects',compact('Admin'));
        
     }
     public function pendingTeacher()
@@ -113,19 +115,43 @@ class HomeController extends Controller
     }
     public function totalTeacher()
     {
-        return view('admin\totalTeacher');
+        $userDoctors=User::where('role_id',2)->get();
+        $Admin=User::where('role_id',1)->get();
+        return view('admin\totalTeacher',compact('Admin','userDoctors'));
        
     }
+////delete from total teacher
+
+public function destroy( $id)
+    {
+        // check if doctor id exist
+  
+        $userDoctors = User::find($id);
+        if(!$userDoctors)
+        {
+            return redirect() ->back() ->with(['error' =>'doctor not found']);
+
+        }
+        $userDoctors->delete();
+
+        return redirect()->route('adminTotalTeacher')
+        ->with(['success'=>'doctor deleted successfully']);
+    }
+    
+    
     
     public function totalStudents()
     {
-        return view('admin\totalStudents');
+        $Admin=User::where('role_id',1)->get();
+        $userDoctors=User::where('role_id',3)->get();
+        return view('admin\totalStudents',compact('Admin','userDoctors'));
        
     }
   
     public function allExams()
     {
-        return view('admin\allExams');
+        $Admin=User::where('role_id',1)->get();
+        return view('admin\allExams',compact('Admin'));
        
     }
     public function hasone()

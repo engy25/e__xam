@@ -24,7 +24,6 @@ class User extends Authenticatable
         'photo',
         'department_id',
         'level_id',
-        'subject_id',
         'email',
         'role_id',
         'password',];
@@ -60,18 +59,15 @@ class User extends Authenticatable
     public function department()
     {
        
-        return $this -> hasOne('App\Models\Department','department_id');
+        return $this -> belongsTo('App\Models\Department','department_id');
     }
     public function level()
     {
        
-        return $this -> hasOne('App\Models\Level','level_id');
+        return $this -> belongsto('App\Models\Level','level_id');
     }
-//// relationship between users(doctors) and subjects
-    public function subjects()
-    {
-        return $this->hasMany(Subject::class);
-    }
+
+   
 
 
 }

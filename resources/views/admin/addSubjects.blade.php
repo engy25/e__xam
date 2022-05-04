@@ -62,10 +62,6 @@
         <br><br><br>
     </div>
     <!--content end-->
-    <!--JS code start-->
-    <script src="js/AdminBase.js"></script>
-    <!--JS code end-->
-</body>
-</html>
+   
 
 @endsection
