@@ -1,4 +1,5 @@
-﻿@extends('layouts/admin.app')
+﻿
+@extends('layouts/admin.app')
 @section('content')
    
     <!--end Admin base-->
@@ -79,18 +80,17 @@
                     </thead>
                     <tr>
                        @foreach($userDoctors as $userDoctore))
-                        <td value="{{$userDoctor->role_id}}" >{{$userDoctore->first_name}}</td>
+                        <td value="{{$userDoctor->id}}" >{{$userDoctore->first_name}}</td>
                        
-                        @foreach($levels as $level)
-                        <td value="{{$userDoctor->role_id}}">{{$level->level_name}}</td>
-                        @endforeach
-                        @foreach($dapartments as $department)
-                        <td value="{{$department->department_id}}">{{$department->department_name}}</td>
+        
+                        <td value="{{$userDoctor->id}}">{{$userDoctore->level_name}}</td>
+                     
+                        <td value="{{$userDoctor->id}}">{{$userDoctore->department_name}}</td>
                         @endforeach
                         @foreach($subjects as $subject)
                         <td>{{$subject->subject_name}}</td>
                         @endforeach
-                        @endforeach
+                     
                        
                         <td><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button></td>
                     </tr>

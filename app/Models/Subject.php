@@ -16,12 +16,7 @@ class Subject extends Model
         
     
     ];
-    /*
+   
 
-//// relationship between users(doctors) and subjects
-    public function doctor()
-    {
-        return $this->belongsTo(User::class,'subject_id');
-    }
-    */
+
 }

@@ -70,14 +70,21 @@ class HomeController extends Controller
    
     public function departments()
     {
+       
         $Admin=User::where('role_id',1)->get();
         return view('admin\addDepartments',compact('Admin'));
        
     }
     public function subjects()
     {
+
+        //$doctor= Doctor::with('Hospital')->find(2);
+       // $subjects= Subject::all();
+       $levels=Level::all();
+       $departments=Department::all();
+
         $Admin=User::where('role_id',1)->get();
-        return view('admin\addSubjects',compact('Admin'));
+        return view('admin\addSubjects',compact('Admin','levels','departments'));
        
     }
     public function pendingTeacher()
@@ -91,20 +98,25 @@ class HomeController extends Controller
    
     public function teacherSubjects()
     {
+
+        $profsub = Professor_subject::with('subject')->get();
+        $profuser= Professor_subject::with('professor')->get();
+
         $Admin=User::where('role_id',1)->get();
-        $userDoctors=User::where('role_id',2)->get();
+       // $userDoctors=User::where('role_id',2)->get();
         $dapartments=Department::all();
         $levels=Level::all();
         $subjects=Subject::all();
-        return view('admin\teacherSubjects',compact('userDoctors','dapartments','levels','subjects','Admin'));
+        return view('admin\teacherSubjects',compact('userDoctors','dapartments','levels','subjects','Admin','profsub','profsub'));
        
     }
     public function saveTeacherSubjects(Request $request)
     {
+
         $user = new User();
-      //  $user->first_name = $request->first_name;
         $user->level_id = $request->level;
         $user->department_id = $request->department;
+
         $user->subject_id = $request->subject;
         if( $user->save() ){
 
@@ -118,7 +130,7 @@ class HomeController extends Controller
         $userDoctors=User::where('role_id',2)->get();
         $Admin=User::where('role_id',1)->get();
         return view('admin\totalTeacher',compact('Admin','userDoctors'));
-       
+      
     }
 ////delete from total teacher
 

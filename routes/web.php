@@ -50,11 +50,16 @@ Route::group(['prefix' => 'admin',  'middleware' =>['isAdmin','auth','PrevetBack
 Route::group(['prefix' => 'doctor',  'middleware' => ['isDoctor','auth','PrevetBackHistory']], function(){
     Route::get('/dashboard', [App\Http\Controllers\DoctorController::class, 'dashboard'])->name('doctorDashboard');
 
+
+
+
 });
 
                      ////////////////student////////////////
 Route::group(['prefix' => 'student',  'middleware' => ['isStudent','auth','PrevetBackHistory']], function(){                     
     Route::get('/dashboard', [App\Http\Controllers\StudentController::class, 'dashboard'])->name('studentDashboard');
+
+    
                     
 });
 
