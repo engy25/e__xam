@@ -22,8 +22,8 @@
                     <select id="userDoctors">
                         <option value="" selected disabled>Select Teacher Name</option>
 
-                        @foreach($userDoctors as $userDoctor)
-                                        <option value="{{$userDoctor->role_id}}" >{{$userDoctor->first_name}} </option>
+                        @foreach($professors as $professor)
+                                        <option value="{{$professor->role_id}}" >{{$professor->first_name}} </option>
 										@endforeach
                        
                     </select>
@@ -79,13 +79,13 @@
                         </tr>
                     </thead>
                     <tr>
-                       @foreach($userDoctors as $userDoctore))
-                        <td value="{{$userDoctor->id}}" >{{$userDoctore->first_name}}</td>
+                       @foreach($professors as $professor))
+                        <td value="{{$professor->professor_id}}" >{{$professor->first_name}}</td>
                        
         
-                        <td value="{{$userDoctor->id}}">{{$userDoctore->level_name}}</td>
+                        <td value="{{$professor->id}}">{{$professor->level_name}}</td>
                      
-                        <td value="{{$userDoctor->id}}">{{$userDoctore->department_name}}</td>
+                        <td value="{{$professor->id}}">{{$professor->department_name}}</td>
                         @endforeach
                         @foreach($subjects as $subject)
                         <td>{{$subject->subject_name}}</td>

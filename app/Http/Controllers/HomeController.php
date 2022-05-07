@@ -10,6 +10,8 @@ use App\Models\Department;
 use App\Models\Level;
 use App\Models\Subject;
 use App\Models\Online_exam;
+use App\Models\Professor_subject;
+use App\Models\Tem_professor;
 class HomeController extends Controller
 {
    
@@ -72,9 +74,32 @@ class HomeController extends Controller
     {
        
         $Admin=User::where('role_id',1)->get();
-        return view('admin\addDepartments',compact('Admin'));
+        $departments= Department::all();
+        return view('admin\addDepartments',compact('Admin','departments'));
        
     }
+    public function savedDepartments(Request $request)
+    {
+       
+
+        $this->validate($request, [
+            'department_name' => 'required',
+            'department_id' => 'required',
+        ]);
+
+        
+$departments= Department::all();
+        $departments->department_name= $request->department_name; 
+        $departments->department_id= $request->department_id;
+        if($departments->save())
+        {
+            return redirect()->back()->with('success','You are now successfully registerd');
+        }
+        else{
+            return redirect()->back()->with('error','Failed to register');
+        }
+       
+}
     public function subjects()
     {
 
@@ -96,29 +121,32 @@ class HomeController extends Controller
        
     }
    
-    public function teacherSubjects()
+    public function teacherSubjects(Request $request)
     {
+        
 
-        $profsub = Professor_subject::with('subject')->get();
-        $profuser= Professor_subject::with('professor')->get();
+        $professors=Professor::all();
+
 
         $Admin=User::where('role_id',1)->get();
        // $userDoctors=User::where('role_id',2)->get();
         $dapartments=Department::all();
         $levels=Level::all();
         $subjects=Subject::all();
-        return view('admin\teacherSubjects',compact('userDoctors','dapartments','levels','subjects','Admin','profsub','profsub'));
+        
+        $professor=Professor_subject::all();
+        return view('admin\teacherSubjects',compact('dapartments','levels','subjects','Admin','professor'));
        
     }
     public function saveTeacherSubjects(Request $request)
     {
 
-        $user = new User();
-        $user->level_id = $request->level;
-        $user->department_id = $request->department;
-
-        $user->subject_id = $request->subject;
-        if( $user->save() ){
+        $professors = new Tem_professor();
+        $professors->level_id = $request->level_id;
+        $level_id->department_id = $request->department_id;
+        $professor_subject=Professor_subject::all();
+        $professor_subject->subject_id = $request->subject_id;
+        if(($professors->save()) && ($professor_subject->save())){
 
              return view('admin\teacherSubjects');
          }else{

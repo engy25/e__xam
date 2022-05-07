@@ -1,31 +1,26 @@
 ﻿@extends('layouts/admin.app')
 @section('content')
-    <!--content start-->
-    <div class="content">
+<div class="content">
         <br><br><br><br><br>
 
         <div class="container">
 
             <div class="content-header">
                 <div class="content-header-labels">
-                    <label for="Level">Level</label>
-                    <label>Department</label>
+                <form method="POST" class="my-login-validation" autocomplete="off"  action="{{ route('adminDepartments') }}">
+                    
                 </div>
 
-                <div class="content-header-select">
-                    <select id="Level">
-                        <option value="" selected disabled>Select Level</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
+                <div class="form-group">
+									<label for="department_name">Department</label>
+									<input id="department_name" type="text"class="content-header-select" name="department_name"  placeholder="Enter Department Name" value="{{ old('department_name') }}">
+									<span class="text-danger">@error('department_name'){{ $message }}@enderror</span>
+								</div>
 
-                    <input type="text" class="content-header-select"/>
-                </div>
-
-                <div class="content-header-btn">
-                    <button>Add</button>
+                              
+                    
+                
+                    <button type ="submit" class="btn btn-success">Add</button>
                 </div>
             </div>
 
@@ -33,28 +28,34 @@
                     <div class="panel-heading" style="background-color:#005450;">
                         <h6 class="panel-title">Report</h6>
                     </div>
-                    <table class="table table-hover" id="dev-table">
-                        <thead>
-                            <tr>
-                                <th>Level</th>
-                                <th>Department</th>
+                    <table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+    <tr>
+      <th>Department</th>
+      <th>Edit</th>
+      <th>Delete</th>
+   
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+     
+      <td>
+        <p class="fw-normal mb-1">Consultant</p>
+        <p class="text-muted mb-0">Finance</p>
+      </td>
+      <td>
+      <button type="button" class="btn btn-primary">Primary</button>
+      </td>
+      <td><button type="button" class="btn btn-danger">Danger</button></td>
+     
+      
+    </tr>
+   
+  </tbody>
+</table>
 
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td>3</td>
-                            <td>Se</td>
 
-                            <td><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <br><br><br>
-        </div>
-    <!--content end-->
-    <!--JS code start-->
-
-
+ 
 @endsection

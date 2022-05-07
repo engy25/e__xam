@@ -122,13 +122,6 @@ class RegisterController extends Controller
     function register(Request $request){
 
 
-
-
-
-
-
-
-        // dd($request);
         
 /*
         $request->validate([

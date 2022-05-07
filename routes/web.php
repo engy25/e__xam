@@ -33,10 +33,11 @@ Route::group(['prefix' => 'admin',  'middleware' =>['isAdmin','auth','PrevetBack
     Route::get('/forgetpassword', [App\Http\Controllers\HomeController::class, 'forgetpassword'])->name('forgetPasswordAdmin');
    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('adminDashboard');
     Route::get('departments', [App\Http\Controllers\HomeController::class, 'departments'])->name('adminDepartments');
+    Route::post('/departments', [App\Http\Controllers\HomeController::class, 'savedDepartments']);
     Route::get('/subjects', [App\Http\Controllers\HomeController::class, 'subjects'])->name('adminSubjects');
     Route::get('/pendingTeacher', [App\Http\Controllers\HomeController::class,'pendingTeacher'])->name('adminPendingTeacher');
     Route::get('/teacherSubjects', [App\Http\Controllers\HomeController::class, 'teacherSubjects'])->name('adminTeacherSubjects');
-    Route::post('/teacherSubjects', [App\Http\Controllers\HomeController::class, 'saveTeacherSubjects']);
+    Route::post('/teacherSubjects/save', [App\Http\Controllers\HomeController::class, 'saveTeacherSubjects']);
     Route::get('/totalTeacher', [App\Http\Controllers\HomeController::class, 'totalTeacher'])->name('adminTotalTeacher');
     Route::get('/delete/{id}', [App\Http\Controllers\HomeController::class, 'destroy'])->name('adminTotalTeacherdelete');
     
