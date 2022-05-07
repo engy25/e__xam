@@ -79,27 +79,48 @@ class HomeController extends Controller
        
     }
     public function savedDepartments(Request $request)
-    {
-       
+    { 
 
-        $this->validate($request, [
+        $request->validate([
             'department_name' => 'required',
             'department_id' => 'required',
-        ]);
+            
+            ]);
+            $departments = new Department;
+            $departments->department_name = $request->department_name;
+            $departments->department_id = $request->department_id;
 
-        
-$departments= Department::all();
-        $departments->department_name= $request->department_name; 
-        $departments->department_id= $request->department_id;
-        if($departments->save())
-        {
-            return redirect()->back()->with('success','You are now successfully registerd');
-        }
-        else{
-            return redirect()->back()->with('error','Failed to register');
-        }
+            if( $departments->save() ){
+
+                return redirect()->back()->with('success','You are now successfully registerd');
+             }else{
+                 return redirect()->back()->with('error','Failed to register');
+             }
        
 }
+
+
+public function editDepartments(Department $department)
+{
+    return view('admin\editDepartment',['department'=>$department]);
+
+}
+
+public function destroySubject($id )
+    {
+        // check if doctor id exist
+  
+        $departments = Department::find($id);
+        if(!$departments)
+        {
+            return redirect() ->back() ->with(['error' =>'department not found']);
+
+        }
+        $departments->delete();
+
+        return redirect()->route('adminDepartments')
+        ->with(['success'=>'departments deleted successfully']);
+    }
     public function subjects()
     {
 

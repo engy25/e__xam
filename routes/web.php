@@ -34,6 +34,14 @@ Route::group(['prefix' => 'admin',  'middleware' =>['isAdmin','auth','PrevetBack
    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('adminDashboard');
     Route::get('departments', [App\Http\Controllers\HomeController::class, 'departments'])->name('adminDepartments');
     Route::post('/departments', [App\Http\Controllers\HomeController::class, 'savedDepartments']);
+    Route::get('/admin/departments/{department}/edit', [App\Http\Controllers\HomeController::class, 'editDepartments']);
+
+
+    Route::get('edit/{department_id}', [App\Http\Controllers\HomeController::class,  'editDepartments']);
+    Route::post('update/{department_id}', [App\Http\Controllers\HomeController::class, 'Updatedepartment')->name('department.update');
+
+
+    Route::get('/deleteDepartment/{id}', [App\Http\Controllers\HomeController::class, 'destroySubject'])->name('admindepartmentdelete');
     Route::get('/subjects', [App\Http\Controllers\HomeController::class, 'subjects'])->name('adminSubjects');
     Route::get('/pendingTeacher', [App\Http\Controllers\HomeController::class,'pendingTeacher'])->name('adminPendingTeacher');
     Route::get('/teacherSubjects', [App\Http\Controllers\HomeController::class, 'teacherSubjects'])->name('adminTeacherSubjects');
