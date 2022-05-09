@@ -115,6 +115,7 @@
         <label onclick="Function3()" class="sidebar-items"><i class="fas fa-book"></i>     Collage</label>
         <ul id="ul-3">
             <li> <a href="{{route('adminDepartments')}}" class="list-items">- Add Department</a></li>
+            <li> <a href="{{route('adminLevels')}}" class="list-items">- Add Levels</a></li>
             <li> <a href="{{route('adminSubjects')}}" class="list-items">- Add Subject</a></li>
         </ul>
 

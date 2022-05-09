@@ -15,10 +15,11 @@ class Level extends Model
     
     ];
 
-
+    protected $primaryKey = 'level_id';
     protected $hidden = [
         
     ];
+    public $timestamps = false;
 
     ///// one to one relations between users ////
     public function user()

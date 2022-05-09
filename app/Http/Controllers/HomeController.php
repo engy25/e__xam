@@ -70,6 +70,8 @@ class HomeController extends Controller
        echo 'kkk';
     }
    
+
+     //  ****************************Add Show Edit DELETE UPDATE DEPARTMENTS*********************
     public function departments()
     {
        
@@ -81,32 +83,130 @@ class HomeController extends Controller
     public function savedDepartments(Request $request)
     { 
 
-        $request->validate([
-            'department_name' => 'required',
-            'department_id' => 'required',
-            
+            Department::create([
+                
+                'department_name' => $request->department_name,
+                
+                'department_id' => $request->department_id,
+               
             ]);
-            $departments = new Department;
-            $departments->department_name = $request->department_name;
-            $departments->department_id = $request->department_id;
-
-            if( $departments->save() ){
-
-                return redirect()->back()->with('success','You are now successfully registerd');
-             }else{
-                 return redirect()->back()->with('error','Failed to register');
-             }
-       
-}
-
-
-public function editDepartments(Department $department)
+            
+            return redirect()->back()->with(['success'=>'Added Successfully']);
+                  
+                }
+public function editDepartments(Department $department_id)
 {
-    return view('admin\editDepartment',['department'=>$department]);
+
+    $Admin=User::where('role_id',1)->get();
+    $departments = Department::find($department_id);  // search in given table id only
+    if (!$departments)
+        return redirect()->back();
+        
+    return view('admin\editDepartment', compact('departments','Admin'));
+
 
 }
+public function Updatedepartment(Request $request, $department_id)
+   {
+       //validtion
 
-public function destroySubject($id )
+       // chek if offer exists
+
+       $departments = Department::find($department_id);
+       if (!$departments)
+    {
+           return redirect()->back();
+    }
+       //update data
+
+       $departments->update([
+        'department_name' => $request->department_name,
+        'department_id' => $request->department_id,
+
+       
+    ]);
+    return redirect()->route('adminDepartments')
+    ->with(['success'=>'departments updated successfully']);
+   }
+
+
+ public function levels()
+    {
+                    
+     $Admin=User::where('role_id',1)->get();
+    $levels= Level::all();
+    return view('admin\addLevels',compact('Admin','levels'));
+                    
+    }
+
+    public function savedLevels(Request $request)
+    { 
+
+      Level::create([
+                
+     'level_name' => $request->level_name,
+                
+      'level_id' => $request->level_id,
+               
+         ]);
+            
+    return redirect()->back()->with(['success'=>'Added Successfully']);
+                  
+     }
+
+     public function destroyLevel($level_id )
+    {
+        // check if doctor id exist
+  
+        $levels = Level::find($level_id);
+        if(!$levels)
+        {
+            return redirect() ->back() ->with(['error' =>'level not found']);
+
+        }
+        $levels->delete();
+
+        return redirect()->route('adminLevels')
+        ->with(['success'=>'levels deleted successfully']);
+    }
+
+
+
+    public function editLevels(Level $level_id)
+{
+
+    $Admin=User::where('role_id',1)->get();
+    $levels = Level::find($level_id);  // search in given table id only
+    if (!$levels)
+        return redirect()->back();
+        
+    return view('admin\editLevel', compact('levels','Admin'));
+
+
+}
+public function Updatedlevel(Request $request, $level_id)
+   {
+       //validtion
+
+       // chek if offer exists
+
+       $levels = Level::find($level_id);
+       if (!$levels)
+    {
+           return redirect()->back();
+    }
+       //update data
+
+       $levels->update([
+        'level_name' => $request->level_name,
+        'level_id' => $request->level_id,
+
+       
+    ]);
+    return redirect()->route('adminLevels')
+    ->with(['success'=>'levels updated successfully']);
+   }
+public function destroyDepartment($id )
     {
         // check if doctor id exist
   
@@ -123,9 +223,6 @@ public function destroySubject($id )
     }
     public function subjects()
     {
-
-        //$doctor= Doctor::with('Hospital')->find(2);
-       // $subjects= Subject::all();
        $levels=Level::all();
        $departments=Department::all();
 

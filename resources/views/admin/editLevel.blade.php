@@ -6,7 +6,7 @@
         <br><br><br><br><br>
        <div class="container">
         <h4>
-                        <a href="{{ url('admin/departments') }}" class="btn btn-danger float-end">BACK</a>
+                        <a href="{{ url('admin/levels') }}" class="btn btn-danger float-end">BACK</a>
 </h4>
 </div>
         <div class="container">
@@ -14,15 +14,15 @@
             
                   
             
-            <form method="POST" action="{{ url('admin/departments') }}" >
+            <form method="POST" action="{{ url('admin/levels') }}" >
             @csrf
             {{-- <input name="_token" value="{{csrf_token()}}"> --}}
 
 
             <div class="form-group">    
-              <label for="department_name">Department you want to change</label>
-              <input type="text" class="form-control" name="department_name"/>
-              <span class="text-danger">@error('department_name'){{ $message }}@enderror</span>
+              <label for="level_name">Level you want to change</label>
+              <input type="text" class="form-control" name="level_name"/>
+              <span class="text-danger">@error('level_name'){{ $message }}@enderror</span>
           </div>
 
           

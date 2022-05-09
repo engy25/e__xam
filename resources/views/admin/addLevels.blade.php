@@ -7,14 +7,14 @@
 
             <div class="content-header">
                 <div class="content-header-labels">
-                <form method="POST" class="my-login-validation" autocomplete="off"  action="{{ route('adminDepartments') }}">
+                <form method="POST" class="my-login-validation" autocomplete="off"  action="{{ route('adminLevels') }}">
                 @csrf
                 </div>
 
                 <div class="form-group">
-									<label for="department_id">Department</label>
-									<input id="department_name" type="text"class="content-header-select" name="department_name"  placeholder="Enter Department Name" value="{{ old('department_name') }}">
-									<span class="text-danger">@error('department_name'){{ $message }}@enderror</span>
+									<label for="level_id">Levels</label>
+									<input id="level_name" type="text"class="content-header-select" name="level_name"  placeholder="Enter level Name" value="{{ old('level_name') }}">
+									<span class="text-danger">@error('level_name'){{ $message }}@enderror</span>
 								</div>
 
                               
@@ -32,27 +32,28 @@
                     <table class="table align-middle mb-0 bg-white">
   <thead class="bg-light">
     <tr>
-      <th>Department</th>
+      <th>level</th>
       <th>Edit</th>
       <th>Delete</th>
    
     </tr>
   </thead>
   <tbody>
-    @foreach($departments as $department)
+    @foreach($levels as $level)
     <tr>
      
-      <td id="{{$department->department_id}}">
-        <p class="fw-normal mb-1">{{$department->department_name}}</p>
+      <td id="{{$level->level_id}}">
+        <p class="fw-normal mb-1">{{$level->level_name}}</p>
        
       </td>
       <td>
-   
-      <a href="{{url('admin/edit/'.$department -> department_id)}}" class="btn btn-primary">Edit</a>
+
+      <a href="{{url('admin/edit/level/'.$level -> level_id)}}" class="btn btn-primary">Edit</a>
       </td>
       <td>
       
-    <a href="{{route('admindepartmentdelete',$department->department_id)}}" class="btn btn-danger"> delete</a>
+    <a href="{{route('adminleveldelete',$level->level_id)}}" class="btn btn-danger"> delete</a>
+
     </td>
 
 
