@@ -22,10 +22,7 @@
                 
 
                 <div class="content-header-select">
-                <select id="DoctorName">
-                        <option value="" selected disabled>Select Teacher Name</option>
-                        <option value="">AmrAboHany12</option>
-                    </select>
+            
                     <select id="levels" name="level">
                         <option value="" selected disabled>Select Level</option>
                         @foreach($levels as $level)
