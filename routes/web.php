@@ -43,6 +43,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('update/level/{level_id}', [App\Http\Controllers\HomeController::class, 'Updatelevel'])->name('levelUpdate');
     Route::get('/deleteLevel/{level_id}', [App\Http\Controllers\HomeController::class, 'destroyLevel'])->name('adminleveldelete');
     Route::get('/subjects', [App\Http\Controllers\HomeController::class, 'subjects'])->name('adminSubjects');
+    Route::post('/subjects', [App\Http\Controllers\HomeController::class, 'saveSubjects'])->name('adminSavedSubjects');
     Route::get('/pendingTeacher', [App\Http\Controllers\HomeController::class,'pendingTeacher'])->name('adminPendingTeacher');
     Route::get('/teacherSubjects', [App\Http\Controllers\HomeController::class, 'teacherSubjects'])->name('adminTeacherSubjects');
     Route::post('/teacherSubjects/save', [App\Http\Controllers\HomeController::class, 'saveTeacherSubjects']);

@@ -16,7 +16,19 @@ class Subject extends Model
         
     
     ];
-   
-
+    public $timestamps = false;
+    protected $primaryKey = 'subject_id';
+   // one to many relationshib between subject and level each level has many subjects
+    public function level()
+    {
+       
+        return $this -> belongsto('App\Models\Level','level_id');
+    }
+    // one to many relationshib between subject and department each department has many subjects
+    public function department()
+    {
+       
+        return $this -> belongsTo('App\Models\Department','department_id');
+    }
 
 }

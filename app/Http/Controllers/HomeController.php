@@ -221,15 +221,36 @@ public function destroyDepartment($id )
         return redirect()->route('adminDepartments')
         ->with(['success'=>'departments deleted successfully']);
     }
-    public function subjects()
+   
+    public function subjects ()
     {
-       $levels=Level::all();
-       $departments=Department::all();
-
+        
+        $subjects = Subject::all();
+        $departments = Department::all();
+        $levels = Level::all();
         $Admin=User::where('role_id',1)->get();
-        return view('admin\addSubjects',compact('Admin','levels','departments'));
-       
+        return view('admin\addSubjects',['departments' => $departments,'levels' => $levels,'Admin'=>$Admin,'subjects'=>$subjects]);
     }
+
+   public function saveSubjects(Request $request){
+   
+    Subject::create([
+                
+        'level_id' => $request->level_id,
+        'subject_name' => $request->subject_name,
+        'subject_id' => $request->subject_id,
+        'department_id' => $request->department_id,
+
+       
+    ]);
+    
+    return redirect()->back()->with(['success'=>'Added Successfully']);
+          
+        }
+
+
+
+
     public function pendingTeacher()
     {
         $Admin=User::where('role_id',1)->get();
@@ -256,6 +277,8 @@ public function destroyDepartment($id )
         return view('admin\teacherSubjects',compact('dapartments','levels','subjects','Admin','professor'));
        
     }
+
+
     public function saveTeacherSubjects(Request $request)
     {
 
