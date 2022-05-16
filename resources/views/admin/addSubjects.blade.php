@@ -10,29 +10,30 @@
                 <div class="content-header-labels">
                 <form method="POST" class="my-login-validation" autocomplete="off"  action="{{ route('adminSubjects') }}">
                 @csrf
+</div>
+
+                
+                <div class="form-group">
+                    <label for="levels" style="margin-right:227px;">Level</label>
+                    <label for="department_id" style="margin-right:166px;">Department</label>
+                    <label for="subject_id">Subject</label>
+                </div>
 
 
                 
-                    <label for="TeacherName">Doctor Name</label>
-                    <label for="levels" style="margin-right:227px;">Level</label>
-                    <label for="departments" style="margin-right:166px;">Department</label>
-                    <label for="subjects">Subject</label>
-                   
-                </div>
                 
 
                 <div class="content-header-select">
-            
-                    <select id="levels" name="level">
+                    <select id="levels" name="level_id">
                         <option value="" selected disabled>Select Level</option>
                         @foreach($levels as $level)
                         <option value="{{$level->level_id}}">{{$level->level_name}}</option>
                         @endforeach
                     </select>
-
+                
                   
 
-                    <select id="subjects" name="subject">
+                    <select id="departments" name="department_id">
                     
                         <option value="" selected disabled>Select Department</option>
                         @foreach($departments as $department)
@@ -40,14 +41,14 @@
                         @endforeach
                     </select>
                     
-                    <input id="subject_name"  type="text" name="subject_name" class="content-header-select"  autofocus placeholder="Enter Subject name" value="{{ old('subject_name') }}">
+                    <input id="subjects"  type="text" name="subject_name" class="content-header-select"  autofocus placeholder="Enter Subject name" value="{{ old('subject_name') }}">
                                     <span class="text-danger">@error('subject_name'){{ $message }}@enderror</span>
 
 
 
 
                                 </div>
-                </div>
+                
 
                 <div class="content-header-btn">
                     <button  type="submit" >Add</button>
@@ -75,8 +76,15 @@
         <p class="fw-normal mb-1">{{$subject->subject_name}}</p>
        
       </td>
-      <td><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button></td>
-      <td><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button></td>
+
+      <td>
+      <a href="{{url('admin/edit/subject/'.$subject -> subject_id)}}" class="btn btn-primary">Edit</a>
+      </td>
+      <td>
+      
+      <a href="{{route('adminsubjectdelete',$subject->subject_id)}}" class="btn btn-danger"> delete</a>
+  
+      </td>
                     </tr>
                     @endforeach
                 </table>

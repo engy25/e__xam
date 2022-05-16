@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
     }
-
+    protected $primaryKey = 'id';
     /**
      * Reverse the migrations.
      *

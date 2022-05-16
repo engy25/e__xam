@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Traits\photoTrait;
 use App\Models\User;
+use App\Models\Temp_professor;
 use App\Models\Role;
 use App\Models\Department;
 use App\Models\Level;
@@ -37,6 +38,13 @@ class RegisterController extends Controller
         return view('auth\register',['roles' => $roles,'departments' => $departments,'levels' => $levels]);
     }
 
+    public function showRegistrationFormForDoct ()
+    {
+        $roles = Role::all();
+        $departments = Department::all();
+        $levels = Level::all();
+        return view('auth\registerDoct',['roles' => $roles,'departments' => $departments,'levels' => $levels]);
+    }
 
     /**
      * Where to redirect users after registration.
@@ -68,8 +76,6 @@ class RegisterController extends Controller
             'last_name' => ['required', 'string', 'max:250'],
             'mobile' => ['required', 'string','max:300'],
             'photo' => ['required', 'string', 'max:300'],
-           // 'department_student' => ['string', 'max:200'],
-           // 'level_student' => ['integer', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role_id' => ['required', 'integer'],
             
@@ -114,7 +120,6 @@ class RegisterController extends Controller
             'level_id'=> $data['level_id'],
             'email' => $data['email'],
             'role_id' =>$data['role_id'],
-            
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -148,22 +153,29 @@ class RegisterController extends Controller
         $user->password = \Hash::make($request->password);
         $user->level_id = $request->level;
         $user->department_id = $request->department;
+       if($request->role ==2)
 
-       
-
+       {
+        $user->verified=0;
+       }
+       else{
+        $user->verified=1;
+         }
         
-        /*
-        $user()->save();
-        return 'registered successfully';
-*/
+
         if( $user->save() ){
 
             return redirect()->back()->with('success','You are now successfully registerd');
          }else{
              return redirect()->back()->with('error','Failed to register');
          }
+        }
 
-    }
+         
+       
+
+
+  
 
 
    

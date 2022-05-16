@@ -17,6 +17,15 @@
 									<span class="text-danger">@error('level_name'){{ $message }}@enderror</span>
 								</div>
 
+                <select id="departments" name="department_id">
+                    
+                    <option value="" selected disabled>Select Department</option>
+                    @foreach($departments as $department)
+                    <option value="{{$department->department_id}}">{{$department->department_name}}
+                    @endforeach
+                </select>
+                
+
                               
                     
                 

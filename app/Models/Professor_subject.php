@@ -16,6 +16,9 @@ class Professor_subject extends Model
     
     ];
 
+    public $timestamps = false;
+   
+
     public function professor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'professor_id');

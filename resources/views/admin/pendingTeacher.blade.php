@@ -14,7 +14,7 @@
                         <tr>
                        
                             <th>Doctor Name</th>
-                            <th>Profile Picture</th>
+                            <th>Doctor Email</th>
                             <th>Mobile</th>
 
                             <th>Approve</th>
@@ -24,17 +24,22 @@
                     @foreach($userDoctors as $userDoctore)
                     <tr>
                    
-                        <td> {{$userDoctore->first_name}}</td>
+                        <td>{{$userDoctore->first_name}}</td>
                        
-                        <td> <img src="{{ asset('public/images/users/'.$userDoctore->photo) }}" width="100px"></td>
+                        <td> {{$userDoctore->email}}</td>
                         <td>{{$userDoctore->mobile}}</td>
-                        
-                        @endforeach
-                        <td></td>
-                        <td></td>
-                        <td><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"></span></button></td>
-                        <td><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button></td>
+                         <td>
+                        <a href="{{route('adminapprovePendingTeacher',$userDoctore->id)}}" class="btn btn-success"> Approve</a>
+                        </td>
+                        <td>
+                        <a  href= "{{route('adminpendingTeacherdelete',$userDoctore->id)}}" class="btn btn-danger"> Delete</a>
+                        </td>    
+      
+  
+      </td>
+                    
                     </tr>
+                    @endforeach
                 </table>
             </div>
         </div>

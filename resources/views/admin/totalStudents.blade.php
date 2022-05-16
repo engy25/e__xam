@@ -22,16 +22,20 @@
                             <th>Profile</th>
                         </tr>
                     </thead>
-                    @foreach($userDoctors as $userDoctore)
+                    @foreach($students as $student)
                     <tr>
-                    <td>{{$userDoctore->first_name}}</td>
-                        <td>{{$userDoctore->last_name}}</td>
-                        <td>{{$userDoctore->email}}</td>
+                    <td>{{$student->first_name}}</td>
+                        <td>{{$student->last_name}}</td>
+                        <td>{{$student->email}}</td>
                         
                         <td>3</td>
                         <td>SE</td>
 
-                        <td><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button></td>
+                        <td>
+      
+    <a href="{{route('destroystudent',$student->id)}}" class="btn btn-danger"> delete</a>
+    </td>
+
                         <td><a class="btn btn-primary btn-xs" href="Admin-StudentProfile.html" style="font-weight:bolder;"><span>Visit</span></a></td>
                     </tr>
                     @endforeach

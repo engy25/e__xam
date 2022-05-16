@@ -1,11 +1,10 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>Register page</title>
+	<title>Register page For Doctors</title>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/my-login.css">
 </head>
@@ -17,8 +16,8 @@
 				
 					<div class="cardx fat mt-4">
 						<div class="card-body">
-							<h4 class="card-title">Register </h4>
-							<form method="POST" class="my-login-validation" autocomplete="off" enctype="multipart/form-data" action="{{ route('register') }}">
+							<h4 class="card-title">Register For Doctor</h4>
+							<form method="POST" class="my-login-validation" autocomplete="off" enctype="multipart/form-data" action="{{ route('registerDoc') }}">
 
 								@if ( Session::get('success'))
 									 <div class="alert alert-success">
@@ -31,22 +30,13 @@
 									 </div>
 								@endif
                                 @csrf
-								<div class="form-group" >
-                                    <label  for="role">Role</label>
-                                    <select onChange="roleChange();" id="roles" class="form-control" name="role">
-                                        <option value="" selected disabled>Select roles</option>
-										@foreach($roles as $role)
-                                        <option value="{{$role->role_id}}" >{{$role->role_name}} </option>
-										@endforeach
-                                    </select>
-                                </div>
+
 							
 
 								
-
-								<div  id="levels"  style="display:none" class="form-group" >
+								<div class="form-group" >
                                     <label  for="levels">Level</label>
-                                    <select  class="form-control" name="level">
+                                    <select  id="levels" class="form-control" name="level">
                                         <option value="" selected disabled>Select levels</option>
 										@foreach($levels as $level)
                                         <option value="{{$level->level_id}}" >{{$level->level_name}} </option>
@@ -54,9 +44,9 @@
                                     </select>
                                 </div>
 
-								<div  id="departments"  style="display:none" class="form-group" >
-                                    <label  for="roles">Department</label>
-                                    <select   class="form-control" name="department">
+								<div class="form-group" >
+                                    <label for="roles">Department</label>
+                                    <select id="departments" class="form-control" name="department">
                                         <option value="" selected disabled>Select departments</option>
 										@foreach($departments as $department)
                                         <option value="{{$department->department_id}}" >{{$department->department_name}} </option>
@@ -108,18 +98,7 @@
                                     <span class="mobile-danger">@error('mobile'){{ $message }}@enderror</span>
                                 </div>
 
-								<div class="form-group">
-                                    <label for="photo">Photo</label>
-                                    <input id="photo" type="file" class="form-control" name="photo"  value="{{ old('photo') }}">
-                                    <span class="photo-danger">@error('photo'){{ $message }}@enderror</span>
-                                </div>
-
-                                
-
-                                
-
-                               
-
+								
 								<div class="form-group">
 									<div class="custom-checkbox custom-control">
 										<input type="checkbox" name="agree" id="agree" class="custom-control-input">
@@ -138,7 +117,9 @@
 								<div class="mt-4 text-center">
 									Already have an account? <a href="{{route('login')}}">Login</a>
 								</div>
-								
+								<div class="mt-4 text-center">
+									Do You  want to  make an account for student? <a href="{{route('register')}}">Register</a>
+								</div>
 							</form>
 						</div>
 					</div>

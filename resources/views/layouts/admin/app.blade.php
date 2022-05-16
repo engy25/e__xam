@@ -82,7 +82,7 @@
         
             <a href="{{ route('login') }}" class="logout_btn">Logout</a>
             
-            <a href="{{ route('changePasswordAdmin') }}" class="ChangePassword_btn">Change Password</a>
+            <a href="{{ route('changePasswordAdmins') }}" class="ChangePassword_btn">Change Password</a>
         </div>
         
     </header>
@@ -100,11 +100,12 @@
        
         <a  href="{{route('adminDashboard')}}"  class="sidebar-items"><i class="fas fa-tachometer-alt"></i>     Dashboard</a> 
             
-        <label onclick="Function1()" class="sidebar-items"><i class="fas fa-chalkboard-teacher"></i>     Teacher</label>
+        <label onclick="Function1()" class="sidebar-items"><i class="fas fa-chalkboard-teacher"></i>     Doctors</label>
         <ul id="ul-1">
-            <li> <a href="{{route('adminPendingTeacher')}}" class="list-items">- Pending Teachers</a></li>
-            <li> <a href="{{route('adminTeacherSubjects')}}" class="list-items">- Teacher Subjects</a></li>
-            <li> <a href="{{route('adminTotalTeacher')}}" class="list-items">- Total Teachers</a></li>
+            <li> <a href="{{route('adminPendingTeacher')}}" class="list-items">- Pending Doctors</a></li>
+            
+            <li> <a href="{{route('adminTotalTeacher')}}" class="list-items">- Total Doctors</a></li>
+            <li> <a href="{{route('DoctorSubject')}}" class="list-items">- Add Subject For Doctors</a></li>
         </ul>
 
         <label onclick="Function2()" class="sidebar-items"><i class="fas fa-user-graduate"></i>     Student</label>

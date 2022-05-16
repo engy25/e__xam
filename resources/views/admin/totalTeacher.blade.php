@@ -30,11 +30,22 @@
                         <td>{{$userDoctore->email}}</td>
                         <td>{{$userDoctore->mobile}}</td>
                         <td>
-                        <a href="{{route('adminTotalTeacherdelete',$userDoctore->id)}}" class="btn btn-success"> delete</a>
+                        <a href="{{route('adminTotalTeacherdelete',$userDoctore->id)}}" class="btn btn-success"> Delete</a>
                         </td>
-  >
-                        <td><a class="btn btn-primary btn-xs" href="Admin-TeacherProfile.html" style="font-weight:bolder;"><span>Visit</span></a></td>
-                       
+                        <td>
+                        <a  href= "{{route('adminViewProfileOfDoctor',$userDoctore->id)}}" class="btn btn-danger">View</a>
+                        </td>  
+
+
+
+                        
+
+
+    
+                        
+                        
+
+                        
 
                     </tr>
                     @endforeach
