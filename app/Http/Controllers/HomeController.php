@@ -56,9 +56,9 @@ class HomeController extends Controller
        
     }
     
-    public function changepassword()
+    public function changePassword()
     {
-        return view('auth\passwords\changePassword');
+        return view('doctor/changePassword');
        
     }
     
@@ -70,14 +70,21 @@ class HomeController extends Controller
    
     public function departments()
     {
+
         $Admin=User::where('role_id',1)->get();
         return view('admin\addDepartments',compact('Admin'));
        
     }
     public function subjects()
     {
+
+        //$doctor= Doctor::with('Hospital')->find(2);
+        // $subjects= Subject::all();
+        $levels=Level::all();
+        $departments=Department::all();
+
         $Admin=User::where('role_id',1)->get();
-        return view('admin\addSubjects',compact('Admin'));
+        return view('admin\addSubjects',compact('Admin','levels','departments'));
        
     }
     public function pendingTeacher()
@@ -91,8 +98,12 @@ class HomeController extends Controller
    
     public function teacherSubjects()
     {
+
+        $profsub = Professor_subject::with('subject')->get();
+        $profuser= Professor_subject::with('professor')->get();
+
         $Admin=User::where('role_id',1)->get();
-        $userDoctors=User::where('role_id',2)->get();
+        //$userDoctors=User::where('role_id',2)->get();
         $dapartments=Department::all();
         $levels=Level::all();
         $subjects=Subject::all();

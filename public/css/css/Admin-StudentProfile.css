@@ -1,0 +1,42 @@
+﻿body{
+            background-color:#F0F0F0;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        h6 {
+            text-align: center;
+        }
+
+        .row {
+            margin: 100px;
+        }
+
+        .teacher-picture {
+            width: 210px;
+            height: 210px;
+            margin-bottom: 50px;
+            border: 1px solid #d6d6c2;
+        }
+
+        .content-header label {
+            font-size: 18px;
+            color: #005450;
+        }
+
+        .content-header p {
+            font-size: 15px;
+            display:inline;
+            color:#484848;
+        }
+
+        .content-header-rightside{
+            float:left;
+            margin-left:40px;
+            margin-top:10px;
+        }
+        .content-header-leftside{
+            float:left;
+        }

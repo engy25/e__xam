@@ -222,7 +222,7 @@
        
         function hide_pupup() {
             document.getElementById("pupup").classList.remove('card');
-            window.open("Student-ExamResult.html","_self");
+            window.open("doctor-ExamResult.html","_self");
         }
 
     </script>

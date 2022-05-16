@@ -1,8 +1,6 @@
 ﻿@extends('layouts/doctor.app')
 @section('content')
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<body>
+
     <!--content start-->
     <div class="content">
         <br><br><br><br><br>
@@ -14,18 +12,19 @@
                 </div>
                 <table class="table table-hover" id="dev-table">
                     <thead>
-                        <tr>
-                            <th>Exam Name</th>
-                            <th>Total Mark</th>
+                    <tr>
+                        <th>Exam Name</th>
+                        <th>Total Mark</th>
 
-                            <th>Results</th>
-                        </tr>
+                        <th>Results</th>
+                    </tr>
                     </thead>
                     <tr>
                         <td>Data Base</td>
                         <td>20</td>
 
-                        <td><a class="btn btn-primary btn-xs" href="Teacher-ViewResults.html" style="font-weight:bolder;"><span>View</span></a></td>
+                        <td><a class="btn btn-primary btn-xs" href="{{route('doctorViewResults')}}"
+                               style="font-weight:bolder;"><span>View</span></a></td>
                     </tr>
                 </table>
             </div>
@@ -34,9 +33,5 @@
         <br><br><br>
     </div>
     <!--content end-->
-    <!--JS code start-->
-    <script src="js/AdminBase.js"></script>
-    <!--JS code end-->
-</body>
-</html>
+
 @endsection

@@ -1,75 +1,166 @@
-html,body {
-	height: 100%;
+
+
+body {
+    background-image: url("../images/background.jpg");
+
 }
 
 body.my-login-page {
-	background-color: #f7f9fb;
-	font-size: 14px;
+    background-image: url("../images/background.jpg");
+    font-size: 14px;
 }
 
+
 .my-login-page .brand {
-	width: 90px;
-	height: 90px;
-	overflow: hidden;
-	border-radius: 50%;
-	margin: 40px auto;
-	box-shadow: 0 4px 8px rgba(0,0,0,.05);
-	position: relative;
-	z-index: 1;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 40px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+    position: relative;
+    z-index: 1;
 }
 
 .my-login-page .brand img {
-	width: 100%;
+    width: 100%;
 }
 
 .my-login-page .card-wrapper {
-	width: 400px;
+    width: 400px;
 }
 
 .my-login-page .card {
-	border-color: transparent;
-	box-shadow: 0 4px 8px rgba(0,0,0,.05);
+    border-color: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
 }
 
-.my-login-page .card.fat {
-	padding: 10px;
-}
 
 .my-login-page .card .card-title {
-	margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 .my-login-page .form-control {
-	border-width: 2.3px;
+    border-width: 2.3px;
 }
 
 .my-login-page .form-group label {
-	width: 100%;
+    width: 100%;
 }
 
 .my-login-page .btn.btn-block {
-	padding: 12px 10px;
+    padding: 12px 10px;
 }
 
 .my-login-page .footer {
-	margin: 40px 0;
-	color: #888;
-	text-align: center;
+    margin: 40px 0;
+    color: #888;
+    text-align: center;
 }
 
 @media screen and (max-width: 425px) {
-	.my-login-page .card-wrapper {
-		width: 90%;
-		margin: 0 auto;
-	}
+    .my-login-page .card-wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
 }
 
 @media screen and (max-width: 320px) {
-	.my-login-page .card.fat {
-		padding: 0;
-	}
+    .my-login-page .card.fat {
+        padding: 0;
+    }
 
-	.my-login-page .card.fat .card-body {
-		padding: 15px;
-	}
+    .my-login-page .card.fat .card-body {
+        padding: 15px;
+    }
+}
+
+/*New CSS*/
+.container {
+    height: 490px;
+    width: 480px;
+    background-color: #005450;
+    margin: auto;
+    border-radius: 20px;
+
+}
+
+.form-header {
+    height: 130px;
+    background-color: #005450;
+    border-top-right-radius: 20px;
+    border-bottom: solid #b3cccc 1px;
+}
+
+.form-labels {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-txt {
+    width: 95%;
+    padding: 10px;
+    border: solid lightgray 1px;
+}
+
+.form-select {
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    border: solid lightgray 1px;
+}
+
+.form-center {
+    padding: 30px;
+}
+
+.login-btn {
+    position: relative;
+    top: 30px;
+    left: 125px;
+    width: 180px;
+    padding: 10px;
+    background-color: white;
+    color: #005450;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border: solid lightgray 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.a {
+
+    position: relative;
+    left: 300px;
+}
+
+.form-footer {
+    background-color: #005450;
+    height: 55px;
+    margin-top: 25px;
+    border-bottom-left-radius: 20px;
+    border-top: solid #b3cccc 1px;
+}
+
+h1 {
+    text-align: center;
+    position: relative;
+    top: 40px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+a {
+    position: relative;
+    top: 15px;
+    left: 217px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
 }
