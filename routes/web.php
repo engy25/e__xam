@@ -30,6 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
                              /////////////************Admin**********///////////
     Route::group(['prefix' => 'admin',  'middleware' =>['isAdmin','auth','PrevetBackHistory']], function(){
     Route::get('/changepassword', [App\Http\Controllers\HomeController::class, 'changepassword'])->name('changePasswordAdmin');
+    Route::post('/changePassword',[App\Http\Controllers\HomeController::class, 'changePasswordPost'])->name('changePasswordPost');
     Route::get('/forgetpassword', [App\Http\Controllers\HomeController::class, 'forgetpassword'])->name('forgetPasswordAdmin');
     Route::get('/Changepasswords', [App\Http\Controllers\HomeController::class, 'changepasswords'])->name('changePasswordAdmins');
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('adminDashboard');
@@ -60,6 +61,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('/teacherSubjects/save', [App\Http\Controllers\HomeController::class, 'saveTeacherSubjects']);
     Route::get('/totalTeacher', [App\Http\Controllers\HomeController::class, 'totalTeacher'])->name('adminTotalTeacher');
     Route::get('TeacherProfile/{id}', [App\Http\Controllers\HomeController::class,  'ViewProfileDoctor'])->name('adminViewProfileDoctor');
+    Route::get('StudentProfile/{id}', [App\Http\Controllers\HomeController::class,  'ViewProfileStudent'])->name('adminViewProfileStudent');
     Route::get('ViewTeacherProfile/{id}', [App\Http\Controllers\HomeController::class,  'ViewProfileOfDoctor'])->name('adminViewProfileOfDoctor');
     Route::get('/delete/{id}', [App\Http\Controllers\HomeController::class, 'destroy'])->name('adminTotalTeacherdelete');
     Route::get('/totalStudents', [App\Http\Controllers\HomeController::class, 'totalStudents'])->name('adminTotalStudents');

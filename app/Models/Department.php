@@ -9,23 +9,25 @@ class Department extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'department_id',
+        'id',
         
         'department_name',
         
     
     ];
-    protected $primaryKey = 'department_id';
+    protected $primaryKey = 'id';
 
     public $timestamps = false;
     protected $hidden = [
         
     ];
     ///// one to one relations between users ////
-    public function user()
+  
+    public function userdep()
     {
         
-        return $this -> belongsTo('App\Models\User');
+      
+        return $this->hasOne(User::class);
     }
 
   

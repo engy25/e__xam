@@ -5,8 +5,7 @@
     <meta charset="utf-8" />
     <title>E-Exam</title>
     <!--start admin base-->
-   
-    <link rel="stylesheet" href= "{{ asset('css/AdminBase.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/AdminBase.css') }}" />
     <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css') }}">
     <!--end admin base-->
 
@@ -31,42 +30,20 @@
             margin: 100px;
         }
 
-        .table-footer{
-            background-color:#005450;
-            height:40px;
-            margin-top:0px;
-            border-top:solid #b3cccc 1px;
+        .teacher-picture {
+            width: 210px;
+            height: 210px;
+            margin-bottom: 50px;
+            border: 1px solid #d6d6c2;
         }
 
-        .table-footer-btn{
-            padding: 8px;
-            background-color: #005450;
+        .content-header label {
+            font-size: 18px;
+            color: #005450;
+        }
+
+        .content-header p {
             font-size: 15px;
-            font-weight: 600;
-            color: white;
-            border:none;
-            margin-left:490px;
-        }
-
-        .table-footer-btn:hover{
-            color:#d6d6c2;
-        }
-
-        .teacher-picture{
-            width:210px;
-            height:210px;
-            margin-bottom:50px;
-            border:1px solid #d6d6c2;
-
-        }
-
-        .content-header label{
-            font-size:18px;
-            color:#005450;            
-        }
-
-        .content-header p{
-            font-size:15px;
             display:inline;
             color:#484848;
         }
@@ -80,8 +57,6 @@
             float:left;
         }
 
-        
-        
     </style>
 
 </head>
@@ -93,8 +68,8 @@
             <h3>E-Exam</h3>
         </div>
         <div class="right_area">
-            <a href="{{ asset('signin.html') }}" class="logout_btn">Logout</a>
-            <a href="{{ asset('ChangePassword.html') }}" class="ChangePassword_btn">Change Password</a>
+            <a href="signin.html" class="logout_btn">Logout</a>
+            <a href="ChangePassword.html" class="ChangePassword_btn">Change Password</a>
         </div>
 
     </header>
@@ -106,31 +81,29 @@
             <h4>Admin</h4>
         </center>
 
-        <a href="{{ asset('Admin-Dashboard.html') }}" class="sidebar-items"><i class="fas fa-tachometer-alt"></i>     Dashboard</a>
+        <a href="Admin-Dashboard.html" class="sidebar-items"><i class="fas fa-tachometer-alt"></i>     Dashboard</a>
         <label onclick="Function1()" class="sidebar-items"><i class="fas fa-chalkboard-teacher"></i>     Teacher</label>
         <ul id="ul-1">
-            <li> <a href="" class="list-items">- Pending Teachers</a></li>
-            <li> <a href="" class="list-items">- Teacher Subjects</a></li>
-            <li> <a href="" class="list-items">- Total Teachers</a></li>
+            <li> <a href="Admin-PendingTeacher.html" class="list-items">- Pending Teachers</a></li>
+            <li> <a href="Admin-TeacherSubjects.html" class="list-items">- Teacher Subjects</a></li>
+            <li> <a href="Admin-TotalTeacher.html" class="list-items">- Total Teachers</a></li>
         </ul>
 
         <label onclick="Function2()" class="sidebar-items"><i class="fas fa-user-graduate"></i>     Student</label>
         <ul id="ul-2">
-            <li> <a href="" class="list-items">- Total Students</a></li>
+            <li> <a href="Admin-TotalStudents.html" class="list-items">- Total Students</a></li>
         </ul>
 
         <label onclick="Function3()" class="sidebar-items"><i class="fas fa-book"></i>     Collage</label>
         <ul id="ul-3">
-            <li> <a href="" class="list-items">-Add Department</a></li>
-            <li> <a href="" class="list-items">- Add Subject</a></li>
+            <li> <a href="Admin-AddDepartments.html" class="list-items">- Add Department</a></li>
+            <li> <a href="Admin-AddSubjects.html" class="list-items">- Add Subject</a></li>
         </ul>
 
-        <a href="" class="sidebar-items"><i class="fas fa-question-circle"></i>     Exams</a>
+        <a href="Admin-AllExams.html" class="sidebar-items"><i class="fas fa-question-circle"></i>     Exams</a>
     </div>
     <!--sidebar end-->
     <!--end Admin base-->
-
-
     <!--content start-->
     <div class="content">
         <br><br><br><br><br>
@@ -139,31 +112,30 @@
 
             <div class="content-header">
                 <div class="content-header-leftside">
-                
-                    <img src="{{ asset('images/admin.png') }}"class="teacher-picture">
+                    <img src="{{ asset('images/admin.png') }}" class="teacher-picture">
                 </div>
-                
-                            
-                
-                
-                       
-
-                
+               
                 <div class="content-header-rightside">
-                    <label >First Name: </label>
-                    <p>{{$userDoctors->first_name}}</p>
-                    <br />
+                    <label>First Name: </label>
+                    <p>{{$userStudents->first_name}}</p>
+                <br />
                     <label>Last Name: </label>
-                    <p>{{$userDoctors->last_name}}</p>
-                    <br />
-                    <label>User Name: </label>
-                    <p>{{$userDoctors->email}}</p>
-                    <br />
+                    <p>{{$userStudents->last_name}}</p>
+                <br />
+                    <label>Email: </label>
+                    <p>{{$userStudents->email}}</p>
+                <br />
                     <label>Mobile: </label>
-                    <p >{{$userDoctors->mobile}}</p>
+                    <p>{{$userStudents->mobile}}</p>
+                <br />
+                    <label>Level: </label>
+                    <p>{{$userStudents->level->level_name}}</p>
+                <br />
+                    <label>Department: </label>
+                    <p>{{$userStudents->department->department_name}}</p>
                 </div>
+              
             </div>
-           
 
 
             <div class="panel panel-primary" style="border-color:#75a3a3;clear:both">
@@ -173,29 +145,20 @@
                 <table class="table table-hover" id="dev-table">
                     <thead>
                         <tr>
-                            <th>Level</th>
-                            <th>Department</th>
+                            <th>Exam Name</th>
                             <th>Subject</th>
+                            <th>Total Mark</th>
+                            <th>Exam Date</th>
 
-                            <th>Delete</th>
                         </tr>
                     </thead>
-                  
                     <tr>
-
-                        <td >{{$userDoctors->level->level_name}}</td>
-                        <td ></td>
+                        <td>MidTerm</td>
                         <td>DataBase</td>
-
-                        <td><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button></td>
+                        <td>20</td>
+                        <td>1/1/2022</td>
                     </tr>
-                 
-
                 </table>
-
-                <div class="table-footer">
-                    <button class="table-footer-btn">Specify New Subject</button>
-                </div>
 
             </div>
         </div>
@@ -204,7 +167,6 @@
     </div>
     <!--content end-->
     <!--JS code start-->
-    
     <script src="{{ asset('js/AdminBase.js') }}"></script>
     <!--JS code end-->
 </body>

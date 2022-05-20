@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use resources\views\admin;
-use App\Traits\photoTrait;
 use App\Models\User;
 use App\Models\Department;
 use App\Models\Level;
 use App\Models\Subject;
 use App\Models\Online_exam;
+use Illuminate\Support\Facades\Hash;
+use Auth;
 use App\Models\Professor_subject;
 use App\Models\Temp_professor;
 class HomeController extends Controller
@@ -40,42 +41,52 @@ class HomeController extends Controller
     
     public function dashboard()
     {
-        //to get photo
-       $Admin=User::where('role_id',1)->get();
         $countStudent=User::where('role_id',3)->count();
         $countDoctor=User::where('role_id',2)->count();
         $countExam=Online_exam::count();
-        return view('admin/dashboard',compact('Admin','countStudent','countDoctor','countExam'));
+        return view('admin/dashboard',compact('countStudent','countDoctor','countExam'));
        
     }
-
-    
-  
-    
     public function login()
     {
         return view('auth\login');
        
     }
-    
     public function changepasswords()
     {
-        return view('auth\changePassword');
+       
+        return view('auth\changePassword',compact('Admin'));
        
     }
     
-    public function forgetpassword()
-    {
+    public function changePasswordPost(Request $request) {
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            
+            return redirect()->back()->with("error","Your current password does not matches with the password.");
+        }
+
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
         
-       echo 'kkk';
+            return redirect()->back()->with("error","New Password cannot be same as your current password.");
+        }
+
+        $validatedData = $request->validate([
+            'current-password' => 'required',
+            'new-password' => 'required|string|min:8|confirmed',
+        ]);
+
+        
+        $user = User::where('role_id',1)->first();
+        $user->password = bcrypt($request->get('new-password'));
+        $user->save();
+
+        return redirect()->back()->with("success","Password successfully changed!");
     }
-   
+
     public function departments()
     {
-       
-        $Admin=User::where('role_id',1)->get();
         $departments= Department::all();
-        return view('admin\addDepartments',compact('Admin','departments'));
+        return view('admin\addDepartments',compact('departments'));
        
     }
     public function savedDepartments(Request $request)
@@ -85,7 +96,7 @@ class HomeController extends Controller
                 
                 'department_name' => $request->department_name,
                 
-                'department_id' => $request->department_id,
+                'id' => $request->id,
                
             ]);
             
@@ -117,11 +128,9 @@ class HomeController extends Controller
 
  public function levels()
     {
-                    
-     $Admin=User::where('role_id',1)->get();
     $levels= Level::all();
     $departments=Department::all();
-    return view('admin\addLevels',compact('Admin','levels','departments'));
+    return view('admin\addLevels',compact('levels','departments'));
                     
     }
 
@@ -142,7 +151,7 @@ class HomeController extends Controller
 
      public function destroyLevel($level_id )
     {
-        // check if doctor id exist
+        
   
         $levels = Level::find($level_id);
         if(!$levels)
@@ -161,7 +170,6 @@ class HomeController extends Controller
     public function editLevels($level_id)
 {
 
-    $Admin=User::where('role_id',1)->get();
     $levels = Level::find($level_id);  
     return view('admin\editLevel', compact('levels','Admin'));
 
@@ -178,7 +186,6 @@ public function Updatelevel(Request $request, $level_id)
 
 public function destroyDepartment($id )
     {
-        // check if doctor id exist
   
         $departments = Department::find($id);
         if(!$departments)
@@ -193,11 +200,10 @@ public function destroyDepartment($id )
     }
     public function subjects()
     {
-        $Admin=User::where('role_id',1)->get();
         $departments= Department::all();
         $levels= Level::all();
         $subjects= Subject::all();
-        return view('admin\addSubjects',compact('Admin','departments','levels','subjects'));
+        return view('admin\addSubjects',compact('departments','levels','subjects'));
 
     }
 
@@ -238,11 +244,10 @@ public function destroyDepartment($id )
 
     public function editSubjects($subject_id)
     {
-        $Admin=User::where('role_id',1)->get();
         $subjects = Subject::find($subject_id);
         $departments= Department::all();
         $levels= Level::all(); 
-        return view('admin\editSubject', compact('subjects','Admin','departments','levels'));
+        return view('admin\editSubject', compact('subjects','departments','levels'));
     }
 
 
@@ -267,23 +272,22 @@ public function destroyDepartment($id )
 
     public function DoctorSubject()
     {
-        $Admin=User::where('role_id',1)->get();
         $users= User::where('role_id',2)->get();
         $subjects= Subject::all();
         $professor_subjects=Professor_subject::join('users','users.id','=','professor_subjects.professor_id')
         ->join('subjects','subjects.subject_id','=','professor_subjects.subject_id')
         ->get(['subjects.subject_name','users.email','subjects.subject_id']);
-        return view('admin\addSubjectsForDoctor',compact('Admin','users','subjects','professor_subjects'));
+        return view('admin\addSubjectsForDoctor',compact('users','subjects','professor_subjects'));
 
     }
   
   public function editsubjectDoctor($professor_id)
    {
-    $Admin=User::where('role_id',1)->get();
+   
     $professor_subjects=Professor_subject::find($professor_id);
     $subjects =$professor_subjects->subject; 
     $users =$professor_subjects->professor; 
-    return view('admin\editSubjectDoctor', compact('subjects','Admin','users'));
+    return view('admin\editSubjectDoctor', compact('subjects','users'));
     }
     public function UpdatesubjectDoctor(Request $request, $professor_id)
     {
@@ -309,27 +313,22 @@ public function destroyDepartment($id )
      }
     public function pendingTeacher()
     {
-        $Admin=User::where('role_id',1)->get();
         $userDoctors=User::where('verified', "=", 0 )->get();
         
            
 
-        return view('admin\pendingTeacher',compact('userDoctors','Admin'));
+        return view('admin\pendingTeacher',compact('userDoctors'));
        
     }
    
     public function teacherSubjects(Request $request)
-    {
-        
-
-        $Admin=User::where('role_id',1)->get();
-       // $userDoctors=User::where('role_id',2)->get();
+    { 
         $dapartments=Department::all();
         $levels=Level::all();
         $subjects=Subject::all();
         
         $professor=Professor_subject::all();
-        return view('admin\teacherSubjects',compact('dapartments','levels','subjects','Admin','professor'));
+        return view('admin\teacherSubjects',compact('dapartments','levels','subjects','professor'));
        
     }
 
@@ -352,8 +351,7 @@ public function destroyDepartment($id )
     public function totalTeacher()
     {
         $userDoctors=User::where('role_id',2)->get();
-        $Admin=User::where('role_id',1)->get();
-        return view('admin\totalTeacher',compact('Admin','userDoctors'));
+        return view('admin\totalTeacher',compact('userDoctors'));
       
     }
 ////delete from total teacher
@@ -372,34 +370,38 @@ public function destroy( $id)
         return redirect()->route('adminTotalTeacher')
         ->with(['success'=>'doctor deleted successfully']);
     }
-
+/*
     public function ViewProfileDoctor($id)
     {
         $Admin=User::where('role_id',1)->get();
         $userDoctors=User::where('role_id',2)->get();;
         return view('admin\viewProfileDoctor',compact('Admin','userDoctors'));
     }
+    */
     public function ViewProfileOfDoctor($id)
     {
-        $Admin=User::where('role_id',1)->get();
         $userDoctors=User::find($id);
-        $userDoctors->get();
-        return view('admin\viewProfileDoctor',compact('Admin','userDoctors'));
+       
+        return view('admin\viewProfileDoctor',compact('userDoctors'));
+    }
+
+    public function ViewProfileStudent($id)
+    {
+       
+        $userStudents=User::find($id);
+        return view('admin\viewProfileStudent',compact('userStudents'));
     }
     
     
     public function totalStudents()
     {
-        $Admin=User::where('role_id',1)->get();
         $students=User::where('role_id',3)->get();
-        return view('admin\totalStudents',compact('Admin','students'));
+        return view('admin\totalStudents',compact('students'));
        
     }
     
     public function destroyStudent($id )
     {
-       
-  
         $students = User::find($id);
         if(!$students)
         {
@@ -413,8 +415,8 @@ public function destroy( $id)
     }
     public function allExams()
     {
-        $Admin=User::where('role_id',1)->get();
-        return view('admin\allExams',compact('Admin'));
+    
+        return view('admin\allExams');
        
     }
     
@@ -425,16 +427,12 @@ public function destroy( $id)
         // make $user->verified = 1
         $userDoctors->verified = 1;
         $userDoctors->update() ;
-      
-       // return view('admin\pendingTeacher',compact('userDoctors','Admin'));
         return redirect()->back()->with(['userDoctors' => $userDoctors,'Admin' => $Admin]);
 
     }
     public function destroypendingTeacher($id)
     {
         $userDoctors = User::find($id);
-
-        //delete this $user 
         if(!$userDoctors)
         {
             return redirect() ->back() ->with(['error' =>'doctor not found']);

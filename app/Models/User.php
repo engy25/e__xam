@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use App\Models\Level;
+use App\Models\Department;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -58,17 +60,20 @@ class User extends Authenticatable
         return $this -> hasOne('App\Models\Role','role_id');
     }
 
-    public function department()
+    public function department(): BelongsTo
     {
        
-        return $this -> belongsTo('App\Models\Department','department_id');
-    }
-    public function level()
-    {
-       
-        return $this -> belongsto('App\Models\Level','level_id');
-    }
 
+       return $this->belongsTo(Department::class,'department_id');
+     
+    }
+   
+    public function level(): BelongsTo
+    {
+        return $this->belongsTo(Level::class, 'level_id'); 
+    }
+    
+   
    
 
 

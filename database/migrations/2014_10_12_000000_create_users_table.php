@@ -19,8 +19,14 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->integer('mobile');
             $table->string('photo');
-            $table->integer('department_id');
-            $table->integer('level_id');
+            $table->integer('department_id')->unsigned();
+            $table->foreign('department_id')->references('id')->on('departments')
+                ->onDelete('cascade');
+            $table->integer('level_id')->unsigned();
+            $table->foreign('level_id')->references('id')->on('levels')
+                ->onDelete('cascade');
+
+
             $table->integer('subject_id');
             $table->string('email')->unique();
             $table->integer('role_id');

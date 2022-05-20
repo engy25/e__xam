@@ -4,31 +4,34 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\User;
 class Level extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'level_id',
+        'id',
         'level_name',
         
     
     ];
     public $timestamps = false;
-    protected $primaryKey = 'level_id';
+    protected $primaryKey = 'id';
     protected $hidden = [
         
     ];
    
 
     ///// one to one relations between users ////
-    public function user()
+/*
+    public function userlev()
     {
         
-        return $this -> belongsTo('App\Models\User');
+      
+        return $this->hasOne(User::class,'level_id');
     }
+*/
 
-    ///// one to many relations between department ////
+
 
     
 
