@@ -55,7 +55,7 @@ class HomeController extends Controller
     public function changepasswords()
     {
        
-        return view('auth\changePassword',compact('Admin'));
+        return view('auth\changePassword');
        
     }
     
@@ -370,19 +370,16 @@ public function destroy( $id)
         return redirect()->route('adminTotalTeacher')
         ->with(['success'=>'doctor deleted successfully']);
     }
-/*
-    public function ViewProfileDoctor($id)
-    {
-        $Admin=User::where('role_id',1)->get();
-        $userDoctors=User::where('role_id',2)->get();;
-        return view('admin\viewProfileDoctor',compact('Admin','userDoctors'));
-    }
-    */
+
     public function ViewProfileOfDoctor($id)
     {
         $userDoctors=User::find($id);
+        $subDoctors=Professor_subject::join('users','users.id','=','professor_subjects.professor_id')
+        ->join('subjects','subjects.subject_id','=','professor_subjects.subject_id')
+        ->where('professor_subjects.professor_id',$id)
+        ->get(['subjects.subject_name','users.email','subjects.subject_id','subjects.level_id','subjects.department_id']);
        
-        return view('admin\viewProfileDoctor',compact('userDoctors'));
+        return view('admin\viewProfileDoctor',compact('userDoctors','subDoctors'));
     }
 
     public function ViewProfileStudent($id)

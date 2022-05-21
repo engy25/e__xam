@@ -144,6 +144,7 @@
                 </div>
                 <table class="table table-hover" id="dev-table">
                     <thead>
+                       
                         <tr>
                             <th>Exam Name</th>
                             <th>Subject</th>
