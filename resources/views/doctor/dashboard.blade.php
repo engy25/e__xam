@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -118,6 +119,11 @@
     <!--sidebar end-->
     <!--end Admin base-->
 
+=======
+﻿@extends('layouts/doctor.app')
+@section('content')
+    <link rel="stylesheet" href="{{ asset('css/css/doctorDashboard.css') }}"/>
+>>>>>>> Stashed changes
 
 
     <!--content start-->
