@@ -64,11 +64,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('StudentProfile/{id}', [App\Http\Controllers\HomeController::class,  'ViewProfileStudent'])->name('adminViewProfileStudent');
     Route::get('ViewTeacherProfile/{id}', [App\Http\Controllers\HomeController::class,  'ViewProfileOfDoctor'])->name('adminViewProfileOfDoctor');
     Route::get('/delete/{id}', [App\Http\Controllers\HomeController::class, 'destroy'])->name('adminTotalTeacherdelete');
+
     Route::get('/totalStudents', [App\Http\Controllers\HomeController::class, 'totalStudents'])->name('adminTotalStudents');
     Route::get('/deleteStudent/{id}', [App\Http\Controllers\HomeController::class, 'destroyStudent'])->name('destroystudent');
     Route::get('/allExams', [App\Http\Controllers\HomeController::class, 'allExams'])->name('adminAllExams');
-   
-    
+
+
 });
 
                      ////////////////doctor////////////////
@@ -81,11 +82,15 @@ Route::group(['prefix' => 'doctor',  'middleware' => ['isDoctor','auth','PrevetB
 });
 
                      ////////////////student////////////////
-Route::group(['prefix' => 'student',  'middleware' => ['isStudent','auth','PrevetBackHistory']], function(){                     
+Route::group(['prefix' => 'student',  'middleware' => ['isStudent','auth','PrevetBackHistory']], function(){
     Route::get('/dashboard', [App\Http\Controllers\StudentController::class, 'dashboard'])->name('studentDashboard');
+    Route::get('/changepassword', [App\Http\Controllers\StudentController::class, 'changepassword'])->name('changePasswordStudent');
+    Route::get('/forgetpassword', [App\Http\Controllers\StudentController::class, 'forgetpassword'])->name('forgetPasswordStudent');
+    Route::get('/startExam/{id}', [App\Http\Controllers\StudentController::class, 'startExam'])->name('startExamStudent');
+    Route::get('/showResult', [App\Http\Controllers\StudentController::class, 'showResult'])->name('showResultStudent');
+    Route::get('/submitexam', [App\Http\Controllers\StudentController::class, 'submitexam'])->name('submitexamStudent');
 
-    
-                    
+
 });
 
 Route::get('/registerPage', [App\Http\Controllers\RegisterController::class, 'register_page']);
