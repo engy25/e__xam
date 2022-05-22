@@ -9,12 +9,6 @@ class DoctorController extends Controller
     //
     public function dashboard()
     {
-<<<<<<< Updated upstream
-        return view('doctor\dashboard');
-       
-    }
-   
-=======
         $Doctor = User::where('role_id', 2)->get();
         $countStudent = User::where('role_id', 3)->count();
         $countExam = Online_exam::count();
@@ -53,10 +47,10 @@ class DoctorController extends Controller
     public function getDataExam()
     {
         $user_id = auth()->user()->id;
-        $users = User::where('id', $user_id)->select('level_id', 'department_id')->get();
+        $users = User::where('id', $user_id)->select('id', 'id')->get();
         foreach ($users as $user) {
-            $levels = Level::where('id', $user->level_id)->select('id', 'level_name')->get();
-            $departments = Department::where('id', $user->department_id)->select('id', 'department_name')->get();
+            $levels = Level::where('id', $user->id)->select('id', 'level_name')->get();
+            $departments = Department::where('id', $user->id)->select('id', 'department_name')->get();
             $subjects = Subject::select('id', 'subject_name')->get();
 
         }
@@ -337,5 +331,4 @@ function getUpdatedMessagesQuestions()
     public function sendExam(){
         return 'Exam Assigned Successfully!';
     }*/
->>>>>>> Stashed changes
 }
