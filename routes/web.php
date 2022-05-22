@@ -74,10 +74,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
                      ////////////////doctor////////////////
 Route::group(['prefix' => 'doctor',  'middleware' => ['isDoctor','auth','PrevetBackHistory']], function(){
     Route::get('/dashboard', [App\Http\Controllers\DoctorController::class, 'dashboard'])->name('doctorDashboard');
-<<<<<<< Updated upstream
 
 
-=======
     Route::get('/changePassword', [App\Http\Controllers\DoctorController::class, 'changePassword'])->name('doctorChangePassword');
     Route::get('/updatePassword/{id}', [App\Http\Controllers\DoctorController::class, 'updatePassword'])->name('doctorUpdatePassword');
 
@@ -95,12 +93,11 @@ Route::group(['prefix' => 'doctor',  'middleware' => ['isDoctor','auth','PrevetB
     Route::get('/editQuestions/{id}', [App\Http\Controllers\DoctorController::class, 'editQuestions'])->name('doctorEditQuestion');
     Route::post('/updateQuestions/{id}', [App\Http\Controllers\DoctorController::class, 'updateQuestions'])->name('doctorUpdateQuestion');
     Route::post('/insertQuestions', [App\Http\Controllers\DoctorController::class, 'insertQuestions'])->name('doctorInsertQuestion');
+    Route::post('/insertQuestions', [App\Http\Controllers\DoctorController::class, 'insertQuestions'])->name('doctorInsertQuestion');
     Route::get('/viewExam/{id}', [App\Http\Controllers\DoctorController::class, 'viewQuestions'])->name('doctorViewQuestions');
     Route::get('/deleteExam/{id}', [App\Http\Controllers\DoctorController::class, 'deleteQuestions'])->name('doctorDeleteQuestions');
     /////////////////////////////////////////
-    Route::get('/examDetails', [App\Http\Controllers\DoctorController::class, 'examDetails'])->name('doctorViewResults');
-    Route::get('/results', [App\Http\Controllers\DoctorController::class, 'results'])->name('doctorResults');
->>>>>>> Stashed changes
+
 
 
 });
