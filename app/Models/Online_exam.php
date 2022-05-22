@@ -17,10 +17,14 @@ class Online_exam extends Model
         'onlineExam_duration',
         'onlineExam_createBy',
         'onlineExam_status',
-        
-    
+
+
     ];
     protected $hidden = [
-        
+
     ];
+    public function question()
+    {
+        return $this->hasMany('App\Models\question');
+    }
 }

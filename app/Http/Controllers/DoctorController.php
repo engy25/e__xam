@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
+use App\Models\question;
 use App\Models\Online_exam;
 
 class DoctorController extends Controller
