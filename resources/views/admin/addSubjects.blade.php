@@ -12,21 +12,27 @@
                     <label>Department</label>
                     <label>Subject</label>
                 </div>
+                
+
 
                 <div class="content-header-select">
-                    <select id="Level">
-                        <option value="" selected disabled>Select Level</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                    <select id="level_id">
+                  
+                        <option value="level_id" selected disabled>Select Level</option>
+                        @foreach($levels as $level)
+                        <option value="{{$level->level_id}}">{{$level->level_name}}</option>
+                        @endforeach
+                        
                     </select>
 
-                    <select id="Department">
-                        <option value="" selected disabled>Select Department</option>
-                        <option value="">SE</option>
+                    <select id="subject_id">
+                    
+                        <option value="subject_id" selected disabled>Select Department</option>
+                        @foreach($departments as $department)
+                        <option value="{{$department->department_id}}">{{$department->department_name}}
+                        @endforeach
                     </select>
-
+                    
                     <input type="text" class="content-header-select" />
                 </div>
 
@@ -49,6 +55,7 @@
                         </tr>
                     </thead>
                     <tr>
+                   
                         <td>3</td>
                         <td>Se</td>
 

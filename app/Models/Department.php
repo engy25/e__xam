@@ -10,6 +10,7 @@ class Department extends Model
     use HasFactory;
     protected $fillable = [
         'department_id',
+        
         'department_name',
         
     
@@ -25,4 +26,6 @@ class Department extends Model
         
         return $this -> belongsTo('App\Models\User');
     }
+
+  
 }

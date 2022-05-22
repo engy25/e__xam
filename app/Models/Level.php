@@ -26,4 +26,9 @@ class Level extends Model
         
         return $this -> belongsTo('App\Models\User');
     }
+
+    ///// one to many relations between department ////
+
+    
+
 }
