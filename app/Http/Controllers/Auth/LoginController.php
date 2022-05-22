@@ -61,6 +61,9 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
+
+
         $input = $request->all();
         //to check email and pass
         $this->validate($request,[
@@ -70,10 +73,11 @@ class LoginController extends Controller
         ]);
 
         if(auth()->attempt(array('email'=>$input['email'],'password'=>$input['password']))){
-            if(auth()->user()->role_id ==1)
+            if(auth()->user()->role_id ==1 && auth()->user()->verified==1)
             {
                 return redirect()->route('adminDashboard');
             }
+           
             elseif(auth()->user()->role_id ==2 && auth()->user()->verified==1 )
             {
                return redirect()->route('doctorDashboard');

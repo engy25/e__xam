@@ -91,24 +91,6 @@ class RegisterController extends Controller
      */
 
 
-
-/*
-
-     public function register_page()
-     {
-         $role=Role::all();
-         $department=Department::all();
-         $level = Level::all();
-         return view('auth\register')->with([
-              'role' => $role,
-              'department'=>$department,
-              'level' =>$level,
-         ]);
-*/
-
-
-     
-
     protected function create(array $data)
     {
         return User::create([
@@ -125,21 +107,22 @@ class RegisterController extends Controller
     }
 
     function register(Request $request){
-
-
-        
 /*
         $request->validate([
           'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:250'],
-          //  'department_id' => ['integer', 'max:200'],
-           //'level_id' => ['integer', 'max:255'],
+           'mobile' => ['required', 'string', 'max:25'],
+           'password' => ['required', 'string', 'max:250'],
+           'last_name' => ['required', 'string', 'max:250'],
+           'level_id' => ['required'],
+           'department_id' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+
            'role_id' => ['required', 'integer'],
            
            'password' => ['required', 'string', 'min:8', 'confirmed'],
          ]);
-         */
+       */
         // dd('here');
         $photo= $this->saveImage($request->photo,'images/users');
 
@@ -158,9 +141,11 @@ class RegisterController extends Controller
        {
         $user->verified=0;
        }
-       else{
+       
+       else
+       {
         $user->verified=1;
-         }
+     }
         
 
         if( $user->save() ){
