@@ -1,0 +1,41 @@
+﻿body {
+    background-color: #F0F0F0;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.row-labels label {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #484848;
+}
+
+.row-inputs {
+    margin-bottom: 50px;
+}
+
+.row-labels label {
+    margin-right: 220px;
+}
+
+.row-inputs input, select {
+    width: 200px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #75a3a3;
+    margin-right: 135px;
+}
+
+.container-btn button {
+    padding: 10px;
+    width: 110px;
+    margin-top: 0px;
+    background-color: #005450;
+    color: white;
+    border: 1px solid #75a3a3;
+    border-radius: 5px;
+    font-weight: bold;
+}
