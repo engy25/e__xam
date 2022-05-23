@@ -29,10 +29,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
                              /////////////************Admin**********///////////
     Route::group(['prefix' => 'admin',  'middleware' =>['isAdmin','auth','PrevetBackHistory']], function(){
+
     Route::get('/changepassword', [App\Http\Controllers\AdminController::class, 'changepassword'])->name('changePasswordAdmin');
     Route::post('/changePassword',[App\Http\Controllers\AdminController::class, 'changePasswordPost'])->name('changePasswordPost');
-   // Route::get('/Changepasswords', [App\Http\Controllers\AdminController::class, 'changepasswords'])->name('changePasswordAdmins');
+    Route::get('/Changepasswords', [App\Http\Controllers\AdminController::class, 'changepasswords'])->name('changePasswordAdmins');
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('adminDashboard');
+    Route::get('registerDoc', [App\Http\Controllers\AdminController::class, 'AddDoctor'])->name('AddDoctor');
+    Route::post('registerDoc',[App\Http\Controllers\AdminController::class, 'CreateNewDoct']);            
     Route::get('departments', [App\Http\Controllers\AdminController::class, 'departments'])->name('adminDepartments');
     Route::post('/departments', [App\Http\Controllers\AdminController::class, 'savedDepartments'])->name('adminSavedDepartments');
     Route::get('edit/{department_id}', [App\Http\Controllers\AdminController::class,  'editDepartments']);
@@ -52,7 +55,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('/subjectDoctor', [App\Http\Controllers\AdminController::class, 'savedDoctorSubject'])->name('savedDoctorSubject');
     Route::get('/deleteSubjectsDoctor/{subject_id}', [App\Http\Controllers\AdminController::class, 'destroySubjetDoctor'])->name('destroyDoctorSubject');
     Route::get('edit/subjectDoctor/{professor_id}', [App\Http\Controllers\AdminController::class,  'editsubjectDoctor']);
-    Route::put('update/subjectDoctor/{professor_id}', [App\Http\Controllers\AdminController::class, 'UpdatesubjectDoctor'])->name('subjectDoctorUpdate');
+   Route::put('update/subjectDoctor/{professor_id}', [App\Http\Controllers\AdminController::class, 'UpdatesubjectDoctor'])->name('subjectDoctorUpdate');
+
+   // Route::get('edit/subjectDoctor/{subject_id}', [App\Http\Controllers\AdminController::class,  'editsubjectDoctor']);
+   // Route::put('update/subjectDoctor/{subject_id}', [App\Http\Controllers\AdminController::class, 'UpdatesubjectDoctor'])->name('subjectDoctorUpdate');
+
+
     Route::get('/pendingTeacher', [App\Http\Controllers\AdminController::class,'pendingTeacher'])->name('adminPendingTeacher');
     Route::get('/pendingTeacher/{id}', [App\Http\Controllers\AdminController::class,'approve'])->name('adminapprovePendingTeacher');
     Route::get('/deletependingTeacher/{id}', [App\Http\Controllers\AdminController::class, 'destroypendingTeacher'])->name('adminpendingTeacherdelete');
@@ -67,7 +75,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/deleteStudent/{id}', [App\Http\Controllers\AdminController::class, 'destroyStudent'])->name('destroystudent');
     Route::get('/allExams', [App\Http\Controllers\AdminController::class, 'allExams'])->name('adminAllExams');
    
-    
+    /*
     Route::get('/changepassword', [App\Http\Controllers\HomeController::class, 'changepassword'])->name('changePasswordAdmin');
     Route::post('/changePassword',[App\Http\Controllers\HomeController::class, 'changePasswordPost'])->name('changePasswordPost');
     Route::get('/forgetpassword', [App\Http\Controllers\HomeController::class, 'forgetpassword'])->name('forgetPasswordAdmin');
@@ -107,7 +115,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/totalStudents', [App\Http\Controllers\HomeController::class, 'totalStudents'])->name('adminTotalStudents');
     Route::get('/deleteStudent/{id}', [App\Http\Controllers\HomeController::class, 'destroyStudent'])->name('destroystudent');
     Route::get('/allExams', [App\Http\Controllers\HomeController::class, 'allExams'])->name('adminAllExams');
-
+*/
 
 });
 

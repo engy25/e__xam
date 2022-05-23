@@ -148,12 +148,12 @@ class RegisterController extends Controller
      }
         
 
-        if( $user->save() ){
+     if( $user->save() ){
 
-            return redirect()->back()->with('success','You are now successfully registerd');
-         }else{
-             return redirect()->back()->with('error','Failed to register');
-         }
+        return redirect()->back()->with('success','You are now successfully registerd');
+     }else{
+         return redirect()->back()->with('error','Failed to register');
+     }
         }
 
          

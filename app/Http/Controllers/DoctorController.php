@@ -7,6 +7,7 @@ use App\Models\User;
 use Auth;
 use App\Models\question;
 use App\Models\Online_exam;
+use Illuminate\Support\Facades\Validator;
 
 class DoctorController extends Controller
 {
@@ -188,8 +189,7 @@ class DoctorController extends Controller
     }
 
 
-public
-function insertExam(Request $request)
+public function insertExam(Request $request)
 {
     //Validation Rules:
     $rules = $this->getRulesExam();

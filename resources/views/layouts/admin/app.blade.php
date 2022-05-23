@@ -35,6 +35,7 @@
             
             <li> <a href="{{route('adminTotalTeacher')}}" class="list-items">- Total Doctors</a></li>
             <li> <a href="{{route('DoctorSubject')}}" class="list-items">- Add Subject For Doctors</a></li>
+            <li> <a href="{{route('AddDoctor')}}" class="list-items">- Add New Doctor</a></li>
         </ul>
 
         <label onclick="Function2()" class="sidebar-items"><i class="fas fa-user-graduate"></i>     Student</label>

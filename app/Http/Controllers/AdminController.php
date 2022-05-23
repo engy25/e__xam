@@ -9,8 +9,13 @@ use App\Models\Department;
 use App\Models\Level;
 use App\Models\Subject;
 use App\Models\Online_exam;
+use App\Http\Requests\AdminRequest;
+use App\Http\Requests\LevelRequest;
+use App\Http\Requests\DepartmentsRequest;
+use App\Http\Requests\SubjectRequest;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Professor_subject;
 use App\Models\Temp_professor;
 
@@ -68,44 +73,43 @@ class AdminController extends Controller
         return view('admin\addDepartments',compact('departments'));
        
     }
-    public function savedDepartments(Request $request)
+    public function savedDepartments(DepartmentsRequest $request)
     { 
-
-            Department::create([
+       
+         Department::create([
                 
-                'department_name' => $request->department_name,
+             'department_name' => $request->department_name,
                 
-                'id' => $request->id,
+            'id' => $request->id,
                
             ]);
-            
-            return redirect()->back()->with(['success'=>'Added Successfully']);
+          
+           
+        return redirect()->back()->withErrors(['success'=>"Addes Successfully"]);
                   
                 }
-           public function editDepartments( $department_id)
-               {
 
-                $Admin=User::where('role_id',1)->get();
-                  $departments = Department::find($department_id);  
+    public function editDepartments( $department_id)
+     {
+        
+         $departments = Department::find($department_id);  
+
              
-             return view('admin\editDepartment', compact('departments','Admin'));
+        return view('admin\editDepartment', compact('departments',));
 
-               }
+         }
 
-        public function Updatedepartment(Request $request, $department_id)
-          {
-    
-
+    public function Updatedepartment(DepartmentsRequest $request, $department_id)
+   {
        $departments = Department::find($department_id);
        $departments->department_name = $request->input('department_name');
-       $departments->update();
-       return redirect()->back()->with('status','departments Updated Successfully');
+        $departments->update();
+    return redirect()->back()->with(['success' => 'departments Updated Successfully!']);
        
        
    }
-   
-
- public function levels()
+ 
+   public function levels()
     {
     $levels= Level::all();
     $departments=Department::all();
@@ -113,20 +117,53 @@ class AdminController extends Controller
                     
     }
 
-    public function savedLevels(Request $request)
+    public function AddDoctor()
+    {
+    $levels=Level::all();
+    $departments=Department::all();
+    $users=User::all();
+  
+    return view('admin\CreateTeacher', compact('users','departments','levels'));
+    }
+
+
+    public function CreateNewDoct(AdminRequest $request)
     { 
 
-      Level::create([
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->mobile = $request->mobile;
+        $user->email = $request->email;
+        $user->role_id =2;
+        $user->password = \Hash::make($request->password);
+        $user->level_id = $request->level;
+        $user->department_id = $request->department;
+        $user->verified = 1;
+  
+        if( $user->save() ){
+
+            return redirect()->back()->with('success','You are now successfully registerd');
+         }else{
+             return redirect()->back()->with('error','Failed to register');
+         }
                 
-     'level_name' => $request->level_name,
-                
-      'level_id' => $request->level_id,
-               
-         ]);
-            
-    return redirect()->back()->with(['success'=>'Added Successfully']);
-                  
      }
+
+    public function savedLevels(LevelRequest $request)
+    { 
+
+        Level::create([
+                
+            'level_name' => $request->level_name,
+                       
+             'level_id' => $request->level_id,
+                      
+                ]);
+                   
+           return redirect()->back()->with(['success'=>'Added Successfully']);
+                         
+            }
 
      public function destroyLevel($level_id )
     {
@@ -150,10 +187,10 @@ class AdminController extends Controller
 {
 
     $levels = Level::find($level_id);  
-    return view('admin\editLevel', compact('levels','Admin'));
+    return view('admin\editLevel', compact('levels'));
 
 }
-public function Updatelevel(Request $request, $level_id)
+public function Updatelevel(LevelRequest $request, $level_id)
    {
       
        $levels = Level::find($level_id);
@@ -163,8 +200,8 @@ public function Updatelevel(Request $request, $level_id)
        return redirect()->back()->with('status','levels Updated Successfully');
    }
 
-public function destroyDepartment($id )
-    {
+    public function destroyDepartment($id )
+     {
   
         $departments = Department::find($id);
         if(!$departments)
@@ -186,8 +223,7 @@ public function destroyDepartment($id )
 
     }
 
-   
-    public function saveSubjects (Request $request)
+    public function saveSubjects (SubjectRequest $request)
     {
         $request->input('names');
        
@@ -218,9 +254,6 @@ public function destroyDepartment($id )
         return redirect()->route('adminSubjects')
         ->with(['success'=>'subjects deleted successfully']);
     }
-
- 
-
     public function editSubjects($subject_id)
     {
         $subjects = Subject::find($subject_id);
@@ -229,11 +262,7 @@ public function destroyDepartment($id )
         return view('admin\editSubject', compact('subjects','departments','levels'));
     }
 
-
-
-
-
-    public function Updatesubject(Request $request, $subject_id)
+    public function Updatesubject(SubjectRequest $request, $subject_id)
        {
        $departments= Department::all();
         $levels= Level::all();
@@ -253,43 +282,45 @@ public function destroyDepartment($id )
     {
         $users= User::where('role_id',2)->get();
         $subjects= Subject::all();
+        
         $professor_subjects=Professor_subject::join('users','users.id','=','professor_subjects.professor_id')
         ->join('subjects','subjects.subject_id','=','professor_subjects.subject_id')
         ->get(['subjects.subject_name','users.email','subjects.subject_id']);
         return view('admin\addSubjectsForDoctor',compact('users','subjects','professor_subjects'));
 
     }
-  
+
   public function editsubjectDoctor($professor_id)
    {
    
     $professor_subjects=Professor_subject::find($professor_id);
     $subjects =$professor_subjects->subject; 
     $users =$professor_subjects->professor; 
-    return view('admin\editSubjectDoctor', compact('subjects','users'));
-    }
+    return view('admin\editSubjectDoctor', compact('subjects','users','professor_subjects'));
+   }
     public function UpdatesubjectDoctor(Request $request, $professor_id)
     {
+    $professor_subjects = Professor_subject::find($professor_id);
     $professor_subjects ->email = $request->get('email');
     $professor_subjects ->subject_name = $request->get('subject_name');
     $professor_subjects->update();
      return redirect()->back()->with('status','subjects of doctor Updated Successfully');
 
  }
+ 
     public function savedDoctorSubject(Request $request)
     { 
-
         Professor_subject::create([ 
                 
-                'professor_id' => $request->professor_id,
-                
-                'subject_id' => $request->subject_id,
-               
-            ]);
+            'professor_id' => $request->professor_id,
             
-            return redirect()->back()->with(['success'=>'Added Successfully']);
-                  
+            'subject_id' => $request->subject_id,
+           
+        ]);
+        return redirect()->back()->with(['success'=>'Added Successfully']);
+        
      }
+
     public function pendingTeacher()
     {
         $userDoctors=User::where('verified', "=", 0 )->get();

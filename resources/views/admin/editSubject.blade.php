@@ -20,7 +20,6 @@
       body{
         background-color:#F0F0F0;
       }
-
       a:link {
         text-decoration: none;
       }
@@ -46,9 +45,16 @@
     <div class="row">
         <div class="col-md-12">
 
-            @if (session('status'))
-                <h6 class="alert alert-success">{{ session('status') }}</h6>
-            @endif
+        @if ( Session::get('success'))
+                             <div class="alert alert-success">
+                                 {{ Session::get('success') }}
+                             </div>
+                        @endif
+                        @if ( Session::get('error'))
+                             <div class="alert alert-danger">
+                                 {{ Session::get('error') }}
+                             </div>
+                        @endif
 
             <div class="card">
                 <div class="card-header">
@@ -68,6 +74,12 @@
                             <label for="subject_name">Subject Name</label>
                             
                             <input id="subject_name" type="text" name="subject_name" value="{{$subjects->subject_name}}"  autofocus placeholder="Enter Subject name"  class="form-control">
+                            
+                            @error('subject_name')
+                        <small class="form-text text-danger">
+                            {{$message}}
+                        </small>
+                        @enderror
                         </div>
 
 
@@ -105,5 +117,3 @@
 </div>
 
 @endsection
-
-    

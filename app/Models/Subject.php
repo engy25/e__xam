@@ -34,18 +34,7 @@ class Subject extends Model
 
 
     }
-  /*  protected $primaryKey='subject_id';
-
-    public function level(): BelongsTo
-    {
-        return $this -> belongsTo('App/Models/Level','level_id');
-    }
-
-    public function Department(): BelongsTo
-    {
-        return $this -> belongsTo('App/Models/Department','department_id');
-    }*
-
-
+    
+   
 
 }

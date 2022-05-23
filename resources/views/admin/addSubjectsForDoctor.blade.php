@@ -71,7 +71,13 @@
                         <option value="" selected disabled>Select Teacher's Email</option>
                         @foreach($users as $user)
                         <option value="{{$user->id}}">{{$user->email}}</option>
+                        @error('user')
+                    <small class="form-text text-danger">
+                        {{$message}}
+                    </small>
+                    @enderror
                         @endforeach
+                      
                     </select>
 
                     
@@ -82,6 +88,12 @@
                     <option value="" selected disabled>Select Subject</option>
                     @foreach($subjects as $subject)
                     <option value="{{$subject->subject_id}}">{{$subject->subject_name}}
+                    @error('subject')
+                    <small class="form-text text-danger">
+                        {{$message}}
+                    </small>
+                    @enderror
+                       
                     @endforeach
                 </select>
                 
@@ -102,7 +114,7 @@
     <tr>
       <th>Doctor's Email</th>
       <th>Subjct</th>
-      <th>Edit</th>
+      
    
    
     </tr>
@@ -113,7 +125,7 @@
     @foreach($professor_subjects as $professor_subject)
     <tr>
 
-      <td id="{{$professor_subject->d}}">
+      <td id="{{$professor_subject->professor_id}}">
         <p  class="fw-normal mb-1">{{$professor_subject->email}}</p>
        
       </td >
@@ -123,9 +135,9 @@
        
       <td>
 
-      <a href="{{url('admin/edit/subjectDoctor/'.$professor_subject -> subject_id)}}" class="btn btn-primary">Edit</a>
+
       </td>
-     
+      
     </tr>
     @endforeach
    

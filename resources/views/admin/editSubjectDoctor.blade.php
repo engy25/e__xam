@@ -59,7 +59,7 @@
                 <div class="card-body">
             <div class="row">
                 
-                    <form action="{{url('admin/update/subjectDoctor/'.$subjects -> subject_id)}}" method="POST">
+                    <form action="{{url('admin/update/subjectDoctor/'.$subjects -> subject_id)))}}" method="POST">
                         @csrf
                         @method('PUT')
 </div>
@@ -83,7 +83,7 @@
 
                                 <div class="form-group" >
                                     <label for="users">Teacher Name</label>
-                                    <select  id="users" class="form-control" name="id">
+                                    <select  id="users" class="form-control" name="email">
                                         <option value="" selected disabled>Select subjects</option>
 										@foreach($users as $user)
                                         <option value="{{$user->id}}" >{{$user->email}} </option>
