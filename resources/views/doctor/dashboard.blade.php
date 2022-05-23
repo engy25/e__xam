@@ -1,4 +1,4 @@
-﻿@extends('layouts/doctor.app')
+﻿@extends('layouts/doctor.app2')
 @section('content')
 
 

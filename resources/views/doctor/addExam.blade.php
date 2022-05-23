@@ -33,16 +33,12 @@
                         {{$message}}
                     </small>
                     @enderror
-                </div>
-                <div  class="row-inputs">
                     <input type="text" name="questionCount" class="content-header-select"/>
                     @error('questionCount')
                     <small class="form-text text-danger">
                         {{$message}}
                     </small>
                     @enderror
-                </div>
-                <div class="row-inputs">
                     <input type="text" name="totalMarks" class="content-header-select"/>
                     @error('totalMarks')
                     <small class="form-text text-danger">
