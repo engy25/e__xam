@@ -1,5 +1,6 @@
 ﻿@extends('layouts/doctor.app2')
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css/css/Teacher-WaitForApproval.css') }}"/>
 
     <!--content start-->
 

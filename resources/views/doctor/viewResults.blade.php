@@ -1,5 +1,6 @@
 ﻿@extends('layouts/doctor.app2')
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css/css/Teacher-ViewResults.css') }}"/>
 
     <!--content start-->
     <div class="content">
@@ -20,9 +21,9 @@
                     </tr>
                     </thead>
                     <tr>
-                        <td>Yomna Mohamed</td>
+<!--                        <td>Yomna Mohamed</td>
                         <td>20</td>
-                        <td>Passed</td>
+                        <td>Passed</td>-->
 
                     </tr>
                 </table>

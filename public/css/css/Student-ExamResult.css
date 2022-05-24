@@ -1,0 +1,24 @@
+﻿body {
+            background-color: #F0F0F0;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        .form-check-label{
+            color:#484848;
+            margin-left:5px;
+        }
+
+        .left_area label,p{
+            float: left;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            margin-top:-25px;         
+        }
+
+        .left_area label{
+            margin-left:280px;
+        }

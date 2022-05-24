@@ -1,5 +1,6 @@
 ﻿@extends('layouts/doctor.app2')
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css/css/Teacher-ViewQuestions.css') }}"/>
 
     <!--content start-->
     <div class="content">
@@ -41,7 +42,9 @@
                             <td>{{$question->option_three}}</td>
                             <td>{{$question->option_four}}</td>
                             <td>{{$question->answer_option}}</td>
-                            <td><a class="btn btn-primary btn-xs" href="{{route('doctorEditQuestion',['id'=>$question->id])}}" style="font-weight:bolder;"><span>Edit</span></a>
+                            <td><a class="btn btn-primary btn-xs"
+                                   href="{{route('doctorEditQuestion',['id'=>$question->id])}}"
+                                   style="font-weight:bolder;"><span>Edit</span></a>
                             <td>
                                 <a href="{{route('doctorDeleteQuestions',['id'=>$question->id])}}"
                                    class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove">Delete</span></a>
