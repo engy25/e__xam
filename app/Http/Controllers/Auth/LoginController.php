@@ -66,7 +66,7 @@ class LoginController extends Controller
             'password' => 'required'
 
         ]);
-<<<<<<< HEAD
+
 
         if(auth()->attempt(array('email'=>$input['email'],'password'=>$input['password']))){
             if(auth()->user()->role_id ==1 && auth()->user()->verified==1)
@@ -86,16 +86,6 @@ class LoginController extends Controller
             }
             elseif(auth()->user()->role_id ==3)
             {
-=======
-        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
-            if (auth()->user()->role_id == 1) {
-                return redirect()->route('adminDashboard');
-
-            } elseif (auth()->user()->role_id == 2) {
-                return redirect()->route('doctorDashboard');
-
-            } elseif (auth()->user()->role_id == 3) {
->>>>>>> doctor
                 return redirect()->route('studentDashboard');
 
             }

@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-﻿@extends('layouts/doctor.app')
+@extends('layouts/doctor.app2')
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/css/doctorViewResults.css') }}"/>
-=======
-﻿@extends('layouts/doctor.app2')
-@section('content')
->>>>>>> doctor
 
     <!--content start-->
     <div class="content">

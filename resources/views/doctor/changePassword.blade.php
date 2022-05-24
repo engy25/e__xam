@@ -24,13 +24,8 @@
     </div>
     <div class="right_area">
 
-<<<<<<< HEAD
-        <a href="{{ route('logout') }}" class="logout_btn">Logout</a>
-        <a href="{{route('doctorDashboard')}}" class="ChangePassword_btn">Back</a>
-=======
         <a href="{{ route('login') }}" class="logout_btn">Logout</a>
         <button class="ChangePassword_btn">Back</button>
->>>>>>> doctor
     </div>
 
 </header>
@@ -46,35 +41,6 @@
         <div class="content-card-header">
             <h1>Change Password</h1>
         </div>
-<<<<<<< HEAD
-        @foreach($users as $user)
-            <form method="get" action="{{route('doctorChangePassword',['id'=>$user->id])}}">
-                @csrf
-                <div class="content-card-center">
-
-                    <div class="content-parts">
-                        <label>Current Password</label>
-                        <input type="text" name="doctorCurrentPassword">
-                    </div>
-
-                    <div class="content-parts">
-                        <label>New Password</label>
-                        <input type="text" name="doctorNewPassword">
-                    </div>
-
-                    <div class="content-parts">
-                        <label>Confirm Password</label>
-                        <input type="text" name="doctorConfirmNewPassword">
-                    </div>
-
-                </div>
-
-                <div class="content-card-footer">
-                    <button>Update</button>
-                </div>
-            </form>
-        @endforeach
-=======
 
         <div class="content-card-center">
 
@@ -98,7 +64,6 @@
         <div class="content-card-footer">
             <button>Update</button>
         </div>
->>>>>>> doctor
     </div>
 
 </div>

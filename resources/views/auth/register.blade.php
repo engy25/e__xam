@@ -8,7 +8,6 @@
     <title>Register page</title>
     <link rel="stylesheet" type="text/css" href="css/my-register.css">
 </head>
-<<<<<<< HEAD
 <body class="my-login-page">
 	<section class="h-100">
 		<div class="container h-100">
@@ -71,9 +70,6 @@
 									<input id="email" type="email" class="form-control" name="email"  placeholder="Enter email" value="{{ old('email') }}">
 									<span class="text-danger">@error('email'){{ $message }}@enderror</span>
 								</div>
-=======
-<body>
->>>>>>> doctor
 
 
 <div class="container">
@@ -189,7 +185,6 @@
     </div>
 </div>
 
-<<<<<<< HEAD
 								<div class="form-group m-0">
 									<button type="submit" class="btn btn-primary btn-block">
 										Register
@@ -207,8 +202,6 @@
 			</div>
 		</div>
 	</section>
-=======
->>>>>>> doctor
 
 <script src="jquery-3.4.1.min.js"></script>
 <script src="bootstrap/js/popper.js"></script>

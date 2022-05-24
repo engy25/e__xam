@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="css/my-login.css">
 </head>
 
-<<<<<<< HEAD
 <body class="my-login-page">
 
 	<section class="h-100">
@@ -23,13 +22,6 @@
                                 @csrf
                                     
                                     
-=======
-<body>
-<div class="container">
-    <div class="form-header">
-        <h1>Login</h1>
-    </div>
->>>>>>> doctor
 
     <div class="form-center">
         <form method="POST" class="my-login-validation" autocomplete="off" action="{{ route('login') }}">
