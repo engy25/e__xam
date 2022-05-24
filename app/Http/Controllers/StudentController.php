@@ -42,21 +42,25 @@ class StudentController extends Controller
 
 
     public function submitexam (Request $request){
-        /*$question = question::where('onlineExam_id',$request->examID)->select('answer_option')->get();
+        $question = question::where('onlineExam_id',$request->examID)->select('answer_option')->get();
         $questions =new question();
         $result =0;
         foreach ($questions as $question )
             if ($request->option == $question-> answer_option )
                 $result =$result + $question->mark ;
 
-        return $result;*/
+        return $result;
 
-        return $request->option;
+        
     }
 
     public function showResult (){
+        
+     $users = User::where('id', auth()->user()->id)->select('id', 'level_id', 'department_id')->get();
+        foreach ($users as $user)
+            $online_exams = Online_exam::where('level_id', $user->level_id)->select('id', 'onlineExam_name', 'onlineExam_marks')->get();
 
-        return view('student\Student-Results');
+        return view('student\Student-Results',compact('online_exams'));
     }
 
 }
