@@ -9,6 +9,7 @@ use App\Models\User;
 class Professor_subject extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $fillable = [
         'professor_id',
         'subject_id' 	

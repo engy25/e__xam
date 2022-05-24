@@ -104,7 +104,11 @@
 
         function hide_pupup() {
             document.getElementById("pupup").classList.remove('card');
+<<<<<<< HEAD
             window.open("{{asset('Student-ExamResult.html')}}","_self");
+=======
+            window.open("doctor-ExamResult.html","_self");
+>>>>>>> doctor
         }
 
     </script>

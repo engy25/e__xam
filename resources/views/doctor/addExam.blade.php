@@ -5,6 +5,10 @@
     <div class="content">
         <br><br><br><br><br>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> doctor
         <div class="container">
 
             <form method="post" action="{{route('doctorInsertExam')}}">
@@ -44,6 +48,10 @@
                         {{$message}}
                     </small>
                     @enderror
+<<<<<<< HEAD
+=======
+
+>>>>>>> doctor
                 </div>
 
                 <div class="row-labels">
@@ -65,7 +73,11 @@
                         {{$message}}
                     </small>
                     @enderror
+<<<<<<< HEAD
                     <input type="datetime-local" name="examDate" class="content-header-select"/>
+=======
+                    <input type="date" name="examDate" class="content-header-select"/>
+>>>>>>> doctor
                     @error('examDate')
                     <small class="form-text text-danger">
                         {{$message}}
@@ -78,11 +90,19 @@
                     <label>Department</label>
                     <label>Subject</label>
                 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> doctor
                 <div class="row-inputs">
                     <select name="examLevel" id="Level">
                         <option value="" selected disabled>Select Level</option>
                         @foreach($levels as $level)
+<<<<<<< HEAD
                             <option value="{{$level->id}}">{{$level->level_name}}</option>
+=======
+                            <option value="{{$level->level_id}}">{{$level->level_name}}</option>
+>>>>>>> doctor
                         @endforeach
                     </select>
                     @error('examLevel')
@@ -94,7 +114,11 @@
                     <select name="examDepartment" id="Department">
                         <option value="" selected disabled>Select Department</option>
                         @foreach($departments as $department)
+<<<<<<< HEAD
                             <option value="{{$department->id}}">{{$department->department_name}}</option>
+=======
+                            <option value="{{$department->department_id}}">{{$department->department_name}}</option>
+>>>>>>> doctor
                         @endforeach
                     </select>
                     @error('examDepartment')
@@ -106,7 +130,11 @@
                     <select name="examSubject" id="Subject">
                         <option value="" selected disabled>Select Subject</option>
                         @foreach($subjects as $subject)
+<<<<<<< HEAD
                             <option value="{{$subject->id}}">{{$subject->subject_name}}</option>
+=======
+                            <option value="{{$subject->subject_id}}">{{$subject->subject_name}}</option>
+>>>>>>> doctor
                         @endforeach
                     </select>
                     @error('examSubject')

@@ -1,11 +1,4 @@
-﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>E-Exam</title>
-    <style>
-      body{
+﻿body{
       background-color:#F0F0F0;
       margin: 0;
       padding: 0;
@@ -63,30 +56,3 @@
       .content-page hr{
           color:#d6d6c2;
       }
-    </style>
-</head>
-<body>
-    <!--header area start-->
-   
-        <div class="left_area">
-            <h3>E-Exam</h3>
-        </div>
- 
-    <!--header area end-->
-
-    <!--content start-->
-
-    <div class="content-page">
-        
-        <h1>Hello Teacher</h1>
-        <p class="p1">Your Account is not approved till now <br><br>Our Team is checking your profile <br><br> Soon Your Account Will Be Approved</p>
-        <hr>
-        <p class="p2">Check Later</p>   
-        <a href="signin.html">Logout For Now</a>
-         
-    </div>
-
-    <!--content end-->
-    
-</body>
-</html>

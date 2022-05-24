@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 ﻿@extends('layouts/doctor.app')
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/css/doctorAddQuestions.css') }}"/>
+=======
+﻿@extends('layouts/doctor.app2')
+@section('content')
+
+>>>>>>> doctor
     <!--content start-->
     <div class="content">
         <br><br><br><br><br>
@@ -19,7 +25,10 @@
                         </div>
                     @endif
                 @endif
+<<<<<<< HEAD
 
+=======
+>>>>>>> doctor
                 <div class="content-parts">
                     <label for="ExamName">Exam Name</label>
 
@@ -45,6 +54,10 @@
                     </small>
                     @enderror
                 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> doctor
                 <div class="content-parts">
                     <label>Mark</label>
                     <input type="text" name="questionMark">
@@ -127,13 +140,19 @@
                         @enderror
                     </select>
                 </div>
+<<<<<<< HEAD
                 <br>
 
+=======
+>>>>>>> doctor
 
                 <div class="content-btn">
                     <button>Add</button>
                 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> doctor
             </form>
 
         </div>

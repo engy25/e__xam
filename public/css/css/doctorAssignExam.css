@@ -1,0 +1,36 @@
+﻿body {
+            background-color: #F0F0F0;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        .container label{
+            display:block;
+            font-size: 25px;
+            margin-bottom: 10px;
+            color:#484848;
+        }
+
+        .container select{
+            width: 370px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 5px;
+            border: 1px solid #75a3a3;
+            margin-right: 125px;
+            font-size:16px;
+        }
+
+        .container button{
+            padding: 15px;
+            width: 130px;
+            margin-top:0px;
+            background-color: #005450;
+            color: white;
+            border: 1px solid #75a3a3;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size:16px;
+        }

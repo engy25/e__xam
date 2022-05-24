@@ -1,0 +1,67 @@
+﻿body {
+            background-color: #F0F0F0;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        .content-card{
+            height:420px;
+            width:480px;
+            background-color:#005450;
+            margin:auto;
+            margin-top:auto;
+            border-top-right-radius:20px;
+            border-bottom-left-radius:20px;
+        }
+
+        .content-card-header{
+            height:100px;                     
+            border-bottom:solid #F0F0F0 1px;
+        }
+
+
+        .content-card-header h1{
+            text-align:center;
+            position:relative;
+            top:30px;
+            color:white;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        }
+
+        .content-card-center{
+            text-align:center;
+            line-height:50px;
+            margin-top:30px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .content-card-center label{
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .content-card-center p{
+            font-size: 18px;
+            display:inline;
+            color:#d6d6c2;
+        }
+
+        .content-card-footer a{
+            display:inline-block;
+            text-align:center;
+            position:relative;
+            top:25px;
+            left:155px;
+            width:180px;
+            padding:10px;
+            background-color:white;
+            color:#005450;
+            border-bottom-left-radius:20px;
+            border-top-right-radius:20px;
+            border:solid lightgray 1px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size:16px;
+            font-weight:bold;
+        }

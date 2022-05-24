@@ -11,7 +11,10 @@ class Online_exam extends Model
     protected $fillable = [
         'onlineExam_id',
         'doctor_id',
+        'user_id',
         'onlineExam_name',
+        'onlineExam_marks',
+        'onlineExam_pass',
         'onlineExam_datetime',
         'total_questions',
         'onlineExam_duration',

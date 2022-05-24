@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿﻿<@extends('layouts/doctor.app')
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -124,6 +125,10 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/css/doctorDashboard.css') }}"/>
 >>>>>>> Stashed changes
+=======
+﻿@extends('layouts/doctor.app2')
+@section('content')
+>>>>>>> doctor
 
 
     <!--content start-->
@@ -137,53 +142,39 @@
                     <div class="card bg-c-blue order-card">
                         <div class="card-block">
                             <h6 class="m-b-20">Total Students </h6>
-                            <h2 class="text-right"><i class="fas fa-user-graduate f-left"></i><span>0</span></h2>
+                            <h2 class="text-right"><i class="fas fa-user-graduate f-left"></i><span>{{$countStudent}}</span></h2>
 
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4 col-xl-4">
-                <div class="card bg-c-green order-card">
-                    <div class="card-block">
-                        <h6 class="m-b-20">Total Teachers </h6>
-                        <h2 class="text-right"><i class="fas fa-chalkboard-teacher f-left"></i><span>0</span></h2>
 
+                <div class="col-md-4 col-xl-4">
+                    <div class="card bg-c-green order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Total Exams </h6>
+                            <h2 class="text-right">
+                                <i class="fas fa-chalkboard-teacher f-left"></i><span>{{$countExam}}</span></h2>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-                
+
                 <div class="col-md-4 col-xl-4">
                     <div class="card bg-c-yellow order-card">
                         <div class="card-block">
-                            <h6 class="m-b-20">Total Courses</h6>
-                            <h2 class="text-right"><i class="fas fa-book f-left"></i><span>0</span></h2>
+                            <h6 class="m-b-20">Total Questions</h6>
+                            <h2 class="text-right"><i class="fas fa-book f-left"></i><span>{{$countQuestion}}</span></h2>
 
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4 col-xl-4">
-                    <div class="card bg-c-pink order-card">
-                        <div class="card-block">
-                            <h6 class="m-b-20">Total Exams</h6>
-                            <h2 class="text-right"><i class="fas fa-question-circle f-left"></i><span>0</span></h2>
-
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-        
+
         <br><br><br>
     </div>
     <!--content end-->
 
-
-
-    <!--JS code start-->
-    <script src="//js/AdminBase.js"></script>
-    <script src="//http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-    <!--JS code end-->
-</body>
-</html>
+@endsection
