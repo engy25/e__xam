@@ -76,35 +76,10 @@
                 </div>
 
                 <div class="row-labels">
-                    <label>Level</label>
-                    <label>Department</label>
                     <label>Subject</label>
                 </div>
 
-                <div class="row-inputs">
-                    <select name="examLevel" id="Level">
-                        <option value="" selected disabled>Select Level</option>
-                        @foreach($levels as $level)
-                            <option value="{{$level->level_id}}">{{$level->level_name}}</option>
-                        @endforeach
-                    </select>
-                    @error('examLevel')
-                    <small class="form-text text-danger">
-                        {{$message}}
-                    </small>
-                    @enderror
-
-                    <select name="examDepartment" id="Department">
-                        <option value="" selected disabled>Select Department</option>
-                        @foreach($departments as $department)
-                            <option value="{{$department->department_id}}">{{$department->department_name}}</option>
-                        @endforeach
-                    </select>
-                    @error('examDepartment')
-                    <small class="form-text text-danger">
-                        {{$message}}
-                    </small>
-                    @enderror
+                
 
                     <select name="examSubject" id="Subject">
                         <option value="" selected disabled>Select Subject</option>

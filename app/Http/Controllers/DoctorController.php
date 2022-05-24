@@ -38,9 +38,12 @@ class DoctorController extends Controller
 
     public function getDataExam()
     {
+   
         $subjects = Subject::select('subject_name')->get();
         $levels = Level::select('level_name')->get();
+      
         $departments = Department::select('department_name')->get();
+       
 
         return view('doctor.addExam', compact('subjects', 'levels', 'departments'));
     }
@@ -49,7 +52,7 @@ class DoctorController extends Controller
     {
 
         $user_id = auth()->user()->id;
-        $exams = Online_exam::where('user_id', $user_id)->select('id', 'onlineExam_name', 'onlineExam_duration', 'total_questions', 'onlineExam_marks', 'onlineExam_pass', 'onlineExam_datetime')->get();
+        $exams = Online_exam::where('user_id', $user_id)->select('id','onlineExam_name', 'onlineExam_duration', 'total_questions', 'onlineExam_marks', 'onlineExam_pass', 'onlineExam_datetime')->get();
         return view('doctor.viewExams', compact('exams'));
     }
 
@@ -108,7 +111,7 @@ class DoctorController extends Controller
             'option_four'=>$request->questionOptionFour,
             'answer_option' => $request->questionAnswer,
             'category' => $request->questionCategory,
-
+          
         ]);
         return redirect()->back()->with(['success' => 'Question Added Successfully!']);
 
