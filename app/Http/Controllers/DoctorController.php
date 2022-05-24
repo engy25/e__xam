@@ -38,12 +38,12 @@ class DoctorController extends Controller
 
     public function getDataExam()
     {
-   
+
         $subjects = Subject::select('subject_name')->get();
         $levels = Level::select('level_name')->get();
-      
+
         $departments = Department::select('department_name')->get();
-       
+
 
         return view('doctor\addExam', compact('subjects', 'levels', 'departments'));
     }
@@ -52,7 +52,7 @@ class DoctorController extends Controller
     {
 
         $user_id = auth()->user()->id;
-        $exams = Online_exam::where('user_id', $user_id)->select('id','onlineExam_name', 'onlineExam_duration', 'total_questions', 'onlineExam_marks', 'onlineExam_pass', 'onlineExam_datetime')->get();
+        $exams = Online_exam::where('user_id', $user_id)->select('id', 'onlineExam_name', 'onlineExam_duration', 'total_questions', 'onlineExam_marks', 'onlineExam_pass', 'onlineExam_datetime')->get();
         return view('doctor\viewExams', compact('exams'));
     }
 
@@ -79,10 +79,38 @@ class DoctorController extends Controller
         return view('doctor.viewResults');
     }
 
-    public function editQuestions($id){
+    public function editQuestions($id)
+    {
         $exams = Question::find($id);
-        return view('doctor\addQuestions',compact('exams'));
+        $exams = Question::where('id', $id)->select('id', 'onlineExam_id', 'question_title', 'mark', 'option_one', 'option_two', 'option_three', 'option_four', 'answer_option', 'category')->get();
+        return view('doctor\editQuestions', compact('exams'));
+
     }
+
+    public function updateQuestions($id, Request $request)
+    {
+
+        $exam = Question::find($id);
+        //$exam = Question::select('id','onlineExam_id', 'question_title', 'mark', 'option_one', 'option_two', 'option_three', 'option_four', 'answer_option', 'category')->find($id);
+        /*$rules = $this->getUpdatedRulesExam();
+        $messages = $this->getUpdatedMessagesExam();
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }*/
+        $exam->update([
+            'question_title' => $request->questionTitle,
+            'mark' => $request->questionMark,
+            'option_one' => $request->questionOptionOne,
+            'option_two' => $request->questionOptionTwo,
+            'option_three' => $request->questionOptionThree,
+            'option_four' => $request->questionOptionFour,
+            'answer_option' => $request->questionAnswer,
+            'category' => $request->questionCategory,
+        ]);
+        return redirect()->back()->with(['success' => 'Question Updated Successfully!']);
+    }
+
 
     public function addQuestions()
     {
@@ -105,13 +133,13 @@ class DoctorController extends Controller
             'onlineExam_id' => $request->questionName,
             'question_title' => $request->questionTitle,
             'mark' => $request->questionMark,
-            'option_one'=>$request->questionOptionOne,
-            'option_two'=>$request->questionOptionTwo,
-            'option_three'=>$request->questionOptionThree,
-            'option_four'=>$request->questionOptionFour,
+            'option_one' => $request->questionOptionOne,
+            'option_two' => $request->questionOptionTwo,
+            'option_three' => $request->questionOptionThree,
+            'option_four' => $request->questionOptionFour,
             'answer_option' => $request->questionAnswer,
             'category' => $request->questionCategory,
-          
+
         ]);
         return redirect()->back()->with(['success' => 'Question Added Successfully!']);
 
@@ -151,6 +179,33 @@ class DoctorController extends Controller
 
     }
 
+    public function insertExam(Request $request)
+    {
+        //Validation Rules:
+        $rules = $this->getRulesExam();
+        $messages = $this->getMessagesExam();
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        Online_exam::insert([
+            'user_id' => auth()->user()->id,
+            'onlineExam_name' => $request->examName,
+            'onlineExam_marks' => $request->totalMarks,
+            'onlineExam_pass' => $request->passMark,
+            'onlineExam_datetime' => $request->examDate,
+            'total_questions' => $request->questionCount,
+            'onlineExam_duration' => $request->totalTime,
+            'onlineExam_createBy' => auth()->user()->first_name,
+            /*'onlineExam_name'=>'examLevel',
+            'onlineExam_name'=>'examDepartment',
+            'onlineExam_name'=>'examSubject',*/
+        ]);
+        return redirect()->back()->with(['success' => 'Exam Added Successfully!']);
+
+    }
+
     protected function getRulesExam()
     {
         return $rules = [
@@ -187,43 +242,45 @@ class DoctorController extends Controller
             'totalTime.numeric' => 'Duration of Exam must be Numeric',
         ];
     }
-    public function insertExam(Request $request)
+    protected function getUpdatedRulesExam()
     {
-        //Validation Rules:
-        $rules = $this->getRulesExam();
-        $messages = $this->getMessagesExam();
-        $validator = Validator::make($request->all(), $rules, $messages);
+        return $rules = [
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput($request->all());
-        }
-        Online_exam::insert([
-            'user_id' => auth()->user()->id,
-            'onlineExam_name' => $request->examName,
-            'onlineExam_marks' => $request->totalMarks,
-            'onlineExam_pass' => $request->passMark,
-            'onlineExam_datetime' => $request->examDate,
-            'total_questions' => $request->questionCount,
-            'onlineExam_duration' => $request->totalTime,
-            'onlineExam_createBy' => auth()->user()->first_name,
-            /*'onlineExam_name'=>'examLevel',
-            'onlineExam_name'=>'examDepartment',
-            'onlineExam_name'=>'examSubject',*/
-        ]);
-        return redirect()->back()->with(['success' => 'Exam Added Successfully!']);
-
+            'question_title' => 'required',
+            'mark' => 'required | max:100 | numeric',
+            'category' => 'required',
+            'option_one' => 'required',
+            'option_two' => 'required',
+            'option_three' => 'required',
+            'option_four' => 'required',
+        ];
     }
 
+    protected function getUpdatedMessagesExam()
+    {
+        return $messages = [
+            'question_title.required' => 'This Field is required',
+            'mark.required' => 'This Field is required',
+            'mark.max:100' => 'Question Mark must not exceed 100',
+            'mark.numeric' => 'Question Mark must be Numeric',
+            'category.required' => 'This Field is required',
+            'option_one.required' => 'This Field is required',
+            'option_two.required' => 'This Field is required',
+            'option_three.required' => 'This Field is required',
+            'option_four.required' => 'This Field is required',
 
+        ];
+    }
 
     public function results()
     {
+
         return view('doctor.results');
     }
 
     public function viewQuestions(Request $request)
     {
-        $questions = Question::where('onlineExam_id', $request->id)->select('id', 'question_title', 'mark','option_one','option_two','option_three','option_four','category','answer_option')->get();
+        $questions = Question::where('onlineExam_id', $request->id)->select('id', 'question_title', 'mark', 'option_one', 'option_two', 'option_three', 'option_four', 'category', 'answer_option')->get();
         return view('doctor\viewQuestions', compact('questions'));
     }
 

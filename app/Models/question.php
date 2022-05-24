@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class question extends Model
 {
     use HasFactory;
-    protected $fillable =[
+
+    public $timestamps = false;
+    protected $fillable = [
         'id',
         'onlineExam_id',
         'question_title',
@@ -20,16 +22,14 @@ class question extends Model
         'answer_option',
         'category',
     ];
-
-
-    protected $hidden=[
+    protected $hidden = [
 
     ];
 
 
     public function Online_exam()
     {
-        return $this->belongsToMany('App\Models\Online_exam','id')->withTimestamps();
+        return $this->belongsToMany('App\Models\Online_exam', 'id')->withTimestamps();
     }
 
 }

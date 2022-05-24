@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <title>E-Exam</title>
     <!--start Admin Base-->
-    <link rel="stylesheet" href="{{ asset('css/addExam.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/DoctorBase.css') }}"/>
     <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css') }}">
     <!--end admin base-->
 
@@ -85,7 +85,7 @@
 <div class="sidebar">
     <center>
         <img src="images/admin.png" class="profile_image">
-        <h4>Doctor</h4>
+        <h4>{{auth()->user()->first_name}}</h4>
     </center>
 
     <a href="{{route('doctorDashboard')}}" class="sidebar-items"><i class="fas fa-tachometer-alt"></i> Dashboard</a>

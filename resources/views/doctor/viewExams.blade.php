@@ -1,6 +1,6 @@
 ﻿@extends('layouts/doctor.app2')
 @section('content')
-        <!DOCTYPE html>
+    <link rel="stylesheet" href="{{ asset('css/css/Teacher-ViewExams.css') }}"/>
 
 <!--content start-->
 <div class="content">

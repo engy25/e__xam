@@ -1,6 +1,6 @@
 ﻿@extends('layouts/doctor.app2')
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/css/doctorAddExam.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/css/Teacher-AddExam.css') }}"/>
     <!--content start-->
     <div class="content">
         <br><br><br><br><br>
@@ -79,31 +79,27 @@
                     <label>Subject</label>
                 </div>
 
-                
 
-                    <select name="examSubject" id="Subject">
-                        <option value="" selected disabled>Select Subject</option>
-                        @foreach($subjects as $subject)
-                            <option value="{{$subject->subject_id}}">{{$subject->subject_name}}</option>
-                        @endforeach
-                    </select>
-                    @error('examSubject')
-                    <small class="form-text text-danger">
-                        {{$message}}
-                    </small>
-                    @enderror
-                </div>
-
+                <select name="examSubject" id="Subject">
+                    <option value="" selected disabled>Select Subject</option>
+                    @foreach($subjects as $subject)
+                        <option value="{{$subject->id}}">{{$subject->subject_name}}</option>
+                    @endforeach
+                </select>
+                @error('examSubject')
+                <small class="form-text text-danger">
+                    {{$message}}
+                </small>
+                @enderror
+                    <br><br><br>
                 <div class="container-btn">
                     <button>Submit</button>
                 </div>
-
-
             </form>
-
         </div>
 
-        <br><br><br>
+
+
     </div>
     <!--content end-->
 
