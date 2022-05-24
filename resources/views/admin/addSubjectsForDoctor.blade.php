@@ -87,7 +87,7 @@
                     
                     <option value="" selected disabled>Select Subject</option>
                     @foreach($subjects as $subject)
-                    <option value="{{$subject->subject_id}}">{{$subject->subject_name}}
+                    <option value="{{$subject->id}}">{{$subject->subject_name}}
                     @error('subject')
                     <small class="form-text text-danger">
                         {{$message}}

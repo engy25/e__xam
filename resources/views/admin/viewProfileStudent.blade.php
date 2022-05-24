@@ -129,10 +129,10 @@
                     <p>{{$userStudents->mobile}}</p>
                 <br />
                     <label>Level: </label>
-                    <p>{{$userStudents->level->level_name}}</p>
+                    <p>3</p>
                 <br />
                     <label>Department: </label>
-                    <p>{{$userStudents->department->department_name}}</p>
+                    <p>SoftWare Engineer</p>
                 </div>
               
             </div>
@@ -155,9 +155,9 @@
                     </thead>
                     <tr>
                         <td>MidTerm</td>
-                        <td>DataBase</td>
-                        <td>20</td>
-                        <td>1/1/2022</td>
+                        <td>Software Requirement</td>
+                        <td>14</td>
+                        <td>24/5/2022</td>
                     </tr>
                 </table>
 

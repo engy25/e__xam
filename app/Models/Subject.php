@@ -10,7 +10,7 @@ class Subject extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'subject_id',
+        'id',
         'level_id',
         'department_id',
         'subject_name',
@@ -19,7 +19,7 @@ class Subject extends Model
     ];
     public $timestamps = false;
 
-    protected $primaryKey = 'subject_id';
+    protected $primaryKey = 'id';
    // one to many relationshib between subject and level each level has many subjects
     public function level(): BelongsTo
     {

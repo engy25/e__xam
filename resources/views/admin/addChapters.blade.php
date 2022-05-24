@@ -76,45 +76,45 @@
 
             <div class="content-header">
                 <div class="content-header-labels">
-                <form method="POST" class="my-login-validation" autocomplete="off"  action="{{ route('adminSubjects') }}">
+                <form method="POST" class="my-login-validation" autocomplete="off"  action="{{ route('adminChapters') }}">
                 @csrf
 </div>
 
-                
                 <div class="form-group">
-                    <label for="levels" style="margin-right:227px;">Level</label>
-                    <label for="departments" style="margin-right:166px;">Department</label>
+                <label for="chapters" style="margin-right:227px;">Chapter Name</label>
+                    <label for="Describe Chapter" style="margin-right:166px;">Describe Chapter</label>
                     <label for="subjects">Subject</label>
                 </div>
-
-
-                
-                
-
-                <div class="content-header-select">
-                    <select id="levelss" name="level_id">
-                        <option value="" selected disabled>Select Level</option>
-                        @foreach($levelss as $level)
-                        <option value="{{$level->id}}">{{$level->level_name}}</option>
-                        @endforeach
-                    </select>
-                
                   
 
-                    <select id="departments" name="department_id">
+                <input id="chapters"  type="text" name="chapter_name" class="content-header-select"  autofocus placeholder="Enter Chapter name" value="{{ old('chapter_name') }}">
+                                    <span class="text-danger">@error('chapter_name'){{ $message }}@enderror</span>
+
+                                    <input id="describe_chapter"  type="text" name="describe_chapter" class="content-header-select"  autofocus placeholder="Describe the chapter" value="{{ old('describe_chapter') }}">
+                                    @error('describe_chapter')
+                        <small class="form-text text-danger">
+                            {{$message}}
+
+                        </small>
+                        @enderror
+
                     
-                        <option value="" selected disabled>Select Department</option>
-                        @foreach($departments as $department)
-                        <option value="{{$department->id}}">{{$department->department_name}}
-                        @endforeach
-                    </select>
+            <div>
+            <select id="subjects" name="subject_id">
                     
-                    <input id="subjects"  type="text" name="subject_name" class="content-header-select"  autofocus placeholder="Enter Subject name" value="{{ old('subject_name') }}">
-                                    <span class="text-danger">@error('subject_name'){{ $message }}@enderror</span>
+                    <option value="" selected disabled>Select subjects</option>
+                    @foreach($subjects as $subject)
+                    <option value="{{$subject->id}}">{{$subject->subject_name}}
+                    @endforeach
+                    @error('subject_name')
+                        <small class="form-text text-danger">
+                            {{$message}}
 
-
-
-
+                        </small>
+                        @enderror
+                </select>
+                
+                
                                 </div>
                 
 
@@ -131,26 +131,27 @@
                     <thead>
                         <tr>
                             
-                            <th>Department</th>
+                            <th>Chapters</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
-                    @foreach($subjects as $subject)
+                    @foreach($chapters as $chapter)
                     <tr>
                    
                    
-                    <td id="{{$subject->id}}">
-        <p class="fw-normal mb-1">{{$subject->subject_name}}</p>
+                    <td id="{{$chapter->id}}">
+        <p class="fw-normal mb-1">{{$chapter->chapter_name}}</p>
        
       </td>
 
       <td>
-      <a href="{{url('admin/edit/subject/'.$subject -> id)}}" class="btn btn-primary">Edit</a>
+      
+      <a href="{{url('admin/edit/chapters/'.$chapter -> id)}}" class="btn btn-primary">Edit</a>
       </td>
       <td>
       
-      <a href="{{route('adminsubjectdelete',$subject->id)}}" class="btn btn-danger"> delete</a>
+      <a href="{{route('adminChaptertdelete',$chapter->id)}}" class="btn btn-danger"> delete</a>
   
       </td>
                     </tr>

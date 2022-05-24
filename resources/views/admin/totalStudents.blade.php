@@ -50,8 +50,8 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
-                            <th>Level</th>
-                            <th>Department</th>
+                            <th>Mobile</th>
+                            
 
                             <th>Delete</th>
                             <th>Profile</th>
@@ -62,10 +62,10 @@
                     <td>{{$student->first_name}}</td>
                         <td>{{$student->last_name}}</td>
                         <td>{{$student->email}}</td>
+                        <td >{{$student->mobile}}</td>
+                       
                         
-                        <td >{{$student->level->level_name}}</td>
-                        <td >{{$student->department->department_name}}</td>
-
+                        
                         <td>
       
        <a href="{{route('destroystudent',['id'=>$student->id])}}" class="btn btn-danger"> delete</a>

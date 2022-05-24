@@ -36,6 +36,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('adminDashboard');
     Route::get('departments', [App\Http\Controllers\AdminController::class, 'departments'])->name('adminDepartments');
     Route::post('/departments', [App\Http\Controllers\AdminController::class, 'savedDepartments'])->name('adminSavedDepartments');
+
+    Route::get('chapters', [App\Http\Controllers\AdminController::class, 'chapters'])->name('adminChapters');
+    Route::post('/chapters', [App\Http\Controllers\AdminController::class, 'savedChapters'])->name('adminSavedChapters');
+    Route::get('edit/chapters/{id}', [App\Http\Controllers\AdminController::class,  'editchapters']);
+    Route::put('update/chapters/{id}', [App\Http\Controllers\AdminController::class, 'Updatechapters'])->name('chapterUpdate');
+   // Route::put('update/subject/{subject_id}', [App\Http\Controllers\AdminController::class, 'Updatesubject'])->name('subjectUpdate');
+    Route::get('/deletechapters/{id}', [App\Http\Controllers\AdminController::class, 'destroyChapters'])->name('adminChaptertdelete');
+
     Route::get('edit/{department_id}', [App\Http\Controllers\AdminController::class,  'editDepartments']);
     Route::put('update/{department_id}', [App\Http\Controllers\AdminController::class, 'Updatedepartment'])->name('departmentUpdate');
     Route::get('/deleteDepartment/{id}', [App\Http\Controllers\AdminController::class, 'destroyDepartment'])->name('admindepartmentdelete');

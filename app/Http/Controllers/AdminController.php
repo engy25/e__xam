@@ -7,10 +7,12 @@ use resources\views\admin;
 use App\Models\User;
 use App\Models\Department;
 use App\Models\Level;
+use App\Models\Chapter;
 use App\Models\Subject;
 use App\Models\Online_exam;
 use App\Http\Requests\AdminRequest;
 use App\Http\Requests\LevelRequest;
+use App\Http\Requests\ChapterRequest;
 use App\Http\Requests\DepartmentsRequest;
 use App\Http\Requests\SubjectRequest;
 use Illuminate\Support\Facades\Hash;
@@ -214,15 +216,70 @@ public function Updatelevel(LevelRequest $request, $level_id)
         return redirect()->route('adminDepartments')
         ->with(['success'=>'departments deleted successfully']);
     }
+
+    public function chapters()
+    {
+        $subjects= Subject::all();
+        $chapters= Chapter::all();
+        return view('admin\addChapters',compact('chapters','subjects'));
+    }
+    public function savedChapters (ChapterRequest $request)
+    {
+        
+        $request->input('names');
+       
+        Chapter::create([
+            'id' => $request->id,
+            'describe_chapter' => $request->describe_chapter,
+            'chapter_name' => $request->chapter_name,
+            'subject_id' => $request->subject_id,
+           
+        ]);
+        
+        return redirect()->back()->with(['success'=>'Added Successfully']);
+       
+    }
+    
+    public function editchapters($id)
+    {
+        $chapters = Chapter::find($id);
+        $subjects= Subject::all();
+       
+        return view('admin\editChapter', compact('chapters','subjects'));
+    }
+    public function Updatechapters(ChapterRequest $request, $id)
+    {
+        $chapters = Chapter::find($id);         
+        $chapters->subject_id = $request->input('subject_id');
+        $chapters->chapter_name = $request->input('chapter_name');
+        $chapters->describe_chapter = $request->input('describe_chapter');
+        $chapters->update();
+     return redirect()->back()->with('status','chapters Updated Successfully');
+
+ }
+ public function destroyChapters($id )
+ {
+
+     $chapters = Chapter::find($id);
+     if(!$chapters)
+     {
+         return redirect() ->back() ->with(['error' =>'chapters not found']);
+
+     }
+     $chapters->delete();
+
+     return redirect()->route('adminChapters')
+     ->with(['success'=>'subjects deleted successfully']);
+ }
+
     public function subjects()
     {
         $departments= Department::all();
-        $levels= Level::all();
+        $levelss= Level::all();
         $subjects= Subject::all();
-        return view('admin\addSubjects',compact('departments','levels','subjects'));
+        return view('admin\addSubjects',compact('departments','levelss','subjects'));
 
     }
-
     public function saveSubjects (SubjectRequest $request)
     {
         $request->input('names');
@@ -284,8 +341,8 @@ public function Updatelevel(LevelRequest $request, $level_id)
         $subjects= Subject::all();
         
         $professor_subjects=Professor_subject::join('users','users.id','=','professor_subjects.professor_id')
-        ->join('subjects','subjects.subject_id','=','professor_subjects.subject_id')
-        ->get(['subjects.subject_name','users.email','subjects.subject_id']);
+        ->join('subjects','subjects.id','=','professor_subjects.subject_id')
+        ->get(['subjects.subject_name','users.email','subjects.id']);
         return view('admin\addSubjectsForDoctor',compact('users','subjects','professor_subjects'));
 
     }
@@ -385,9 +442,9 @@ public function destroy( $id)
     {
         $userDoctors=User::find($id);
         $subDoctors=Professor_subject::join('users','users.id','=','professor_subjects.professor_id')
-        ->join('subjects','subjects.subject_id','=','professor_subjects.subject_id')
+        ->join('subjects','subjects.id','=','professor_subjects.subject_id')
         ->where('professor_subjects.professor_id',$id)
-        ->get(['subjects.subject_name','users.email','subjects.subject_id','subjects.level_id','subjects.department_id']);
+        ->get(['subjects.subject_name','users.email','subjects.id','subjects.level_id','subjects.department_id']);
        
         return view('admin\viewProfileDoctor',compact('userDoctors','subDoctors'));
     }
@@ -396,7 +453,9 @@ public function destroy( $id)
     {
        
         $userStudents=User::find($id);
-        return view('admin\viewProfileStudent',compact('userStudents'));
+        $levels = Level::where('id', $userStudents)->get();
+
+        return view('admin\viewProfileStudent',compact('userStudents','levels'));
     }
     
     
