@@ -43,20 +43,32 @@
             <div class="content-header">
                 <div class="content-header-labels">
                 <form method="POST" class="my-login-validation" autocomplete="off"  action="{{ route('adminLevels') }}">
+                @if(Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
+                @if ( Session::get('error'))
+                    <div class="alert alert-danger">
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
                 @csrf
                 </div>
+
+              
 
                 <div class="form-group">
 									<label for="level_id">Levels</label>
 									<input id="level_name" type="text"class="content-header-select" name="level_name"  placeholder="Enter level Name" value="{{ old('level_name') }}">
-									<span class="text-danger">@error('level_name'){{ $message }}@enderror</span>
+                  @error('level_name')
+                        <small class="form-text text-danger">
+                            {{$message}}
+
+                        </small>
+                        @enderror
 								</div>
 
-               
-
-                              
-                    
-                
                     <button type ="submit" class="btn btn-success">Add</button>
                 </div>
             </div>

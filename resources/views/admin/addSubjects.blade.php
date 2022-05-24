@@ -18,37 +18,29 @@
     body{
             background-color:#F0F0F0;
         }
-
         a:link {
             text-decoration: none;
         }
-
         h6 {
             text-align: center;
         }
-
         .row {
             margin: 100px;
         }
-
         .content-header-labels {
             font-size: 20px;
             margin-bottom: 10px;
         }
-
         .content-header-select {
             margin-bottom: 20px;
         }
-
         .content-header-btn {
             margin-bottom: 150px;
         }
-
         .content-header-labels label {
             margin-right: 250px;
             color:#484848;
         }
-
         .content-header-select select, input {
             width: 200px;
             padding: 5px;
@@ -57,7 +49,6 @@
             border: 1px solid #75a3a3;
             margin-right: 105px;
         }
-
         .content-header-btn button {
             float: right;
             padding: 10px;
@@ -69,7 +60,6 @@
             border-radius: 5px;
             font-weight: bold;
         }
-
         .content-header-select input {
             margin-left: 56px;
         }

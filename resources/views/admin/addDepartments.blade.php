@@ -88,13 +88,29 @@
             <div class="content-header">
                 <div class="content-header-labels">
                 <form method="POST" class="my-login-validation" autocomplete="off"  action="{{ route('adminDepartments') }}">
+                @if(Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
+                @if ( Session::get('error'))
+                    <div class="alert alert-danger">
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
+                
                 @csrf
                 </div>
 
                 <div class="form-group">
 									<label for="department_id">Department</label>
-									<input id="department_name" type="text"class="content-header-select" name="department_name"  placeholder="Enter Department Name" value="{{ old('department_name') }}">
-									<span class="text-danger">@error('department_name'){{ $message }}@enderror</span>
+                                <input id="department_name" type="text"class="content-header-select" name="department_name"  placeholder="Enter Department Name" value="{{ old('department_name') }}">
+                                @error('department_name')
+                        <small class="form-text text-danger">
+                            {{$message}}
+
+                        </small>
+                        @enderror
 								</div>
 
                               
@@ -128,7 +144,7 @@
       </td>
       <td>
    
-      <a href="{{url('admin/edit/'.$department -> d)}}" class="btn btn-primary">Edit</a>
+      <a href="{{url('admin/edit/'.$department -> id)}}" class="btn btn-primary">Edit</a>
       </td>
       <td>
       

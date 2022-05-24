@@ -46,9 +46,7 @@
     <div class="row">
         <div class="col-md-12">
 
-            @if (session('status'))
-                <h6 class="alert alert-success">{{ session('status') }}</h6>
-            @endif
+      
 
             <div class="card">
                 <div class="card-header">
@@ -59,26 +57,36 @@
                 <div class="card-body">
             <div class="row">
             
-                    <form action="{{url('admin/update/'.$departments -> department_id)}}" method="POST">
+            <form action="{{url('admin/update/'.$departments -> id)}}" method="POST">
+                   
+                   
                         @csrf
                         @method('PUT')
 </div>
 
                         <div class="form-group mb-3">
-                            <label for="department_id">department Name</label>
+                            <label for="id">Department Name</label>
                             
-                            <input id="department_name" type="text" name="department_name" value="{{$departments->department_name}}"  autofocus placeholder="Enter department name"  class="form-control">
+                            <input id="department_name" type="text" name="department_name" value="{{$departments->department_name}}"  autofocus placeholder="Enter Level name"  class="form-control">
+
+                            @error('department_name')
+                        <small class="form-text text-danger">
+                            {{$message}}
+                        </small>
+                        @enderror
                         </div>
 
+</div>
 
 
-                    
 
 
-                       
 
+
+
+    </div>
                         <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-primary">Update Levels</button>
+                            <button type="submit" class="btn btn-primary">Update Department</button>
                         </div>
 
                     </form>

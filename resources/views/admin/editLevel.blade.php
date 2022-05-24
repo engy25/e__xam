@@ -46,11 +46,18 @@
     <div class="row">
         <div class="col-md-12">
 
-            @if (session('status'))
-                <h6 class="alert alert-success">{{ session('status') }}</h6>
-            @endif
+        @if ( Session::get('success'))
+                             <div class="alert alert-success">
+                                 {{ Session::get('success') }}
+                             </div>
+                        @endif
+                        @if ( Session::get('error'))
+                             <div class="alert alert-danger">
+                                 {{ Session::get('error') }}
+                             </div>
+                        @endif
 
-            <div class="card">
+        <div class="card">
                 <div class="card-header">
                     <h4>Edit & Update Level
                         <a href="{{ url('admin/levels') }}" class="btn btn-danger float-end">BACK</a>
@@ -58,24 +65,27 @@
                 </div>
                 <div class="card-body">
             <div class="row">
+
+            
             
                     <form action="{{url('admin/update/level/'.$levels -> id)}}" method="POST">
+                   
                         @csrf
                         @method('PUT')
 </div>
+
 
                         <div class="form-group mb-3">
                             <label for="id">Level Name</label>
                             
                             <input id="level_name" type="text" name="level_name" value="{{$levels->level_name}}"  autofocus placeholder="Enter Level name"  class="form-control">
+                            @error('level_name')
+                        <small class="form-text text-danger">
+                            {{$message}}
+                        </small>
+                        @enderror
                         </div>
-
-
-
-                    
-
-
-                       
+                        </div>
 
                         <div class="form-group mb-3">
                             <button type="submit" class="btn btn-primary">Update Levels</button>
