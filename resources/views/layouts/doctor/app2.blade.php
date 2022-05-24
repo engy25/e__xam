@@ -5,15 +5,15 @@
     <title>E-Exam</title>
     <!--start Admin Base-->
     <link rel="stylesheet" href="{{ asset('css/addExam.css') }}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css') }}">
     <!--end admin base-->
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js') }}"></script>
+    <link href="{{ asset('http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css') }}">
+    <link href="{{ asset('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css') }}" rel="stylesheet">
 
     <style type="text/css">
         body {
@@ -84,9 +84,9 @@
         <form  action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
         </form>
-        <a href="{{ route('logout') }}" class="logout_btn">Logout</a>
+       
 
-        <a href="{{ route('doctorChangePassword') }}" class="ChangePassword_btn">Change Password</a>
+       
     </div>
 
 </header>
@@ -99,15 +99,15 @@
         <h4>{{auth()->user()->first_name}}</h4>
     </center>
 
-    <a href="{{route('doctorDashboard')}}" class="sidebar-items"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+    <a href="/doctorDashboard" class="sidebar-items"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
     <label onclick="Function1()" class="sidebar-items"><i class="fas fa-question-circle"></i> Exams</label>
     <ul id="ul-1">
-        <li><a href="{{route('doctorAddExam')}}" class="list-items">- Add Exam</a></li>
-        <li><a href="{{route('doctorViewExam')}}" class="list-items">- View Exams</a></li>
-        <li><a href="{{route('doctorAddQuestion')}}" class="list-items">- Add Questions</a></li>
+        <li><a href="/doctorAddExam" class="list-items">- Add Exam</a></li>
+        <li><a href="/doctorViewExam" class="list-items">- View Exams</a></li>
+        <li><a href="/doctorAddQuestion" class="list-items">- Add Questions</a></li>
 <!--  route('doctorAssignExam')      <li><a href="" class="list-items">- Assign Exam</a></li>-->
     </ul>
-    <a href="{{route('doctorResults')}}" class="sidebar-items"><i class="fas fa-sort-numeric-up"></i><span>     Results</span></a>
+    <a href="/doctorResults" class="sidebar-items"><i class="fas fa-sort-numeric-up"></i><span>     Results</span></a>
 </div>
 <!--sidebar end-->
 <!--end Admin base-->
@@ -120,7 +120,7 @@
 <!--JS code start-->
 
 <script src="{{ asset('js/AdminBase.js') }}"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<script src="{{ asset('http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js') }}"></script>
 <!--JS code end-->
 </body>
 </html>

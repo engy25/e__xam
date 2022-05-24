@@ -45,7 +45,7 @@ class DoctorController extends Controller
         $departments = Department::select('department_name')->get();
        
 
-        return view('doctor.addExam', compact('subjects', 'levels', 'departments'));
+        return view('doctor\addExam', compact('subjects', 'levels', 'departments'));
     }
 
     public function viewExam()
@@ -53,7 +53,7 @@ class DoctorController extends Controller
 
         $user_id = auth()->user()->id;
         $exams = Online_exam::where('user_id', $user_id)->select('id','onlineExam_name', 'onlineExam_duration', 'total_questions', 'onlineExam_marks', 'onlineExam_pass', 'onlineExam_datetime')->get();
-        return view('doctor.viewExams', compact('exams'));
+        return view('doctor\viewExams', compact('exams'));
     }
 
     public function deleteExam($id)
@@ -81,7 +81,7 @@ class DoctorController extends Controller
 
     public function editQuestions($id){
         $exams = Question::find($id);
-        return view('doctor.addQuestions',compact('exams'));
+        return view('doctor\addQuestions',compact('exams'));
     }
 
     public function addQuestions()
@@ -89,7 +89,7 @@ class DoctorController extends Controller
         $user_id = auth()->user()->id;
         $exams = Online_exam::where('user_id', $user_id)->select('id', 'onlineExam_name')->get();
 
-        return view('doctor.addQuestions', compact('exams'));
+        return view('doctor\addQuestions', compact('exams'));
     }
 
     public function insertQuestions(Request $request)
@@ -224,7 +224,7 @@ class DoctorController extends Controller
     public function viewQuestions(Request $request)
     {
         $questions = Question::where('onlineExam_id', $request->id)->select('id', 'question_title', 'mark','option_one','option_two','option_three','option_four','category','answer_option')->get();
-        return view('doctor.viewQuestions', compact('questions'));
+        return view('doctor\viewQuestions', compact('questions'));
     }
 
     /*public function assignExam()
