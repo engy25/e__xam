@@ -83,7 +83,7 @@
                 <select name="examSubject" id="Subject">
                     <option value="" selected disabled>Select Subject</option>
                     @foreach($subjects as $subject)
-                        <option value="{{$subject->subject_id}}">{{$subject->subject_name}}</option>
+                        <option value="{{$subject->id}}">{{$subject->subject_name}}</option>
                     @endforeach
                 </select>
                 @error('examSubject')
