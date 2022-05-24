@@ -48,7 +48,11 @@ class HomeController extends Controller
        
     }
    
-   
+    public function changePassword()
+    {
+        return view('doctor/changePassword');
+       
+    }
 
     
 }
