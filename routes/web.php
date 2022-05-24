@@ -70,11 +70,28 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    
     
 });
-
                      ////////////////doctor////////////////
 Route::group(['prefix' => 'doctor',  'middleware' => ['isDoctor','auth','PrevetBackHistory']], function(){
     Route::get('/dashboard', [App\Http\Controllers\DoctorController::class, 'dashboard'])->name('doctorDashboard');
+    Route::get('/changePassword', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('doctorChangePassword');
 
+////////////////doctorExam////////////
+    Route::get('/addExam', [App\Http\Controllers\DoctorController::class, 'getDataExam'])->name('doctorAddExam');
+    Route::post('/insertExam', [App\Http\Controllers\DoctorController::class, 'insertExam'])->name('doctorInsertExam');
+    Route::get('/viewExam', [App\Http\Controllers\DoctorController::class, 'viewExam'])->name('doctorViewExam');
+    Route::get('/delete/{id}', [App\Http\Controllers\DoctorController::class, 'deleteExam'])->name('doctorDeleteExam');
+    /*  Route::get('/assignExam', [App\Http\Controllers\DoctorController::class, 'assignExam'])->name('doctorAssignExam');
+        Route::get('/assigned', [App\Http\Controllers\DoctorController::class, 'sendExam'])->name('doctorSendExam');*/
+
+    ////////////////doctorQuestions/////////
+    Route::get('/addQuestions', [App\Http\Controllers\DoctorController::class, 'addQuestions'])->name('doctorAddQuestion');
+    Route::get('/editQuestions/{id}', [App\Http\Controllers\DoctorController::class, 'editQuestions'])->name('doctorEditQuestion');
+    Route::post('/insertQuestions', [App\Http\Controllers\DoctorController::class, 'insertQuestions'])->name('doctorInsertQuestion');
+    Route::get('/viewExam/{id}', [App\Http\Controllers\DoctorController::class, 'viewQuestions'])->name('doctorViewQuestions');
+    Route::get('/deleteExam/{id}', [App\Http\Controllers\DoctorController::class, 'deleteQuestions'])->name('doctorDeleteQuestions');
+    /////////////////////////////////////////
+    Route::get('/examDetails', [App\Http\Controllers\DoctorController::class, 'examDetails'])->name('doctorViewResults');
+    Route::get('/results', [App\Http\Controllers\DoctorController::class, 'results'])->name('doctorResults');
 
 
 

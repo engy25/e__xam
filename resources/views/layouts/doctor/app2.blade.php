@@ -19,31 +19,24 @@
         body {
             background-color: #F0F0F0;
         }
-
         a:link {
             text-decoration: none;
         }
-
         .order-card {
             color: rgb(255, 255, 255);
         }
-
         .bg-c-blue {
             background: #04868f;
         }
-
         .bg-c-green {
             background: #4C51BF;
         }
-
         .bg-c-yellow {
             background: #F56565;
         }
-
         .bg-c-pink {
             background: #663a30;
         }
-
         .card {
             -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
             box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
@@ -52,19 +45,15 @@
             -webkit-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;
         }
-
         .card .card-block {
             padding: 25px;
         }
-
         .order-card i {
             font-size: 26px;
         }
-
         .f-left {
             float: left;
         }
-
         .f-right {
             float: right;
         }
@@ -84,9 +73,9 @@
         <form  action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
         </form>
-       
+        <a href="{{ route('logout') }}" class="logout_btn">Logout</a>
 
-       
+        <a href="{{ route('doctorChangePassword') }}" class="ChangePassword_btn">Change Password</a>
     </div>
 
 </header>
@@ -96,18 +85,18 @@
 <div class="sidebar">
     <center>
         <img src="images/admin.png" class="profile_image">
-        <h4>{{auth()->user()->first_name}}</h4>
+        <h4>Doctor</h4>
     </center>
 
-    <a href="/doctorDashboard" class="sidebar-items"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+    <a href="{{route('doctorDashboard')}}" class="sidebar-items"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
     <label onclick="Function1()" class="sidebar-items"><i class="fas fa-question-circle"></i> Exams</label>
     <ul id="ul-1">
-        <li><a href="/doctorAddExam" class="list-items">- Add Exam</a></li>
-        <li><a href="/doctorViewExam" class="list-items">- View Exams</a></li>
-        <li><a href="/doctorAddQuestion" class="list-items">- Add Questions</a></li>
+        <li><a href="{{route('doctorAddExam')}}" class="list-items">- Add Exam</a></li>
+        <li><a href="{{route('doctorViewExam')}}" class="list-items">- View Exams</a></li>
+        <li><a href="{{route('doctorAddQuestion')}}" class="list-items">- Add Questions</a></li>
 <!--  route('doctorAssignExam')      <li><a href="" class="list-items">- Assign Exam</a></li>-->
     </ul>
-    <a href="/doctorResults" class="sidebar-items"><i class="fas fa-sort-numeric-up"></i><span>     Results</span></a>
+    <a href="{{route('doctorResults')}}" class="sidebar-items"><i class="fas fa-sort-numeric-up"></i><span>     Results</span></a>
 </div>
 <!--sidebar end-->
 <!--end Admin base-->
