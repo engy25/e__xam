@@ -129,6 +129,18 @@
                     </select>
                 </div>
 
+                <select name="examChapter" id="Chapters">
+                    <option value="" selected disabled>Select Chapters</option>
+                    @foreach($chapters as $chapter)
+                        <option value="{{$chapter->id}}">{{$chapter->chapter_name}}</option>
+                    @endforeach
+                </select>
+                @error('chapter_name')
+                <small class="form-text text-danger">
+                    {{$message}}
+                </small>
+                @enderror
+
                 <div class="content-btn">
                     <button>Add</button>
                 </div>

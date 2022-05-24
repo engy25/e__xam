@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Models\Level;
 use App\Models\Online_exam;
 use App\Models\Question;
+use App\Models\Chapter;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class DoctorController extends Controller
 
         $subjects = Subject::select('subject_name')->get();
         $levels = Level::select('level_name')->get();
-
+        $chapters=Chapter::select('chapter_name')->get();
         $departments = Department::select('department_name')->get();
 
 
@@ -116,8 +117,8 @@ class DoctorController extends Controller
     {
         $user_id = auth()->user()->id;
         $exams = Online_exam::where('user_id', $user_id)->select('id', 'onlineExam_name')->get();
-
-        return view('doctor\addQuestions', compact('exams'));
+        $chapters = Chapter::all();
+        return view('doctor\addQuestions', compact('exams','chapters'));
     }
 
     public function insertQuestions(Request $request)
