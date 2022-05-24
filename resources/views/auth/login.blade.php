@@ -1,11 +1,12 @@
 ﻿<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="author" content="Kodinger">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>E-Exam</title>
-    <link rel="stylesheet" type="text/css" href="css/my-login.css">
+	<meta charset="utf-8">
+	<meta name="author" content="Kodinger">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Login page</title>
+	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+	<link rel="stylesheet" type="{{ asset('text/css') }}" href="{{ asset('css/my-login.css') }}">
 </head>
 
 <body class="my-login-page">
@@ -23,38 +24,49 @@
                                     
                                     
 
-    <div class="form-center">
-        <form method="POST" class="my-login-validation" autocomplete="off" action="{{ route('login') }}">
-            @csrf
+                                    <div class="form-group">
+                                        <label for="email">E-Mail Address</label>
+                                        <input id="email" type="email" class="form-control" name="email" value="" required autofocus placeholder="Enter email">
+                                        <span class="text-danger">@error('email'){{ $message }}@enderror</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">
+                                            Password
+                                            <a href="{{route('password.request')}}" class="float-right">
+                                                Forgot Password?
+                                            </a>
+                                        </label>
+                                        <input id="password" type="password" class="form-control" name="password" required data-eye placeholder="Enter password">
+                                        <span class="text-danger">@error('password'){{ $message }}@enderror</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="custom-checkbox custom-control">
+                                            <input type="checkbox" name="remember" id="remember" class="custom-control-input">
+                                            <label for="remember" class="custom-control-label">Remeber Me</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-0">
+                                        <button type="submit" class="btn btn-primary btn-block">
+                                            Login
+                                        </button>
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        Don't have an account? <a href="{{route('register')}}">Create One</a>
+                                    </div>
+</form>
+						</div>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</section>
 
 
-            <div class="form-group">
-                <label for="email" class="form-labels">E-Mail Address</label>
-                <input id="email" type="email" class="form-txt" name="email" value="" required autofocus placeholder="Enter email">
-                <span class="text-danger">@error('email'){{ $message }}@enderror</span>
-            </div>
-
-            <div class="form-group">
-                <label for="password" class="form-labels">Password</label>
-                <input id="password" type="password" class="form-txt" name="password" required data-eye placeholder="Enter password">
-                <span class="text-danger">@error('password'){{ $message }}@enderror</span>
-                <a href="{{route('password.request')}}" class="a">
-                    Forgot Password?
-                </a>
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="login-btn">Login</button>
-            </div>
-
-
-        </form>
-    </div>
-    <div class="form-footer">
-        <a href="{{route('register')}}">Sign Up</a>
-    </div>
-</div>
-
-
+	<script src="{{ asset('bootstrap/js/popper.js') }}"></script>
+	<script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
+	<script src="{{ asset('js/my-login.js') }}"></script>
 </body>
 </html>
+
+ ]
