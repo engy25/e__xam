@@ -54,6 +54,19 @@
       border:1px solid #b3cccc;
       border-radius:3px;
     }
+    .Submit_btn{
+        padding: 9px;
+        background: #005450;
+        text-decoration: none;
+        float: left;
+        margin-top: 30px;
+        margin-right: 20px;
+        font-size: 15px;
+        font-weight: 600;
+        color: white;
+        border:1px solid #b3cccc;
+        border-radius:3px;
+    }
 
     .ChangePassword_btn:hover{
         background-color:#75a3a3;
@@ -101,11 +114,11 @@
       background: #75a3a3;
       cursor:pointer;
       color:#fff;
-    }    
+    }
 
     ul{
-      display:none; 
-      list-style-type:none;   
+      display:none;
+      list-style-type:none;
       margin-top:-5px;
       margin-bottom:-5px;
       margin-left:12px;

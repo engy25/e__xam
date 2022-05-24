@@ -81,11 +81,15 @@ Route::group(['prefix' => 'doctor',  'middleware' => ['isDoctor','auth','PrevetB
 });
 
                      ////////////////student////////////////
-Route::group(['prefix' => 'student',  'middleware' => ['isStudent','auth','PrevetBackHistory']], function(){                     
+Route::group(['prefix' => 'student',  'middleware' => ['isStudent','auth','PrevetBackHistory']], function(){
     Route::get('/dashboard', [App\Http\Controllers\StudentController::class, 'dashboard'])->name('studentDashboard');
+    Route::get('/changepassword', [App\Http\Controllers\StudentController::class, 'changepassword'])->name('changePasswordStudent');
+    Route::get('/forgetpassword', [App\Http\Controllers\StudentController::class, 'forgetpassword'])->name('forgetPasswordStudent');
+    Route::get('/startExam/{id}', [App\Http\Controllers\StudentController::class, 'startExam'])->name('startExamStudent');
+    Route::get('/showResult', [App\Http\Controllers\StudentController::class, 'showResult'])->name('showResultStudent');
+    Route::get('/submitexam', [App\Http\Controllers\StudentController::class, 'submitexam'])->name('submitexamStudent');
 
-    
-                    
+
 });
 
 Route::get('/registerPage', [App\Http\Controllers\RegisterController::class, 'register_page']);
