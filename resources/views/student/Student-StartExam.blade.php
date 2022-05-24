@@ -43,7 +43,8 @@
                         </div>
                     </form>
                 @endforeach
-                <a href="{{ route('submitexamStudent') }}" class="Submit_btn">Submit</a>
+                <a href="{{route('showResultStudent')}}" class="Submit_btn">Submit</a>
+                
             </div>
         </div>
 
