@@ -74,7 +74,12 @@ class User extends Authenticatable
     }
     
    
-   
+    public function onlineExam()
+    {
+        
+        return $this -> belongsTo('App\Models\Online_exam');
+    }
+
 
 
 }

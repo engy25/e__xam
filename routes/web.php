@@ -36,6 +36,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('adminDashboard');
     Route::get('departments', [App\Http\Controllers\AdminController::class, 'departments'])->name('adminDepartments');
     Route::post('/departments', [App\Http\Controllers\AdminController::class, 'savedDepartments'])->name('adminSavedDepartments');
+    Route::get('registerDoc', [App\Http\Controllers\AdminController::class, 'AddDoctor'])->name('AddDoctor');
+    Route::post('registerDoc',[App\Http\Controllers\AdminController::class, 'CreateNewDoct']);   
+
+    Route::get('registerStu', [App\Http\Controllers\AdminController::class, 'AddStu'])->name('AddStudent');
+    Route::post('registerStu',[App\Http\Controllers\AdminController::class, 'CreateNewStu']);   
+
 
     Route::get('chapters', [App\Http\Controllers\AdminController::class, 'chapters'])->name('adminChapters');
     Route::post('/chapters', [App\Http\Controllers\AdminController::class, 'savedChapters'])->name('adminSavedChapters');

@@ -53,18 +53,21 @@ body{
                             <th>Date</th>
                             <th>Mark</th>
 
-                            <th>Results</th>
+                
                         </tr>
                     </thead>
+                    @foreach($online_exams as $online_exam)
                     <tr>
-                        <td>Midterm</td>
-                        <td>AmrAboHany12</td>
-                        <td>DataBase</td>
-                        <td>1/1/2022</td>
-                        <td>20</td>
+                  
+                        <td id="{{$online_exam->id}}">{{$online_exam->onlineExam_name}}</td>
+                        <td id="{{$online_exam->id}}">{{$online_exam->onlineExam_createBy}}</td>
+                        <td id="{{$online_exam->id}}">{{$online_exam->onlineExam_name}}</td>
+                        <td id="{{$online_exam->id}}">{{$online_exam->onlineExam_datetime}}</td>
+                        <td id="{{$online_exam->id}}">{{$online_exam->onlineExam_marks}}</td>
 
-                        <td><a class="btn btn-primary btn-xs" href="Admin-AllResults.html" style="font-weight:bolder;"><span>View</span></a></td>
+        
                     </tr>
+                    @endforeach
                 </table>
             </div>
         </div>

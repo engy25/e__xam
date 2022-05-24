@@ -152,6 +152,41 @@ class AdminController extends Controller
                 
      }
 
+     public function AddStu()
+    {
+    $levels=Level::all();
+    $departments=Department::all();
+    $users=User::all();
+  
+    return view('admin\CreateStudent', compact('users','departments','levels'));
+    }
+
+
+    public function CreateNewStu(AdminRequest $request)
+    { 
+
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->mobile = $request->mobile;
+        $user->email = $request->email;
+        $user->role_id =3;
+        $user->password = \Hash::make($request->password);
+        $user->level_id = $request->level;
+        $user->department_id = $request->department;
+        $user->verified = 1;
+  
+        if( $user->save() ){
+
+            return redirect()->back()->with('success','You are now successfully registerd');
+         }else{
+             return redirect()->back()->with('error','Failed to register');
+         }
+                
+     }
+
+
+
     public function savedLevels(LevelRequest $request)
     { 
 
@@ -347,6 +382,8 @@ public function Updatelevel(LevelRequest $request, $level_id)
 
     }
 
+   
+
   public function editsubjectDoctor($professor_id)
    {
    
@@ -365,6 +402,22 @@ public function Updatelevel(LevelRequest $request, $level_id)
 
  }
  
+   public function allExams()
+   {
+   // $subjects=Subject::all();
+    //$users=User::all();
+    $online_exams=Online_exam::all();
+    /*
+    $online_exams=Online_exam::join('subjects','subjects.id','=','online_exams.subject_id')
+    ->join('users','id','=','online_exams.id')
+    ->get(['subjects.subject_name','users.email','subjects.id','online_exams.onlineExam_name','online_exams.onlineExam_duration','online_exams.onlineExam_datetime']);
+     */
+    return view('admin\allExams',compact('online_exams'));
+    
+    }
+
+
+
     public function savedDoctorSubject(Request $request)
     { 
         Professor_subject::create([ 
@@ -458,7 +511,7 @@ public function destroy( $id)
         return view('admin\viewProfileStudent',compact('userStudents','levels'));
     }
     
-    
+   
     public function totalStudents()
     {
         $students=User::where('role_id',3)->get();
@@ -479,22 +532,14 @@ public function destroy( $id)
         return redirect()->route('adminTotalStudents')
         ->with(['success'=>'totalStudents deleted successfully']);
     }
-    public function allExams()
-    {
-    
-        return view('admin\allExams');
-       
-    }
-    
+
     public function approve($id)
     {
         $Admin=User::where('role_id',1)->get();
         $userDoctors = User::find($id);
-        // make $user->verified = 1
         $userDoctors->verified = 1;
         $userDoctors->update() ;
         return redirect()->back()->with(['userDoctors' => $userDoctors,'Admin' => $Admin]);
-
     }
     public function destroypendingTeacher($id)
     {

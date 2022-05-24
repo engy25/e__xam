@@ -32,14 +32,16 @@
         <label onclick="Function1()" class="sidebar-items"><i class="fas fa-chalkboard-teacher"></i>     Doctors</label>
         <ul id="ul-1">
             <li> <a href="{{route('adminPendingTeacher')}}" class="list-items">- Pending Doctors</a></li>
-            
+            <li> <a href="{{route('AddDoctor')}}" class="list-items">- Add New Doctor</a></li>
             <li> <a href="{{route('adminTotalTeacher')}}" class="list-items">- Total Doctors</a></li>
             <li> <a href="{{route('DoctorSubject')}}" class="list-items">- Add Subject For Doctors</a></li>
         </ul>
 
         <label onclick="Function2()" class="sidebar-items"><i class="fas fa-user-graduate"></i>     Student</label>
         <ul id="ul-2">
+        <li> <a href="{{route('AddStudent')}}" class="list-items">- Add New Student</a></li>
             <li> <a href="{{route('adminTotalStudents')}}" class="list-items">- Total Students</a></li>
+
         </ul>
         
         <label onclick="Function3()" class="sidebar-items"><i class="fas fa-book"></i>     Collage</label>
