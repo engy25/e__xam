@@ -64,7 +64,9 @@
     <!--JS code start-->
     <script src="{{asset('js/AdminBase.js')}}"></script>
     <script>
-        var s =  5;
+        @foreach($exams as $exam)
+        var s = {{$exam->onlineExam_duration}} * 60;
+        @endforeach
         var m = 0;
 
         var time = setInterval(function() { timer() }, 1000);
