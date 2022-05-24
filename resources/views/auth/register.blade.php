@@ -1,13 +1,12 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Register page</title>
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/my-login.css">
+	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+	<link rel="stylesheet" type="{{ asset('text/css" href="css/my-login.css') }}">
 </head>
 <body class="my-login-page">
 	<section class="h-100">
@@ -64,19 +63,11 @@
                                     </select>
                                 </div>
 
-                              
-
 								<div class="form-group">
 									<label for="email">E-Mail Address</label>
 									<input id="email" type="email" class="form-control" name="email"  placeholder="Enter email" value="{{ old('email') }}">
 									<span class="text-danger">@error('email'){{ $message }}@enderror</span>
 								</div>
-
-
-								
-
-								
-                                
 
 								<div class="form-group">
 									<label for="password">Password</label>
@@ -113,13 +104,6 @@
                                     <input id="photo" type="file" class="form-control" name="photo"  value="{{ old('photo') }}">
                                     <span class="photo-danger">@error('photo'){{ $message }}@enderror</span>
                                 </div>
-
-                                
-
-                                
-
-                               
-
 								<div class="form-group">
 									<div class="custom-checkbox custom-control">
 										<input type="checkbox" name="agree" id="agree" class="custom-control-input">
@@ -148,13 +132,12 @@
 		</div>
 	</section>
 
-<script src="jquery-3.4.1.min.js"></script>
-	<script src="bootstrap/js/popper.js"></script>
-	<script src="bootstrap/js/bootstrap.js"></script>
-	<script src="js/my-login.js"></script>
+<script src="{{ asset('jquery-3.4.1.min.js') }}"></script>
+	<script src="{{ asset('bootstrap/js/popper.js') }}"></script>
+	<script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
+	<script src="{{ asset('js/my-login.js') }}"></script>
 
     <script >
-
 			function roleChange(){
 				if(document.getElementById('roles').value==3){
 					document.getElementById('levels').style.display = 'block';
@@ -165,7 +148,6 @@
 				}
 			}
            
-
     </script>
 
 </body>
