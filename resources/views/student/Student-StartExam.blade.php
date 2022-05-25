@@ -12,38 +12,43 @@
                 @foreach($questions as $question)
 
                     <form class="form">
-                        <h3 class="text-info">{{$question->question_title}}</h3><h4 style="text-align: right;color:#484848;">[{{$question->mark}} Marks]</h4>
+                        <h3 class="text-info">{{$question->question_title}}</h3><h4
+                                style="text-align: right;color:#484848;">[{{$question->mark}} Marks]</h4>
 
                         <div class="form-check mx-4">
-                            <input class="form-check-input" type="radio" name="option" id="option1" value=" {{($question->option_one=="0")? "checked" : ""}}">
+                            <input class="form-check-input" type="radio" name="option" id="option1"
+                                   value=" {{($question->option_one=="0")? "checked" : ""}}">
                             <label class="form-check-label" for="option1">
                                 {{$question->option_one}}
                             </label>
                         </div>
 
                         <div class="form-check mx-4">
-                            <input class="form-check-input" type="radio" name="option" id="option2" value=" {{($question->option_two=="0")? "checked" : ""}}">
+                            <input class="form-check-input" type="radio" name="option" id="option2"
+                                   value=" {{($question->option_two=="0")? "checked" : ""}}">
                             <label class="form-check-label" for="option2">
                                 {{$question->option_two}}
                             </label>
                         </div>
 
                         <div class="form-check mx-4">
-                            <input class="form-check-input" type="radio" name="option" id="option3" value=" {{($question->option_three=="0")? "checked" : ""}}">
+                            <input class="form-check-input" type="radio" name="option" id="option3"
+                                   value=" {{($question->option_three=="0")? "checked" : ""}}">
                             <label class="form-check-label" for="option3">
                                 {{$question->option_three}}
                             </label>
                         </div>
 
                         <div class="form-check mx-4">
-                            <input class="form-check-input" type="radio" name="option" id="option4" value="{{($question->option_four=="0")? "checked" : ""}}">
+                            <input class="form-check-input" type="radio" name="option" id="option4"
+                                   value="{{($question->option_four=="0")? "checked" : ""}}">
                             <label class="form-check-label" for="option4">
                                 {{$question->option_four}}
                             </label>
                         </div>
                     </form>
                 @endforeach
-                <a href="{{ route('submitexamStudent') }}" class="Submit_btn">Submit</a>
+                <a href="{{ route('showResultStudent') }}" class="Submit_btn">Submit</a>
             </div>
         </div>
 
@@ -54,7 +59,7 @@
 
     <!--PopUp box Start-->
     <div class="card open" id="pupup">
-        <img src="images/mark.png" />
+        <img src="images/mark.png"/>
         <h1>Time Over!</h1>
         <button onclick="hide_pupup()">Ok</button>
     </div>
@@ -64,10 +69,14 @@
     <!--JS code start-->
     <script src="{{asset('js/AdminBase.js')}}"></script>
     <script>
-        var s =  5;
+        @foreach($questions as $question)
+        var s = {{$question->onlineExam_duration}};
+        @endforeach
         var m = 0;
 
-        var time = setInterval(function() { timer() }, 1000);
+        var time = setInterval(function () {
+            timer()
+        }, 1000);
 
         function timer() {
             s--;
@@ -104,7 +113,7 @@
 
         function hide_pupup() {
             document.getElementById("pupup").classList.remove('card');
-            window.open("{{asset('Student-ExamResult.html')}}","_self");
+            window.open("{{asset('Student-ExamResult.html')}}", "_self");
         }
 
     </script>

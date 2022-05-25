@@ -21,13 +21,16 @@
 
                     </tr>
                     </thead>
-                    <tr>
-                        <td>DataBase</td>
-                        <td>20</td>
-                        <td>19</td>
-                        <td>passed</td>
+                    @foreach($exams as $exam)
+                        <tr>
 
-                    </tr>
+                            <td>{{$exam->onlineExam_name}}</td>
+                            <td>{{$exam->onlineExam_marks}}</td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                    @endforeach
                 </table>
             </div>
 

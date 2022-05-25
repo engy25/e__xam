@@ -102,8 +102,8 @@
 <!--sidebar start-->
 <div class="sidebar">
     <center>
-        <img src="images/admin.png" class="profile_image">
-        <h4>Student</h4>
+
+        <h4>{{auth()->user()->first_name}}</h4>
     </center>
 
     <a href="{{ route('studentDashboard') }}" class="sidebar-items"><i class="fas fa-tachometer-alt"></i>     Dashboard</a>
