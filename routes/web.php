@@ -93,7 +93,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => 'doctor',  'middleware' => ['isDoctor','auth','PrevetBackHistory']], function(){
     Route::get('/dashboard', [App\Http\Controllers\DoctorController::class, 'dashboard'])->name('doctorDashboard');
     Route::get('/changePassword', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('doctorChangePassword');
-
+///////////////doctorChapters//////////
+    Route::get('chapters', [App\Http\Controllers\DoctorController::class, 'chapters'])->name('adminChapters');
+    Route::post('/chapters', [App\Http\Controllers\DoctorController::class, 'savedChapters'])->name('doctorSavedChapters');
+    Route::get('edit/chapters/{id}', [App\Http\Controllers\DoctorController::class,  'editchapters'])->name('doctorEditChapter');
+    Route::put('update/chapters/{id}', [App\Http\Controllers\DoctorController::class, 'Updatechapters'])->name('chapterUpdate');
+    Route::get('/deletechapters/{id}', [App\Http\Controllers\DoctorController::class, 'destroyChapters'])->name('doctorChaptertdelete');
 ////////////////doctorExam////////////
     Route::get('/addExam', [App\Http\Controllers\DoctorController::class, 'getDataExam'])->name('doctorAddExam');
     Route::post('/insertExam', [App\Http\Controllers\DoctorController::class, 'insertExam'])->name('doctorInsertExam');

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
 use App\Models\Department;
 use App\Models\Level;
 use App\Models\Online_exam;
 use App\Models\Question;
-use App\Models\Chapter;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -42,7 +42,7 @@ class DoctorController extends Controller
 
         $subjects = Subject::select('subject_name')->get();
         $levels = Level::select('level_name')->get();
-        $chapters=Chapter::select('chapter_name')->get();
+        $chapters = Chapter::select('chapter_name')->get();
         $departments = Department::select('department_name')->get();
 
 
@@ -118,7 +118,7 @@ class DoctorController extends Controller
         $user_id = auth()->user()->id;
         $exams = Online_exam::where('user_id', $user_id)->select('id', 'onlineExam_name')->get();
         $chapters = Chapter::all();
-        return view('doctor\addQuestions', compact('exams','chapters'));
+        return view('doctor\addQuestions', compact('exams', 'chapters'));
     }
 
     public function insertQuestions(Request $request)
@@ -243,6 +243,89 @@ class DoctorController extends Controller
             'totalTime.numeric' => 'Duration of Exam must be Numeric',
         ];
     }
+
+    public function results()
+    {
+
+        return view('doctor.results');
+    }
+
+    public function viewQuestions(Request $request)
+    {
+        $questions = Question::where('onlineExam_id', $request->id)->select('id', 'question_title', 'mark', 'option_one', 'option_two', 'option_three', 'option_four', 'category', 'answer_option')->get();
+        return view('doctor\viewQuestions', compact('questions'));
+    }
+
+    public function chapters()
+    {
+        $subjects = Subject::all();
+        $chapters = Chapter::all();
+        return view('doctor\addChapters', compact('chapters', 'subjects'));
+    }
+
+    public function savedChapters(Request $request)
+    {
+
+
+        $request->input('names');
+
+        Chapter::create([
+            //'id' => $request->id,
+            'describe_chapter' => $request->describe_chapter,
+            'chapter_name' => $request->chapter_name,
+            'subject_id' => $request->subject_id,
+
+        ]);
+
+        return redirect()->back()->with(['success' => 'Added Successfully']);
+
+    }
+
+    /*public function assignExam()
+        {
+
+            $user_id = auth()->user()->id;
+            $exams = Online_exam::where('user_id', $user_id)->select('id', 'onlineExam_name')->get();
+            return view('doctor.assignExam',compact('exams'));
+        }
+
+        public function sendExam(){
+            return 'Exam Assigned Successfully!';
+        }*/
+
+    public function editchapters($id)
+    {
+        $chapters = Chapter::find($id);
+        $subjects = Subject::all();
+
+        return view('doctor\editChapter', compact('chapters', 'subjects'));
+    }
+
+    public function Updatechapters(Request $request, $id)
+    {
+        $chapters = Chapter::find($id);
+        $chapters->subject_id = $request->input('subject_id');
+        $chapters->chapter_name = $request->input('chapter_name');
+        $chapters->describe_chapter = $request->input('describe_chapter');
+        $chapters->update();
+        return redirect()->back()->with('status', 'chapters Updated Successfully');
+
+    }
+
+    public function destroyChapters($id)
+    {
+
+        $chapters = Chapter::find($id);
+        if (!$chapters) {
+            return redirect()->back()->with(['error' => 'chapters not found']);
+
+        }
+        $chapters->delete();
+
+        return redirect()->route('adminChapters')
+            ->with(['success' => 'subjects deleted successfully']);
+    }
+
     protected function getUpdatedRulesExam()
     {
         return $rules = [
@@ -272,28 +355,4 @@ class DoctorController extends Controller
 
         ];
     }
-
-    public function results()
-    {
-
-        return view('doctor.results');
-    }
-
-    public function viewQuestions(Request $request)
-    {
-        $questions = Question::where('onlineExam_id', $request->id)->select('id', 'question_title', 'mark', 'option_one', 'option_two', 'option_three', 'option_four', 'category', 'answer_option')->get();
-        return view('doctor\viewQuestions', compact('questions'));
-    }
-
-    /*public function assignExam()
-        {
-
-            $user_id = auth()->user()->id;
-            $exams = Online_exam::where('user_id', $user_id)->select('id', 'onlineExam_name')->get();
-            return view('doctor.assignExam',compact('exams'));
-        }
-
-        public function sendExam(){
-            return 'Exam Assigned Successfully!';
-        }*/
 }
