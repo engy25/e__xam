@@ -52,7 +52,7 @@
                             <th>Email</th>
                             <th>Mobile</th>
                             
-
+                            <th>Edit</th>
                             <th>Delete</th>
                             <th>Profile</th>
                         </tr>
@@ -64,7 +64,10 @@
                         <td>{{$student->email}}</td>
                         <td >{{$student->mobile}}</td>
                        
+                        <td>
+                         <a href="{{url('admin/edit/stu/'.$student -> id)}}" class="btn btn-primary">Edit</a>
                         
+                        </td>
                         
                         <td>
       

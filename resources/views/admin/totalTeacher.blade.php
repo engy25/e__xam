@@ -52,6 +52,7 @@
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Mobile</th>
+                            <th>Edit</th>
 
                             <th>Delete</th>
                             <th>Profile</th>
@@ -64,6 +65,10 @@
                         <td>{{$userDoctore->last_name}}</td>
                         <td>{{$userDoctore->email}}</td>
                         <td>{{$userDoctore->mobile}}</td>
+                        <td>
+                         <a href="{{url('admin/edit/prof/'.$userDoctore -> id)}}" class="btn btn-primary">Edit</a>
+                        
+                        </td>
                         <td>
                         <a href="{{route('adminTotalTeacherdelete',$userDoctore->id)}}" class="btn btn-success"> Delete</a>
                         </td>

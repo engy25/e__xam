@@ -11,6 +11,7 @@ use App\Models\Chapter;
 use App\Models\Subject;
 use App\Models\Online_exam;
 use App\Http\Requests\AdminRequest;
+use App\Http\Requests\profRequest;
 use App\Http\Requests\LevelRequest;
 use App\Http\Requests\ChapterRequest;
 use App\Http\Requests\DepartmentsRequest;
@@ -68,6 +69,42 @@ class AdminController extends Controller
 
         return redirect()->back()->with("success","Password successfully changed!");
     }
+    public function editProfessors($id)
+    {
+        $users = User::find($id);  
+        return view('admin\editProfessor', compact('users'));
+    
+    }
+    public function UpdateProfessors(profRequest $request, $id)
+       {
+          
+           $users = User::find($id);
+           $users->first_name= $request->input('first_name');
+           $users->last_name= $request->input('last_name');
+           $users->email= $request->input('email');
+           $users->mobile= $request->input('mobile');
+           $users->update();
+           return redirect()->back()->with('status','levelProfessors Updated Successfully');
+       }
+    
+
+       public function editStudent($id)
+       {
+           $users = User::find($id);  
+           return view('admin\editStudent', compact('users'));
+       
+       }
+       public function UpdateeditStudent(profRequest $request, $id)
+          {
+             
+              $users = User::find($id);
+              $users->first_name= $request->input('first_name');
+              $users->last_name= $request->input('last_name');
+              $users->email= $request->input('email');
+              $users->mobile= $request->input('mobile');
+              $users->update();
+              return redirect()->back()->with('status','Students Updated Successfully');
+          }
 
     public function departments()
     {
