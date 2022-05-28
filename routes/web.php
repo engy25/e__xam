@@ -43,7 +43,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('registerStu',[App\Http\Controllers\AdminController::class, 'CreateNewStu']);   
     Route::get('edit/stu/{id}', [App\Http\Controllers\AdminController::class,  'editStudent']);
     Route::put('update/stu/{id}', [App\Http\Controllers\AdminController::class, 'UpdateeditStudent'])->name('StudentUpdated');
-
+    Route::get('edit/prof/{id}', [App\Http\Controllers\AdminController::class,  'editProfessors']);
+    Route::put('update/prof/{id}', [App\Http\Controllers\AdminController::class, 'UpdateProfessors'])->name('ProfessorUpdated');
 
     Route::get('chapters', [App\Http\Controllers\AdminController::class, 'chapters'])->name('adminChapters');
     Route::post('/chapters', [App\Http\Controllers\AdminController::class, 'savedChapters'])->name('adminSavedChapters');
@@ -54,7 +55,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('edit/{department_id}', [App\Http\Controllers\AdminController::class,  'editDepartments']);
     Route::put('update/{department_id}', [App\Http\Controllers\AdminController::class, 'Updatedepartment'])->name('departmentUpdate');
     
-    Route::get('/deleteDepartment/{id}', [App\Http\Controllers\AdminController::class, 'destroyDepartment'])->name('admindepartmentdelete');
+    Route::get('/deleteDepartment/{department_id}', [App\Http\Controllers\AdminController::class, 'destroyDepartment'])->name('admindepartmentdelete');
     Route::get('levels', [App\Http\Controllers\AdminController::class, 'levels'])->name('adminLevels');
     Route::post('/levels', [App\Http\Controllers\AdminController::class, 'savedLevels'])->name('adminSavedLevels');
     Route::get('edit/level/{level_id}', [App\Http\Controllers\AdminController::class,  'editLevels']);
@@ -62,9 +63,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/deleteLevel/{level_id}', [App\Http\Controllers\AdminController::class, 'destroyLevel'])->name('adminleveldelete');
     Route::get('/subjects', [App\Http\Controllers\AdminController::class, 'subjects'])->name('adminSubjects');
     Route::post('/subjects', [App\Http\Controllers\AdminController::class, 'saveSubjects'])->name('adminSavedSubjects');
-    Route::get('edit/subject/{subject_id}', [App\Http\Controllers\AdminController::class,  'editSubjects']);
-    Route::put('update/subject/{subject_id}', [App\Http\Controllers\AdminController::class, 'Updatesubject'])->name('subjectUpdate');
-    Route::get('/deleteSubject/{subject_id}', [App\Http\Controllers\AdminController::class, 'destroySubject'])->name('adminsubjectdelete');
+    Route::get('edit/subject/{id}', [App\Http\Controllers\AdminController::class,  'editSubjects']);
+    Route::put('update/subject/{id}', [App\Http\Controllers\AdminController::class, 'Updatesubject'])->name('subjectUpdate');
+    Route::get('/deleteSubject/{id}', [App\Http\Controllers\AdminController::class, 'destroySubject'])->name('adminsubjectdelete');
     Route::get('subjectDoctor', [App\Http\Controllers\AdminController::class, 'DoctorSubject'])->name('DoctorSubject');
     Route::post('/subjectDoctor', [App\Http\Controllers\AdminController::class, 'savedDoctorSubject'])->name('savedDoctorSubject');
     Route::get('/deleteSubjectsDoctor/{subject_id}', [App\Http\Controllers\AdminController::class, 'destroySubjetDoctor'])->name('destroyDoctorSubject');
@@ -76,11 +77,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/teacherSubjects', [App\Http\Controllers\AdminController::class, 'teacherSubjects'])->name('adminTeacherSubjects');
     Route::post('/teacherSubjects/save', [App\Http\Controllers\AdminController::class, 'saveTeacherSubjects']);
     Route::get('/totalTeacher', [App\Http\Controllers\AdminController::class, 'totalTeacher'])->name('adminTotalTeacher');
-    Route::get('edit/prof/{id}', [App\Http\Controllers\AdminController::class,  'editProfessors']);
-    Route::put('update/prof/{id}', [App\Http\Controllers\AdminController::class, 'UpdateProfessors'])->name('ProfessorUpdated');
     Route::get('TeacherProfile/{id}', [App\Http\Controllers\AdminController::class,  'ViewProfileDoctor'])->name('adminViewProfileDoctor');
     Route::get('StudentProfile/{id}', [App\Http\Controllers\AdminController::class,  'ViewProfileStudent'])->name('adminViewProfileStudent');
-
     Route::get('ViewTeacherProfile/{id}', [App\Http\Controllers\AdminController::class,  'ViewProfileOfDoctor'])->name('adminViewProfileOfDoctor');
     Route::get('/delete/{id}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('adminTotalTeacherdelete');
     Route::get('/totalStudents', [App\Http\Controllers\AdminController::class, 'totalStudents'])->name('adminTotalStudents');
@@ -93,19 +91,28 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => 'doctor',  'middleware' => ['isDoctor','auth','PrevetBackHistory']], function(){
     Route::get('/dashboard', [App\Http\Controllers\DoctorController::class, 'dashboard'])->name('doctorDashboard');
     Route::get('/changePassword', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('doctorChangePassword');
-///////////////doctorChapters//////////
-    Route::get('chapters', [App\Http\Controllers\DoctorController::class, 'chapters'])->name('adminChapters');
-    Route::post('/chapters', [App\Http\Controllers\DoctorController::class, 'savedChapters'])->name('doctorSavedChapters');
-    Route::get('edit/chapters/{id}', [App\Http\Controllers\DoctorController::class,  'editchapters'])->name('doctorEditChapter');
-    Route::put('update/chapters/{id}', [App\Http\Controllers\DoctorController::class, 'Updatechapters'])->name('chapterUpdate');
-    Route::get('/deletechapters/{id}', [App\Http\Controllers\DoctorController::class, 'destroyChapters'])->name('doctorChaptertdelete');
+
 ////////////////doctorExam////////////
     Route::get('/addExam', [App\Http\Controllers\DoctorController::class, 'getDataExam'])->name('doctorAddExam');
     Route::post('/insertExam', [App\Http\Controllers\DoctorController::class, 'insertExam'])->name('doctorInsertExam');
+    Route::get('/subjectAddExQu', [App\Http\Controllers\DoctorController::class, 'VsubjectAddExQu'])->name('subjectAddExQu');
+    Route::get('/subjectAddQues/{id}', [App\Http\Controllers\DoctorController::class, 'subjectAddQues'])->name('subjectAddQues');
+    Route::post('/addtQuestions/{id}', [App\Http\Controllers\DoctorController::class, 'addQuestion'])->name('doctoraddQuestion');
+    Route::get('/viewQuestion/{id}', [App\Http\Controllers\DoctorController::class, 'viewEQuestion'])->name('doctorViewQuestion');
     Route::get('/viewExam', [App\Http\Controllers\DoctorController::class, 'viewExam'])->name('doctorViewExam');
+    
+        Route::get('editQuestion/{idQ}/Sub/{idS}', [
+            'as' => 'editQuestion.Sub', 
+            'uses' => 'DoctorController@editQuestion'
+        ])->name('doctorEditQuestions');
+
+        Route::get('/deleteQues/{id}', [App\Http\Controllers\DoctorController::class, 'deleteQuestion'])->name('doctorDeleteQuestion');
+
+
+    Route::post('/updateQuestion/{id}', [App\Http\Controllers\DoctorController::class, 'updateQuestion'])->name('doctorUpdateQuestions');
+    
     Route::get('/delete/{id}', [App\Http\Controllers\DoctorController::class, 'deleteExam'])->name('doctorDeleteExam');
-    /*  Route::get('/assignExam', [App\Http\Controllers\DoctorController::class, 'assignExam'])->name('doctorAssignExam');
-        Route::get('/assigned', [App\Http\Controllers\DoctorController::class, 'sendExam'])->name('doctorSendExam');*/
+
 
     ////////////////doctorQuestions/////////
     Route::get('/addQuestions', [App\Http\Controllers\DoctorController::class, 'addQuestions'])->name('doctorAddQuestion');
@@ -115,8 +122,17 @@ Route::group(['prefix' => 'doctor',  'middleware' => ['isDoctor','auth','PrevetB
     Route::get('/viewExam/{id}', [App\Http\Controllers\DoctorController::class, 'viewQuestions'])->name('doctorViewQuestions');
     Route::get('/deleteExam/{id}', [App\Http\Controllers\DoctorController::class, 'deleteQuestions'])->name('doctorDeleteQuestions');
     /////////////////////////////////////////
+ 
     Route::get('/examDetails', [App\Http\Controllers\DoctorController::class, 'examDetails'])->name('doctorViewResults');
     Route::get('/results', [App\Http\Controllers\DoctorController::class, 'results'])->name('doctorResults');
+
+    Route::get('chapters', [App\Http\Controllers\DoctorController::class, 'chapters'])->name('docChapters');
+    Route::post('/chapters', [App\Http\Controllers\DoctorController::class, 'savedChapters'])->name('docSavedChapters');
+    Route::get('edit/chapters/{id}', [App\Http\Controllers\DoctorController::class,  'editchapters']);
+    Route::put('update/chapters/{id}', [App\Http\Controllers\DoctorController::class, 'Updatechapters'])->name('chapterUpdate');
+   // Route::put('update/subject/{subject_id}', [App\Http\Controllers\AdminController::class, 'Updatesubject'])->name('subjectUpdate');
+    Route::get('/deletechapters/{id}', [App\Http\Controllers\DoctorController::class, 'destroyChapters'])->name('docChaptertdelete');
+    
 
 
 

@@ -9,7 +9,7 @@
         <div class="container">
             @foreach($exams as $exam)
 
-                <form method="post" action="{{route('doctorUpdateQuestion',['id'=>$exam->id])}}">
+                <form method="post" action="{{route('doctorUpdateQuestions',['id'=>$exam->id])}}">
 
                     @csrf
                     @if(Session::has('success'))
@@ -43,21 +43,20 @@
                         @enderror
                     </div>
 
-                    <div class="content-parts">
-                        <label>Category</label>
-                        <select name="questionCategory">
-                            <option value="" selected disabled>Select Category</option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            @error('questionCategory')
-                            <small class="form-text text-danger">
-                                {{$message}}
-                            </small>
-                            @enderror
-                        </select>
-                    </div>
-
+                    <div class="content-parts" name="category_id">
+                    <label>Category</label>
+                    <select name="category_id">
+                        <option value="" selected disabled>Select Category</option>
+                        @foreach($categorie as $category)
+                        <option value="{{$category->id}}">{{$category->category_name}}
+                        @endforeach
+                        @error('category_id')
+                        <small class="form-text text-danger">
+                            {{$message}}
+                        </small>
+                        @enderror
+                    </select>
+                </div>
 
                     <div class="content-parts">
 
@@ -115,6 +114,34 @@
                             @enderror
                         </select>
                     </div>
+
+                    <div class="content-parts" name="category_id">
+                    <label>Category</label>
+                    <select name="category_id">
+                        <option value="" selected disabled>Select Category</option>
+                        @foreach($categorie as $category)
+                        <option value="{{$category->id}}">{{$category->category_name}}
+                        @endforeach
+                        @error('category_id')
+                        <small class="form-text text-danger">
+                            {{$message}}
+                        </small>
+                        @enderror
+                    </select>
+                </div>
+
+                    <select name="chapter_id" id="Chapters">
+                    <option value="" selected disabled>Select Chapters</option>
+                    @foreach($chapters as $chapter)
+                        <option value="{{$chapter->id}}">{{$chapter->chapter_name}}</option>
+                    @endforeach
+                    @error('chapter_id')
+                        <small class="form-text text-danger">
+                            {{$message}}
+                        </small>
+                        @enderror
+                </select>
+                
 
                     <div class="content-btn">
                         <button >Edit</button>

@@ -27,20 +27,20 @@
                 </div>
 
                 <div class="row-inputs">
-                    <input type="text" name="examName" class="content-header-select"/>
-                    @error('examName')
+                    <input type="text" name="onlineExam_name" class="content-header-select"/>
+                    @error('onlineExam_name')
                     <small class="form-text text-danger">
                         {{$message}}
                     </small>
                     @enderror
-                    <input type="text" name="questionCount" class="content-header-select"/>
-                    @error('questionCount')
+                    <input type="text" name="total_questions" class="content-header-select"/>
+                    @error('total_questions')
                     <small class="form-text text-danger">
                         {{$message}}
                     </small>
                     @enderror
-                    <input type="text" name="totalMarks" class="content-header-select"/>
-                    @error('totalMarks')
+                    <input type="text" name="onlineExam_marks" class="content-header-select"/>
+                    @error('onlineExam_marks')
                     <small class="form-text text-danger">
                         {{$message}}
                     </small>
@@ -55,20 +55,20 @@
                 </div>
 
                 <div class="row-inputs">
-                    <input type="text" name="totalTime" class="content-header-select"/>
-                    @error('totalTime')
+                    <input type="text" name="onlineExam_duration" class="content-header-select"/>
+                    @error('onlineExam_duration')
                     <small class="form-text text-danger">
                         {{$message}}
                     </small>
                     @enderror
-                    <input type="text" name="passMark" class="content-header-select"/>
-                    @error('passMark')
+                    <input type="text" name="onlineExam_pass" class="content-header-select"/>
+                    @error('onlineExam_pass')
                     <small class="form-text text-danger">
                         {{$message}}
                     </small>
                     @enderror
-                    <input type="date" name="examDate" class="content-header-select"/>
-                    @error('examDate')
+                    <input type="date" name="onlineExam_datetime" class="content-header-select"/>
+                    @error('onlineExam_datetime')
                     <small class="form-text text-danger">
                         {{$message}}
                     </small>
@@ -80,9 +80,9 @@
                 </div>
 
 
-                <select name="examSubject" id="Subject">
+                <select name="subject_id" id="Subject">
                     <option value="" selected disabled>Select Subject</option>
-                    @foreach($subjects as $subject)
+                    @foreach($professor_subjects as $subject)
                         <option value="{{$subject->id}}">{{$subject->subject_name}}</option>
                     @endforeach
                 </select>

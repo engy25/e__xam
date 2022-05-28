@@ -16,8 +16,10 @@ class Department extends Model
     
     ];
     protected $primaryKey = 'id';
-
+    
     public $timestamps = false;
+  
+
     protected $hidden = [
         
     ];

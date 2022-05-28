@@ -49,8 +49,7 @@
             <li> <a href="{{route('adminDepartments')}}" class="list-items">- Add Department</a></li>
             <li> <a href="{{route('adminLevels')}}" class="list-items">- Add Levels</a></li>
             <li> <a href="{{route('adminSubjects')}}" class="list-items">- Add Subject</a></li>
-            <li> <a href="{{route('adminChapters')}}" class="list-items">- Add Chapters</a></li>
-            
+           
         </ul>
 
         <a href="{{route('adminAllExams')}}" class="sidebar-items"><i class="fas fa-question-circle"></i>     Exams</a>       

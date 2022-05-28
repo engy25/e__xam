@@ -12,7 +12,6 @@ class question extends Model
     public $timestamps = false;
     protected $fillable = [
         'id',
-        'onlineExam_id',
         'question_title',
         'mark',
         'option_one',
@@ -20,16 +19,30 @@ class question extends Model
         'option_three',
         'option_four',
         'answer_option',
-        'category',
+        'category_id',
+        'chapter_id',
+        'subject_id',
     ];
     protected $hidden = [
 
     ];
-
-
-    public function Online_exam()
+ 
+    public function category(): BelongsTo
     {
-        return $this->belongsToMany('App\Models\Online_exam', 'id')->withTimestamps();
+
+        return $this -> belongsto('App\Models\Category','category_id');
+    }
+
+    ///////meme
+    public function chapter(): BelongsTo
+    {
+
+        return $this -> belongsto('App\Models\Chapter','chapter_id');
+    }
+
+    public function subject(): BelongsTo
+    {
+        return $this -> belongsto('App\Models\Subject','subject_id');
     }
 
 }

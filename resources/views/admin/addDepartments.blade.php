@@ -148,7 +148,7 @@
       </td>
       <td>
       
-    <a href="{{route('admindepartmentdelete',$department->id)}}" class="btn btn-danger"> delete</a>
+      <a href="{{route('admindepartmentdelete',$department->id)}}" class="btn btn-danger"> delete</a>
     </td>
 
 

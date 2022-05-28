@@ -87,7 +87,7 @@
         <div class="container">
 
             <div class="content-header">
-                <form method="POST" class="my-login-validation" autocomplete="off" action="{{ route('doctorSavedChapters') }}">
+                <form method="POST" class="my-login-validation" autocomplete="off" action="{{ route('docSavedChapters') }}">
                     @csrf
                     <div class="content-header-labels">
 
@@ -170,7 +170,7 @@
                             </td>
                             <td>
 
-                                <a href="{{route('doctorChaptertdelete',$chapter->id)}}" class="btn btn-danger">
+                                <a href="{{route('docChaptertdelete',$chapter->id)}}" class="btn btn-danger">
                                     delete</a>
 
                             </td>

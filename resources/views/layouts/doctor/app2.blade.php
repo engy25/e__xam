@@ -107,12 +107,15 @@
     <ul id="ul-1">
         <li><a href="{{route('doctorAddExam')}}" class="list-items">- Add Exam</a></li>
         <li><a href="{{route('doctorViewExam')}}" class="list-items">- View Exams</a></li>
-        <li><a href="{{route('doctorAddQuestion')}}" class="list-items">- Add Questions</a></li>
+        <li><a href="{{route('subjectAddExQu')}}" class="list-items">- Add Question or Exam</a></li>
+        
+       
+        
         <!--  route('doctorAssignExam')      <li><a href="" class="list-items">- Assign Exam</a></li>-->
     </ul>
     <a href="{{route('doctorResults')}}" class="sidebar-items"><i
                 class="fas fa-sort-numeric-up"></i><span>     Results</span></a>
-    <a href="{{route('adminChapters')}}" class="sidebar-items"><i
+    <a href="{{route('docChapters')}}" class="sidebar-items"><i
                 class="fas fa-book"></i><span>     Chapters</span></a>
 
 </div>

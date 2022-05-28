@@ -48,7 +48,7 @@
                                     <select  class="form-control" name="level">
                                         <option value="" selected disabled>Select levels</option>
 										@foreach($levels as $level)
-                                        <option value="{{$level->level_id}}" >{{$level->level_name}} </option>
+                                        <option value="{{$level->id}}" >{{$level->level_name}} </option>
 										@endforeach
                                     </select>
                                 </div>
@@ -58,7 +58,7 @@
                                     <select   class="form-control" name="department">
                                         <option value="" selected disabled>Select departments</option>
 										@foreach($departments as $department)
-                                        <option value="{{$department->department_id}}" >{{$department->department_name}} </option>
+                                        <option value="{{$department->id}}" >{{$department->department_name}} </option>
 										@endforeach
                                     </select>
                                 </div>

@@ -13,8 +13,7 @@ class Chapter extends Model
         'chapter_name',
         'describe_chapter',
         'subject_id',
-        
-    
+        'chapter_num',
     ];
     protected $table = "chapters";
     protected $primaryKey = 'id';

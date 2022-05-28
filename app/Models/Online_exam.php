@@ -11,7 +11,6 @@ class Online_exam extends Model
     protected $fillable = [
         'id',
         'doctor_id',
-        'user_id',
         'onlineExam_name',
         'onlineExam_marks',
         'onlineExam_pass',
@@ -21,29 +20,26 @@ class Online_exam extends Model
         'onlineExam_createBy',
         'onlineExam_status',
         'subject_id',
+        'created_at',
+        'updated_at',
 
 
     ];
+    public $timestamps = false;
+
+    protected $primaryKey = 'id';
     protected $hidden = [
 
     ];
-    public function question()
-    {
-        return $this->hasMany('App\Models\question');
-    }
-
-    public function user()
-    {
-       
-        return $this -> hasOne('App\Models\User','user_id');
-    }
+   
    
 
     public function subject(): BelongsTo
     {
 
         return $this -> belongsTo('App\Models\Subject','subject_id');
-
-
     }
+
+  
+  
 }

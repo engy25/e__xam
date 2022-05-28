@@ -69,6 +69,7 @@ class AdminController extends Controller
 
         return redirect()->back()->with("success","Password successfully changed!");
     }
+    
     public function editProfessors($id)
     {
         $users = User::find($id);  
@@ -105,6 +106,7 @@ class AdminController extends Controller
               $users->update();
               return redirect()->back()->with('status','Students Updated Successfully');
           }
+         
 
     public function departments()
     {
@@ -112,7 +114,7 @@ class AdminController extends Controller
         return view('admin\addDepartments',compact('departments'));
        
     }
-    public function savedDepartments(DepartmentsRequest $request)
+    public function savedDepartments(Request $request)
     { 
        
          Department::create([
@@ -274,10 +276,10 @@ public function Updatelevel(LevelRequest $request, $level_id)
        return redirect()->back()->with('status','levels Updated Successfully');
    }
 
-    public function destroyDepartment($id )
+    public function destroyDepartment($department_id )
      {
-  
-        $departments = Department::find($id);
+        
+        $departments = Department::find($department_id);
         if(!$departments)
         {
             return redirect() ->back() ->with(['error' =>'department not found']);
@@ -289,61 +291,7 @@ public function Updatelevel(LevelRequest $request, $level_id)
         ->with(['success'=>'departments deleted successfully']);
     }
 
-    public function chapters()
-    {
-        $subjects= Subject::all();
-        $chapters= Chapter::all();
-        return view('admin\addChapters',compact('chapters','subjects'));
-    }
-    public function savedChapters (ChapterRequest $request)
-    {
-        
-        $request->input('names');
-       
-        Chapter::create([
-            'id' => $request->id,
-            'describe_chapter' => $request->describe_chapter,
-            'chapter_name' => $request->chapter_name,
-            'subject_id' => $request->subject_id,
-           
-        ]);
-        
-        return redirect()->back()->with(['success'=>'Added Successfully']);
-       
-    }
     
-    public function editchapters($id)
-    {
-        $chapters = Chapter::find($id);
-        $subjects= Subject::all();
-       
-        return view('admin\editChapter', compact('chapters','subjects'));
-    }
-    public function Updatechapters(ChapterRequest $request, $id)
-    {
-        $chapters = Chapter::find($id);         
-        $chapters->subject_id = $request->input('subject_id');
-        $chapters->chapter_name = $request->input('chapter_name');
-        $chapters->describe_chapter = $request->input('describe_chapter');
-        $chapters->update();
-     return redirect()->back()->with('status','chapters Updated Successfully');
-
- }
- public function destroyChapters($id )
- {
-
-     $chapters = Chapter::find($id);
-     if(!$chapters)
-     {
-         return redirect() ->back() ->with(['error' =>'chapters not found']);
-
-     }
-     $chapters->delete();
-
-     return redirect()->route('adminChapters')
-     ->with(['success'=>'subjects deleted successfully']);
- }
-
     public function subjects()
     {
         $departments= Department::all();
@@ -383,20 +331,20 @@ public function Updatelevel(LevelRequest $request, $level_id)
         return redirect()->route('adminSubjects')
         ->with(['success'=>'subjects deleted successfully']);
     }
-    public function editSubjects($subject_id)
+    public function editSubjects($id)
     {
-        $subjects = Subject::find($subject_id);
+        $subjects = Subject::find($id);
         $departments= Department::all();
         $levels= Level::all(); 
         return view('admin\editSubject', compact('subjects','departments','levels'));
     }
 
-    public function Updatesubject(SubjectRequest $request, $subject_id)
+    public function Updatesubject(SubjectRequest $request, $id)
        {
        $departments= Department::all();
         $levels= Level::all();
     
-           $subjects = Subject::find($subject_id);         
+           $subjects = Subject::find($id);         
            $subjects->subject_name = $request->input('subject_name');
          
            $subjects->department_id = $request->input('department_id');

@@ -21,12 +21,14 @@
                     <tr>
                         <th>Question</th>
                         <th>Mark</th>
-                        <th>Category</th>
+                        
                         <th>A</th>
                         <th>B</th>
                         <th>C</th>
                         <th>D</th>
                         <th>Answer</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
 
 
                     </tr>
@@ -36,19 +38,24 @@
                         <tr>
                             <td>{{$question->question_title}}</td>
                             <td>{{$question->mark}}</td>
-                            <td>{{$question->category}}</td>
+                            
                             <td>{{$question->option_one}}</td>
                             <td>{{$question->option_two}}</td>
                             <td>{{$question->option_three}}</td>
                             <td>{{$question->option_four}}</td>
                             <td>{{$question->answer_option}}</td>
                             <td><a class="btn btn-primary btn-xs"
-                                   href="{{route('doctorEditQuestion',['id'=>$question->id])}}"
+                           
+                            
+                           
+                                   href="{{ route('editQuestion.Sub',['idQ'=>$question -> id,'idS'=>$question -> subject_id]) }}"
                                    style="font-weight:bolder;"><span>Edit</span></a>
                             <td>
-                                <a href="{{route('doctorDeleteQuestions',['id'=>$question->id])}}"
+                                <a href="{{route('doctorDeleteQuestion',$question->id)}}"  
                                    class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove">Delete</span></a>
-
+                                  
+                        
+                        
                             </td>
 
                         </tr>

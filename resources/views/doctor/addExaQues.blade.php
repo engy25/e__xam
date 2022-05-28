@@ -1,4 +1,4 @@
-﻿@extends('layouts/admin.app')
+﻿@extends('layouts/doctor.app2')
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -42,36 +42,10 @@
 
             <div class="content-header">
                 <div class="content-header-labels">
-                <form method="POST" class="my-login-validation" autocomplete="off"  action="{{ route('adminLevels') }}">
-                @if(Session::has('success'))
-                    <div class="alert alert-success" role="alert">
-                        {{ Session::get('success') }}
-                    </div>
-                @endif
-                @if ( Session::get('error'))
-                    <div class="alert alert-danger">
-                        {{ Session::get('error') }}
-                    </div>
-                @endif
+                <form method="POST" class="my-login-validation" autocomplete="off"  action="{{ route('subjectAddExQu') }}">
                 @csrf
                 </div>
 
-              
-
-                <div class="form-group">
-									<label for="level_id">Levels</label>
-									<input id="level_name" type="text"class="content-header-select" name="level_name"  placeholder="Enter level Name" value="{{ old('level_name') }}">
-                  @error('level_name')
-                        <small class="form-text text-danger">
-                            {{$message}}
-
-                        </small>
-                        @enderror
-								</div>
-
-                    <button type ="submit" class="btn btn-success">Add</button>
-                </div>
-            </div>
 
                 <div class="panel panel-primary" style="border-color:#75a3a3;">
                     <div class="panel-heading" style="background-color:#005450;">
@@ -81,31 +55,29 @@
                     <table class="table align-middle mb-0 bg-white">
   <thead class="bg-light">
     <tr>
-      <th>level</th>
-      <th>Edit</th>
-      <th>Delete</th>
-   
+      <th>Subject</th>
+      <th>Add Question For Subject</th>
+      <th>View Question For Subject</th>
+      
     </tr>
   </thead>
   <tbody>
-    @foreach($levels as $level)
+    @foreach($professor_subjects as $subject)
     <tr>
      
-      <td id="{{$level->id}}">
-        <p class="fw-normal mb-1">{{$level->level_name}}</p>
+      <td id="{{$subject->id}}">
+        <p class="fw-normal mb-1">{{$subject->subject_name}}</p>
        
       </td>
       <td>
 
-      <a href="{{url('admin/edit/level/'.$level -> id)}}" class="btn btn-primary">Edit</a>
+      <a href="{{url('doctor/subjectAddQues',['id'=>$subject->id])}}" class="btn btn-primary">Add Question</a>
       </td>
+
       <td>
-      
-    <a href="{{route('adminleveldelete',$level->id)}}" class="btn btn-danger"> delete</a>
 
-    </td>
-
-
+      <a href="{{url('doctor/viewQuestion',['id'=>$subject->id])}}" class="btn btn-primary">View Question</a>
+      </td>
       
     </tr>
     @endforeach
