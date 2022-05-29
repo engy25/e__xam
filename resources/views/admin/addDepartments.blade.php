@@ -143,8 +143,8 @@
        
       </td>
       <td>
-   
-      <a href="{{url('admin/edit/'.$department -> id)}}" class="btn btn-primary">Edit</a>
+     
+      <a href="{{url('doctor/edit/'.$department -> id)}}"class="btn btn-primary">Edit</a>
       </td>
       <td>
       

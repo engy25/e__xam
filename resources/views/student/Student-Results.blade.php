@@ -21,16 +21,16 @@
 
                     </tr>
                     </thead>
-                    @foreach($exams as $exam)
+                
                         <tr>
 
-                            <td>{{$exam->onlineExam_name}}</td>
-                            <td>{{$exam->onlineExam_marks}}</td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                             <td></td>
 
                         </tr>
-                    @endforeach
+                   
                 </table>
             </div>
 

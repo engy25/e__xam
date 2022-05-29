@@ -107,6 +107,7 @@
     </center>
 
     <a href="{{ route('studentDashboard') }}" class="sidebar-items"><i class="fas fa-tachometer-alt"></i>     Dashboard</a>
+    <a href="{{ route('showSubjectStudent') }}" class="sidebar-items"><i class="fas fa-sort-numeric-up"></i><span>    View Questions</span></a>
     <a href="{{ route('showResultStudent') }}" class="sidebar-items"><i class="fas fa-sort-numeric-up"></i><span>     Results</span></a>
 </div>
 <!--sidebar end-->

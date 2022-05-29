@@ -115,8 +115,9 @@
     </ul>
     <a href="{{route('doctorResults')}}" class="sidebar-items"><i
                 class="fas fa-sort-numeric-up"></i><span>     Results</span></a>
-    <a href="{{route('docChapters')}}" class="sidebar-items"><i
-                class="fas fa-book"></i><span>     Chapters</span></a>
+                <a href="{{route('docChapters')}}" class="sidebar-items"><i
+                class="fas fa-sort-numeric-up"></i><span>     Chapters</span></a>
+    
 
 </div>
 <!--sidebar end-->

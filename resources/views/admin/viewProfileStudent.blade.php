@@ -134,10 +134,10 @@
                     <p>{{$userStudents->mobile}}</p>
                 <br />
                     <label>Level: </label>
-                    <p>3</p>
+                    <p >{{$userStudents->level->level_name}}</p>
                 <br />
                     <label>Department: </label>
-                    <p>SoftWare Engineer</p>
+                    <p>{{$userStudents->department->department_name}}</p>
                 </div>
               
             </div>

@@ -9,7 +9,7 @@
         <div class="container">
             @foreach($exams as $exam)
 
-                <form method="post" action="{{ route('updateQuestion.Sub',['idQ'=>$exam -> id,'idS'=>$exam -> subject_id]) }}" >
+                <form method="post" action="{{ route('updateQuestionTf.Sub',['idQ'=>$exam -> id,'idS'=>$exam -> subject_id]) }}" >
 
                     @csrf
                     @if(Session::has('success'))
@@ -47,8 +47,8 @@
                     <div class="content-parts">
 
                         <label>Option 1</label>
-                        <input type="text" name="questionOptionOne" value="{{$exam->option_one}}">
-                        @error('questionOptionOne')
+                        <input type="text" name="questionOptionT" value="{{$exam->questionOptionT}}">
+                        @error('questionOptionT')
                         <small class="form-text text-danger">
                             {{$message}}
                         </small>
@@ -57,28 +57,8 @@
 
                     <div class="content-parts">
                         <label>Option 2</label>
-                        <input type="text" name="questionOptionTwo" value="{{$exam->option_two}}">
-                        @error('questionOptionTwo')
-                        <small class="form-text text-danger">
-                            {{$message}}
-                        </small>
-                        @enderror
-                    </div>
-
-                    <div class="content-parts">
-                        <label>Option 3</label>
-                        <input type="text" name="questionOptionThree" value="{{$exam->option_three}}">
-                        @error('questionOptionThree')
-                        <small class="form-text text-danger">
-                            {{$message}}
-                        </small>
-                        @enderror
-                    </div>
-
-                    <div class="content-parts">
-                        <label>Option 4</label>
-                        <input type="text" name="questionOptionFour" value="{{$exam->option_four}}">
-                        @error('questionOptionFour')
+                        <input type="text" name="questionOptionF" value="{{$exam->questionOptionF}}">
+                        @error('questionOptionF')
                         <small class="form-text text-danger">
                             {{$message}}
                         </small>
@@ -89,10 +69,9 @@
                         <label for="Answer">Answer</label>
                         <select id="Answer" name="questionAnswer">
                             <option value="" selected disabled>Select Answer</option>
-                            <option value="A">Option 1</option>
-                            <option value="B">Option 2</option>
-                            <option value="C">Option 3</option>
-                            <option value="D">Option 4</option>
+                            <option value="T">True</option>
+                            <option value="F">False </option>
+                            
                             @error('questionAnswer')
                             <small class="form-text text-danger">
                                 {{$message}}

@@ -9,7 +9,9 @@ use App\Models\Online_exam;
 use App\Models\Question;
 use App\Models\Subject;
 use App\Models\Category;
+use App\Models\quest_t_f;
 use App\Models\User;
+use App\Models\Exam_structure;
 use App\Models\Professor_subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -39,7 +41,6 @@ class DoctorController extends Controller
 
     }
 
-
     public function getDataExam()
     {
         $user_id=auth()->user()->id;
@@ -53,19 +54,28 @@ class DoctorController extends Controller
         return view('doctor\addExam', compact('exams','professor_subjects'));
     }
 
+
+    public function ViewExamQuestions($idE,$idS)
+    {
+        $exam_structure=Exam_structure::find($idE);
+        $subjects=Subject::where('id',$idS)->get();
+        $chapters=Chapter::where('subject_id',$idS)->get();
+        $categorie=Category::get();
+        return view('doctor\examquesSt',compact('exam_structure','subjects','chapters','categorie'));
+    }
+
+
+
     public function deleteQuestion($id)
     {
         $question = Question::find($id);
         $question->delete();
         return redirect()->back()->with(['success' => 'Deleted Successfully!']);
 
-
     }
 
     public function viewExam()
     {
-
-        
         $exams = Online_exam::get();
         return view('doctor\viewExams', compact('exams'));
     }
@@ -78,136 +88,16 @@ class DoctorController extends Controller
         return redirect()->back()->with(['success' => 'Deleted Successfully!']);
     }
 
-    public function deleteQuestions($id)
-    {
-        $question = Question::find($id);
-        $question->delete();
-        return redirect()->back()->with(['success' => 'Deleted Successfully!']);
-
-
-    }
-
     public function examDetails()
     {
 
         return view('doctor.viewResults');
     }
+  
 
-    public function editQuestions($id)
-    {
-        $exams = Question::find($id);
-        $exams = Question::where('id', $id)->select('id', 'onlineExam_id', 'question_title', 'mark', 'option_one', 'option_two', 'option_three', 'option_four', 'answer_option', 'category')->get();
-        return view('doctor\editQuestions', compact('exams'));
-
-    }
-
-    public function updateQuestions($id, Request $request)
-    {
-
-        $exam = Question::find($id);
-        //$exam = Question::select('id','onlineExam_id', 'question_title', 'mark', 'option_one', 'option_two', 'option_three', 'option_four', 'answer_option', 'category')->find($id);
-        /*$rules = $this->getUpdatedRulesExam();
-        $messages = $this->getUpdatedMessagesExam();
-        $validator = Validator::make($request->all(), $rules, $messages);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput($request->all());
-        }*/
-        $exam->update([
-            'question_title' => $request->questionTitle,
-            'mark' => $request->questionMark,
-            'option_one' => $request->questionOptionOne,
-            'option_two' => $request->questionOptionTwo,
-            'option_three' => $request->questionOptionThree,
-            'option_four' => $request->questionOptionFour,
-            'answer_option' => $request->questionAnswer,
-            'category_id' => $request->category_id,
-        ]);
-        return redirect()->back()->with(['success' => 'Question Updated Successfully!']);
-    }
-
-
-    public function addQuestions()
-    {
-        $user_id = auth()->user()->id;
-        $exams = Online_exam::where('user_id', $user_id)->select('id', 'onlineExam_name')->get();
-        $chapters = Chapter::all();
-        return view('doctor\addQuestions', compact('exams', 'chapters'));
-    }
-
-    public function insertQuestions(Request $request)
-    {
-        
-        $rules = $this->getRulesQuestions();
-        $messages = $this->getMessagesQuestions();
-        $validator = Validator::make($request->all(), $rules, $messages);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput($request->all());
-        }
-        
-        Question::insert([
-            'onlineExam_id' => $request->questionName,
-            'question_title' => $request->questionTitle,
-            'mark' => $request->questionMark,
-            'option_one' => $request->questionOptionOne,
-            'option_two' => $request->questionOptionTwo,
-            'option_three' => $request->questionOptionThree,
-            'option_four' => $request->questionOptionFour,
-            'answer_option' => $request->questionAnswer,
-            'category_id' => $request->category_id,
-
-        ]);
-        return redirect()->back()->with(['success' => 'Question Added Successfully!']);
-
-    }
-
-    protected function getRulesQuestions()
-    {
-        return $rules = [
-            'questionName' => 'required',
-            'questionTitle' => 'required',
-            'questionMark' => 'required | max:100 | numeric',
-            'category_id' => 'required',
-            'questionOptionOne' => 'required',
-            'questionOptionTwo' => 'required',
-            'questionOptionThree' => 'required',
-            'questionOptionFour' => 'required',
-            'questionAnswer' => 'required',
-        ];
-    }
-
-    protected function getMessagesQuestions()
-    {
-        return $messages = [
-            'questionName.required' => 'This Field is required',
-            'questionQuestion.required' => 'This Field is required',
-            'questionMark.required' => 'This Field is required',
-            'questionMark.max:100' => 'Question Mark must not Exceed 100',
-            'questionMark.numeric' => 'This Field is required',
-            'category_id.required' => 'This Field is required',
-            'questionOptionOne.required' => 'This Field is required',
-            'questionOptionTwo.required' => 'This Field is required',
-            'questionOptionThree.required' => 'This Field is required',
-            'questionOptionFour.required' => 'This Field is required',
-            'questionAnswer.required' => 'This Field is required',
-            'chapter_name.required' => 'This Field is required',
-        ];
-
-    }
-
+   
     public function insertExam(Request $request)
     {
-        
-        //Validation Rules:
-        /*
-        $rules = $this->getRulesExam();
-        $messages = $this->getMessagesExam();
-        $validator = Validator::make($request->all(), $rules, $messages);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput($request->all());
-        }
-        */
         Online_exam::Create
         ([
            
@@ -217,14 +107,23 @@ class DoctorController extends Controller
             'onlineExam_datetime' => $request->onlineExam_datetime,
             'total_questions' => $request->total_questions,
             'onlineExam_duration' => $request->onlineExam_duration,
-            'onlineExam_createBy' => auth()->user()->first_name,
+            'onlineExam_createBy' => auth()->user()->email,
             'subject_id'=>$request->subject_id,
         
         ]);
         return redirect()->back()->with(['success' => 'Exam Added Successfully!']);
 
     }
+    public function ViewQues($idQ,$idS,$idCh,$idC)
+    {
+        $questions=Question::find($idQ);
+        $subjects=Subject::where('id',$idS)->get();
+        $chapters=Chapter::where('id',$idCh)->get();
+        $categorie=Category::where('id',$idCh)->get();
 
+        return view('doctor\ViewQuestSub',compact('questions','subjects','chapters','categorie'));
+    }
+    
 
     public function VsubjectAddExQu()
     {
@@ -246,17 +145,97 @@ class DoctorController extends Controller
         
         return view('doctor\addQuestionForSub', compact('subjects','questions','chapters','categorie'));
     }
+    public function subjectAddQuTF($id)
+    {
+        $subjects=Subject::find($id);
+        $chapters=Chapter::where('subject_id',$id)->get();
+        $quest_t_fs=quest_t_f::all();
+        $categorie=Category::all();
+       
+        return view('doctor\addQTF', compact('subjects','quest_t_fs','chapters','categorie'));
+    }
+
+    public function addQuestionTf(Request $request,$id)
+    {
+       
+        quest_t_f::create([
+            
+            'question_title' => $request->questionTitle,
+            'mark' => $request->questionMark,
+            'op_true' => $request->questionOptionTrue,
+            'op_false' => $request->questionOptionFalse,
+            'answer_option' => $request->questionAnswer,
+            'category_id' => $request->category_id,
+            'chapter_id' => $request->chapter_id,
+            'subject_id'=>$id,
+
+        ]);
+        return redirect()->back()->with(['success' => 'Question Added Successfully!']);
+
+
+    }
+
+    public function viewEQuestionTf($id)
+    {
+
+        $questions =quest_t_f::where('subject_id',$id)->get();
+        return view('doctor.viewQuestionTf',compact('questions'));
+    }
+    public function ViewQuesTf($idQ,$idS,$idCh,$idC)
+    {
+        $questions=quest_t_f::find($idQ);
+        $subjects=Subject::where('id',$idS)->get();
+        $chapters=Chapter::where('id',$idCh)->get();
+        $categorie=Category::where('id',$idCh)->get();
+
+        return view('doctor\ViewQuestSubTf',compact('questions','subjects','chapters','categorie'));
+    }
+    
+
+
+    public function editQuestionTf($idQ,$idS)
+    {
+        $exams = quest_t_f::find($idQ);
+        $exams = quest_t_f::where('id', $idQ)->get();
+        $chapters=Chapter::where('subject_id',$idS)->get();
+        $categorie=Category::all();
+        return view('doctor\editQuestionsTf', compact('exams','categorie','chapters'));
+
+    }
+
+    public function updateQuestionTf($idQ,$idS,Request $request)
+    {
+
+        $exam = quest_t_f::find($idQ);
+        $exam->update([
+            'question_title' => $request->questionTitle,
+            'mark' => $request->questionMark,
+            'op_true' => $request->questionOptionT,
+            'op_false' => $request->questionOptionF,
+            'answer_option' => $request->questionAnswer,
+            'category_id' => $request->category_id,
+            'chapter_id' => $request->chapter_id,
+            'subject_id' => $idS,
+        ]);
+        return redirect()->back()->with(['success' => 'Question Updated Successfully!']);
+    }
+
+    public function destroyQuesTF($id)
+    {
+
+        $questions = quest_t_f::find($id);
+        if (!$questions) {
+            return redirect()->back()->with(['error' => 'questions not found']);
+
+        }
+        $questions->delete();
+        return redirect()->back()->with(['success' => 'Deleted Successfully']);
+      
+    }
+  
     public function addQuestion(Request $request,$id)
     {
-        /*
-        $rules = $this->getRulesQuestions();
-        $messages = $this->getMessagesQuestions();
-        $validator = Validator::make($request->all(), $rules, $messages);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput($request->all());
-        }
-        */
+       
         Question::create([
             
             'question_title' => $request->questionTitle,
@@ -280,39 +259,20 @@ class DoctorController extends Controller
         $questions =question::where('subject_id',$id)->get();
         return view('doctor.viewQuestions',compact('questions'));
     }
-    protected function getRulesExam()
-    {
-        return $rules = [
-            'onlineExam_name' => 'required | unique:online_exams,onlineExam_name',
-            'onlineExam_marks' => 'required | max:100 | numeric',
-            'onlineExam_pass' => 'required | max:60 | numeric',
-            'onlineExam_datetime' => 'required',
-            'total_questions' => 'required | numeric',
-            'onlineExam_createBy'=>'required',
-            'onlineExam_duration' => 'required | numeric',
-        ];
-    }
+   
     public function editQuestion($idQ,$idS)
     {
         $exams = Question::find($idQ);
         $exams = Question::where('id', $idQ)->get();
         $chapters=Chapter::where('subject_id',$idS)->get();
         $categorie=Category::all();
-        return view('doctor\editQuestions', compact('exams'));
+        return view('doctor\editQuestions', compact('exams','categorie','chapters'));
 
     }
 
-    public function updateQuestion($id,Request $request)
+    public function updateQuestion($idQ,$idS,Request $request)
     {
-
-        $exam = Question::find($id);
-        //$exam = Question::select('id','onlineExam_id', 'question_title', 'mark', 'option_one', 'option_two', 'option_three', 'option_four', 'answer_option', 'category')->find($id);
-        /*$rules = $this->getUpdatedRulesExam();
-        $messages = $this->getUpdatedMessagesExam();
-        $validator = Validator::make($request->all(), $rules, $messages);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput($request->all());
-        }*/
+        $exam = Question::find($idQ);
         $exam->update([
             'question_title' => $request->questionTitle,
             'mark' => $request->questionMark,
@@ -323,29 +283,11 @@ class DoctorController extends Controller
             'answer_option' => $request->questionAnswer,
             'category_id' => $request->category_id,
             'chapter_id' => $request->chapter_id,
-            'subject_id' => $request->subject_id,
+            'subject_id' => $idS,
         ]);
         return redirect()->back()->with(['success' => 'Question Updated Successfully!']);
     }
-    protected function getMessagesExam()
-    {
-        return $messages = [
-            'onlineExam_name.required' => 'This Field is required',
-            'onlineExam_name.unique:online_exams,onlineExam_name' => 'Name should be Unique',
-            'onlineExam_marks.required' => 'This Field is required',
-            'onlineExam_marks.max:100' => 'Total Marks must not exceed 100',
-            'onlineExam_marks.numeric' => 'Total Marks must be Numeric',
-            'onlineExam_marks.required' => 'This Field is required',
-            'onlineExam_marks.max:60' => 'Pass Mark must not exceed 60',
-            'onlineExam_marks.numeric' => 'Pass Mark must be Numeric',
-            'onlineExam_datetime.required' => 'This Field is required',
-            'questionCount.required' => 'This Field is required',
-            'total_questions.numeric' => 'Number of Questions must be Numeric',
-            'onlineExam_duration.required' => 'This Field is required',
-            'onlineExam_duration.numeric' => 'Duration of Exam must be Numeric',
-            'onlineExam_createBy'=>'required',
-        ];
-    }
+
 
     public function results()
     {
@@ -361,7 +303,12 @@ class DoctorController extends Controller
 
     public function chapters()
     {
-        $subjects = Subject::all();
+        $user_id=auth()->user()->id;
+        $subjects=Professor_subject::join('users','users.id','=','professor_subjects.professor_id')
+        ->join('subjects','subjects.id','=','professor_subjects.subject_id')
+        ->where('professor_id',$user_id)
+        ->get(['subjects.subject_name','subjects.id']);
+        
         $chapters = Chapter::all();
         return view('doctor\addChapters', compact('chapters', 'subjects'));
     }
@@ -373,7 +320,6 @@ class DoctorController extends Controller
         $request->input('names');
 
         Chapter::create([
-            //'id' => $request->id,
             'describe_chapter' => $request->describe_chapter,
             'chapter_name' => $request->chapter_name,
             'subject_id' => $request->subject_id,
@@ -411,9 +357,8 @@ class DoctorController extends Controller
 
         }
         $chapters->delete();
-
-        return redirect()->route('adminChapters')
-            ->with(['success' => 'subjects deleted successfully']);
+        return redirect()->back()->with(['success' => 'Deleted Successfully']);
+      
     }
 
     protected function getUpdatedRulesExam()
@@ -446,6 +391,70 @@ class DoctorController extends Controller
         ];
     }
 
-   
+    protected function getRulesExam()
+    {
+        return $rules = [
+            'onlineExam_name' => 'required | unique:online_exams,onlineExam_name',
+            'onlineExam_marks' => 'required | max:100 | numeric',
+            'onlineExam_pass' => 'required | max:60 | numeric',
+            'onlineExam_datetime' => 'required',
+            'total_questions' => 'required | numeric',
+            'onlineExam_createBy'=>'required',
+            'onlineExam_duration' => 'required | numeric',
+        ];
+    }
+
+    protected function getMessagesExam()
+    {
+        return $messages = [
+            'onlineExam_name.required' => 'This Field is required',
+            'onlineExam_name.unique:online_exams,onlineExam_name' => 'Name should be Unique',
+            'onlineExam_marks.required' => 'This Field is required',
+            'onlineExam_marks.max:100' => 'Total Marks must not exceed 100',
+            'onlineExam_marks.numeric' => 'Total Marks must be Numeric',
+            'onlineExam_marks.required' => 'This Field is required',
+            'onlineExam_marks.max:60' => 'Pass Mark must not exceed 60',
+            'onlineExam_marks.numeric' => 'Pass Mark must be Numeric',
+            'onlineExam_datetime.required' => 'This Field is required',
+            'questionCount.required' => 'This Field is required',
+            'total_questions.numeric' => 'Number of Questions must be Numeric',
+            'onlineExam_duration.required' => 'This Field is required',
+            'onlineExam_duration.numeric' => 'Duration of Exam must be Numeric',
+            'onlineExam_createBy'=>'required',
+        ];
+    }
+    protected function getRulesQuestions()
+    {
+        return $rules = [
+            'questionName' => 'required',
+            'questionTitle' => 'required',
+            'questionMark' => 'required | max:100 | numeric',
+            'category_id' => 'required',
+            'questionOptionOne' => 'required',
+            'questionOptionTwo' => 'required',
+            'questionOptionThree' => 'required',
+            'questionOptionFour' => 'required',
+            'questionAnswer' => 'required',
+        ];
+    }
+
+    protected function getMessagesQuestions()
+    {
+        return $messages = [
+            'questionName.required' => 'This Field is required',
+            'questionQuestion.required' => 'This Field is required',
+            'questionMark.required' => 'This Field is required',
+            'questionMark.max:100' => 'Question Mark must not Exceed 100',
+            'questionMark.numeric' => 'This Field is required',
+            'category_id.required' => 'This Field is required',
+            'questionOptionOne.required' => 'This Field is required',
+            'questionOptionTwo.required' => 'This Field is required',
+            'questionOptionThree.required' => 'This Field is required',
+            'questionOptionFour.required' => 'This Field is required',
+            'questionAnswer.required' => 'This Field is required',
+            'chapter_name.required' => 'This Field is required',
+        ];
+
+    }
 
 }

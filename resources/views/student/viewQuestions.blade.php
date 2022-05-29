@@ -1,4 +1,4 @@
-﻿@extends('layouts/doctor.app2')
+﻿@extends('layouts/student.app')
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/css/Teacher-ViewQuestions.css') }}"/>
 
@@ -28,8 +28,7 @@
                         <th>D</th>
                         <th>Answer</th>
                         <th>View</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                       
 
 
                     </tr>
@@ -45,9 +44,8 @@
                             <td>{{$question->option_three}}</td>
                             <td>{{$question->option_four}}</td>
                             <td>{{$question->answer_option}}</td> 
-                            <td><a  class="btn btn-primary" href="{{ route('viewQuestion.Sub.chapt.cat',['idQ'=>$question -> id,'idS'=>$question -> subject_id,'idCh'=>$question -> id,'idC'=>$question -> subject_id]) }}" >View</a>
-                            <td><a  class="btn btn-primary" href="{{ route('editQuestion.Sub',['idQ'=>$question -> id,'idS'=>$question -> subject_id]) }}" >Edit</a>
-                            <td><a  class="btn btn-danger" href="{{route('doctorDeleteQuestion',$question->id)}}" >Delete</a><td>
+                            <td><a  class="btn btn-primary" href="{{ route('viewQuestionM.Sub.chapt.cat',['idQ'=>$question -> id,'idS'=>$question -> subject_id,'idCh'=>$question -> id,'idC'=>$question -> subject_id]) }}" >View</a>
+    
    
 
                         

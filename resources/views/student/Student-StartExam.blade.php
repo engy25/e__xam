@@ -9,7 +9,7 @@
 
             <div class="jumbotron my-4" style="background-color:#F0F0F0;margin-top:-20px;">
 
-                @foreach($questions as $question)
+               
 
                     <form class="form">
                         <h3 class="text-info">{{$question->question_title}}</h3><h4
@@ -17,38 +17,38 @@
 
                         <div class="form-check mx-4">
                             <input class="form-check-input" type="radio" name="option" id="option1"
-                                   value=" {{($question->option_one=="0")? "checked" : ""}}">
+                                >
                             <label class="form-check-label" for="option1">
-                                {{$question->option_one}}
+                               
                             </label>
                         </div>
 
                         <div class="form-check mx-4">
                             <input class="form-check-input" type="radio" name="option" id="option2"
-                                   value=" {{($question->option_two=="0")? "checked" : ""}}">
+                                   >
                             <label class="form-check-label" for="option2">
-                                {{$question->option_two}}
+                               
                             </label>
                         </div>
 
                         <div class="form-check mx-4">
                             <input class="form-check-input" type="radio" name="option" id="option3"
-                                   value=" {{($question->option_three=="0")? "checked" : ""}}">
+                                   value>
                             <label class="form-check-label" for="option3">
-                                {{$question->option_three}}
+                             
                             </label>
                         </div>
 
                         <div class="form-check mx-4">
                             <input class="form-check-input" type="radio" name="option" id="option4"
-                                   value="{{($question->option_four=="0")? "checked" : ""}}">
+                                   >
                             <label class="form-check-label" for="option4">
-                                {{$question->option_four}}
+                                
                             </label>
                         </div>
                     </form>
                 @endforeach
-                <a href="{{ route('showResultStudent') }}" class="Submit_btn">Submit</a>
+                <a  class="Submit_btn">Submit</a>
             </div>
         </div>
 

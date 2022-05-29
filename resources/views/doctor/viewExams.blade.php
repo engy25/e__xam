@@ -26,9 +26,11 @@
                     <th>Total Mark</th>
                     <th>Pass Mark</th>
                     <th>Exam Date</th>
-
-                    <th>Delete</th>
+                    <th>Add </th>
                     <th>Questions</th>
+                    <th>Delete</th>
+                   
+                   
                 </tr>
                 </thead>
                 @foreach($exams as $exam)
@@ -40,12 +42,11 @@
                     <td>{{$exam->onlineExam_marks}}</td>
                     <td>{{$exam->onlineExam_pass}}</td>
                     <td>{{$exam->onlineExam_datetime}}</td>
-
-                    <td>
-                        <a href="{{route('doctorDeleteExam',['id'=>$exam->id])}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
-                    </td>
-                    <td><a class="btn btn-primary btn-xs" href="{{route('doctorViewQuestions',['id'=>$exam->id])}}" style="font-weight:bolder;"><span>View</span></a>
-                    </td>
+                    <td> <a class="btn btn-success" href="{{ route('ViewQuestionsExam.Sub',['idE'=>$exam -> id,'idS'=>$exam -> subject_id]) }}" >Questions</a> </td>
+                    <td><a  class="btn btn-primary"  href="{{route('doctorViewQuestions',['id'=>$exam->id])}}" >View</a> </td>
+                    <td> <a class="btn btn-danger" href="{{route('doctorDeleteExam',['id'=>$exam->id])}}" >Delete</a> </td>
+                   
+                   
                 </tr>
                 @endforeach
             </table>

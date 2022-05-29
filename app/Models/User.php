@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Level;
 use App\Models\Department;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class User extends Authenticatable
 {
@@ -60,7 +61,7 @@ class User extends Authenticatable
         return $this -> hasOne('App\Models\Role','role_id');
     }
 
-    public function department(): BelongsTo
+    public function department():BelongsTo
     {
        
 
@@ -68,18 +69,13 @@ class User extends Authenticatable
      
     }
    
-    public function level(): BelongsTo
+    public function level():BelongsTo
     {
-        return $this->belongsTo(Level::class, 'level_id'); 
+        return $this->belongsTo('App\Models\Level','level_id'); 
     }
     
    
-    public function onlineExam()
-    {
-        
-        return $this -> belongsTo('App\Models\Online_exam');
-    }
-
+   
 
 
 }

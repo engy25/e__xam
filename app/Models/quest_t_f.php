@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-class question extends Model
+class quest_t_f extends Model
 {
     use HasFactory;
 
@@ -14,10 +14,8 @@ class question extends Model
         'id',
         'question_title',
         'mark',
-        'option_one',
-        'option_two',
-        'option_three',
-        'option_four',
+        'op_true ',
+        'op_false',
         'answer_option',
         'category_id',
         'chapter_id',
@@ -26,7 +24,8 @@ class question extends Model
     protected $hidden = [
 
     ];
- 
+    protected $table = "quest_t_f";
+    
     public function category(): BelongsTo
     {
 

@@ -73,10 +73,9 @@
       
        <a href="{{route('destroystudent',['id'=>$student->id])}}" class="btn btn-danger"> delete</a>
     </td>
-
-    <td>
-                       
-                       <a  href= "{{route('adminViewProfileStudent',['id'=>$student->id])}}" class="btn btn-success">View</a>
+   
+  <td>
+    <a href="{{ route('StudentProfile.level.dep',['idS'=>$student -> id,'idL'=>$student ->level_id,'idD'=>$student ->department_id]) }}" class="btn btn-success">View</a>
                        </td>  
                     </tr>
                     @endforeach

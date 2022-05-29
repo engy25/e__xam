@@ -487,13 +487,14 @@ public function destroy( $id)
         return view('admin\viewProfileDoctor',compact('userDoctors','subDoctors'));
     }
 
-    public function ViewProfileStudent($id)
+    public function ViewProfileStudent($idS,$idL,$idD)
     {
-       
-        $userStudents=User::find($id);
-        $levels = Level::where('id', $userStudents)->get();
 
-        return view('admin\viewProfileStudent',compact('userStudents','levels'));
+        $userStudents=User::find($idS);
+        $levels = Level::where('id', $idL)->get();
+        $departments = Department::where('id', $idD)->get();
+
+        return view('admin\viewProfileStudent',compact('userStudents','levels','departments'));
     }
     
    

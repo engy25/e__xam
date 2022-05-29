@@ -56,8 +56,8 @@
   <thead class="bg-light">
     <tr>
       <th>Subject</th>
-      <th>Add Question For Subject</th>
-      <th>View Question For Subject</th>
+      <th> Question MCQ</th>
+      <th> Question True $ False</th>
       
     </tr>
   </thead>
@@ -70,13 +70,15 @@
        
       </td>
       <td>
+      <a href="{{url('doctor/subjectAddQues',['id'=>$subject->id])}}" class="btn btn-primary">Add Question MCq</a>
+      <a href="{{url('doctor/viewQuestion',['id'=>$subject->id])}}" class="btn btn-primary">View Question</a>
 
-      <a href="{{url('doctor/subjectAddQues',['id'=>$subject->id])}}" class="btn btn-primary">Add Question</a>
-      </td>
+           </td>
 
       <td>
-
-      <a href="{{url('doctor/viewQuestion',['id'=>$subject->id])}}" class="btn btn-primary">View Question</a>
+      
+      <a href="{{url('doctor/subjectAddQuTF/'.$subject -> id)}}" class="btn btn-primary">Add Question True & False</a>
+      <a href="{{url('doctor/viewQuestionTF',['id'=>$subject->id])}}" class="btn btn-primary">View Question</a>
       </td>
       
     </tr>
