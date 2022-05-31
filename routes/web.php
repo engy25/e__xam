@@ -96,6 +96,7 @@ Route::group(['prefix' => 'doctor',  'middleware' => ['isDoctor','auth','PrevetB
     Route::get('/addExam', [App\Http\Controllers\DoctorController::class, 'getDataExam'])->name('doctorAddExam');
     Route::post('/insertExam', [App\Http\Controllers\DoctorController::class, 'insertExam'])->name('doctorInsertExam');
     Route::get('/subjectAddExQu', [App\Http\Controllers\DoctorController::class, 'VsubjectAddExQu'])->name('subjectAddExQu');
+
     Route::get('ViewQuestionsExam/{idE}/Sub/{idS}',[
         'as' => 'ViewQuestionsExam.Sub', 
         'uses' => 'App\Http\Controllers\DoctorController@ViewExamQuestions'
@@ -159,15 +160,21 @@ Route::group(['prefix' => 'doctor',  'middleware' => ['isDoctor','auth','PrevetB
     Route::put('update/chapters/{id}', [App\Http\Controllers\DoctorController::class, 'Updatechapters'])->name('chapterUpdate');
    // Route::put('update/subject/{subject_id}', [App\Http\Controllers\AdminController::class, 'Updatesubject'])->name('subjectUpdate');
     Route::get('/deletechapters/{id}', [App\Http\Controllers\DoctorController::class, 'destroyChapters'])->name('docChaptertdelete');
+    Route::get('/viewExamdoc/{id}', [App\Http\Controllers\DoctorController::class, 'viewExams'])->name('doctviewExam');
     
+///////////////
 
+Route::post('storeExamStruc/{idE}/Sub/{idS}', [
+    'as' => 'storeExamStruc.Sub', 
+    'uses' => 'App\Http\Controllers\DoctorController@storeExamStruc'
+]);
 
 
 });
 
                      ////////////////student////////////////
 Route::group(['prefix' => 'student',  'middleware' => ['isStudent','auth','PrevetBackHistory']], function(){
-    Route::get('/dashboard', [App\Http\Controllers\StudentController::class, 'dashboard'])->name('studentDashboard');
+    Route::get('/dashboard', [App\Http\Controllers\StudentController::class, 'showExam'])->name('studentDashboard');
     Route::get('/changepassword', [App\Http\Controllers\StudentController::class, 'changepassword'])->name('changePasswordStudent');
     Route::get('/forgetpassword', [App\Http\Controllers\StudentController::class, 'forgetpassword'])->name('forgetPasswordStudent');
     Route::get('/startExam/{id}', [App\Http\Controllers\StudentController::class, 'startExam'])->name('startExamStudent');
@@ -185,6 +192,7 @@ Route::get('viewQuestioTf/{idQ}/Sub/{idS}/chapt/{idCh}/cat/{idC}',[
     'as' => 'viewQuestioTf.Sub.chapt.cat', 
     'uses' => 'App\Http\Controllers\StudentController@ViewQuesttTf'
 ]);
+Route::get('/viewExam/{idE}', [App\Http\Controllers\StudentController::class, 'viewExam'])->name('viewExam');
 
 });
 

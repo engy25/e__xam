@@ -42,7 +42,9 @@
 
             <div class="content-header">
                 <div class="content-header-labels">
-<form   id="formElement"  >
+                   
+                
+<form method="POST"  id="formElement" autocomplete="off" action="{{ route('storeExamStruc.Sub',['idE'=>$Online_exam->id,'idS'=>$subjects->id]) }}" >
         @csrf
 
 
@@ -70,14 +72,24 @@
                     @endforeach
             </select>
     </div>
+ 
+    <div class="form-group mb-3">
+            <label>type</label>
+            <select style="color: #323a56" required class="form-control" name="type">
+            <option class="dropdown-item" disabled selected ></option>
+                   
+                    <option class="dropdown-item" value=1 >MCQ</option>
+                    <option class="dropdown-item" value=2 >TRUE FALSE</option>
+                   
+    </div>
 
 
-
+    
 
 
     <div class="form-group mb-3">
         <label>Number of questions</label>
-        <input required="required" type="number" name = "num_of_question " class="form-control" style="font-size:18px; height:30px;" placeholder="Enter a whole number of the MCQ Question"/>
+        <input required="required" type="number" name="num_of_question" class="form-control" style="font-size:18px; height:30px;" placeholder="Enter a whole number of the MCQ Question"/>
     </div>
 
     

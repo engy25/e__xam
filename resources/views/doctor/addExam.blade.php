@@ -86,7 +86,7 @@
                         <option value="{{$subject->id}}">{{$subject->subject_name}}</option>
                     @endforeach
                 </select>
-                @error('examSubject')
+                @error('subject_id')
                 <small class="form-text text-danger">
                     {{$message}}
                 </small>

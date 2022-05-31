@@ -63,7 +63,7 @@
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>
-                        @error('questionCategory')
+                        @error('category_id')
                         <small class="form-text text-danger">
                             {{$message}}
                         </small>
@@ -135,7 +135,7 @@
                         <option value="{{$chapter->id}}">{{$chapter->chapter_name}}</option>
                     @endforeach
                 </select>
-                @error('chapter_name')
+                @error('chapter_id')
                 <small class="form-text text-danger">
                     {{$message}}
                 </small>

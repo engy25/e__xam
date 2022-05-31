@@ -1,4 +1,4 @@
-@extends('layouts/student.app')
+@extends('layouts/doctor.app2')
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/css/Teacher-ViewExams.css') }}"/>
 
@@ -20,21 +20,27 @@
             <table class="table table-hover" id="dev-table">
                 <thead>
                 <tr>
-                    <th>Subjects</th>
-                    <th>Questions MCQ</th>
-                    <th>Questions T&F</th>
-                    
+                    <th>Exam Name</th>
+                    <th>subject_name</th>
+                    <th>chapter_number</th>
+                    <th>Number of Question</th>
+                    <th>category_name</th>
+                   
                    
                    
                 </tr>
                 </thead>
-            @foreach($subjects as $subject)
+                @foreach($examStructure as $exam)
                 <tr>
-                    <td style="display:none;"> </td>
-                    <td value="{{$subject->subject_name}}">{{$subject->subject_name}}</td>
-                    <td><a class="btn btn-primary" href="{{route('stviewQuestionMcq',$subject->id)}}"> View </a></td>
-                    <td><a class="btn btn-primary" href="{{route('stuViewQuestioTf',$subject->id)}}"> View </a></td>
+                   
+                    <td>{{$exam->online_exam->onlineExam_name}}</td>
+                    <td>{{$exam->subject->subject_name}}</td>
+                    <td>{{$exam->chapter_number}}</td>
+                    <td>{{$exam->num_of_question}}</td>
+                    <td>{{$exam->category->category_name}}</td>
+                   
                     
+                   
                 </tr>
                 @endforeach
             </table>

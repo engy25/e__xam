@@ -7,6 +7,7 @@ use App\Models\question;
 use App\Models\User;
 use App\Models\Subject;
 use App\Models\Category;
+use App\Models\Exam_structure;
 use App\Models\Chapter;
 use App\Models\Department;
 use App\Models\Level;
@@ -66,6 +67,67 @@ class StudentController extends Controller
        
         return view('student\viewSub', compact('subjects'));
     }
+
+    public function showExam()
+    {
+    $level_id=auth()->user()->level_id;
+    $department_id=auth()->user()->department_id;
+
+  
+     $subject_id=Subject::where(['department_id'=>$department_id,'level_id'=>$level_id])->get();
+     $online_exams=[];
+     
+     $subject=[];
+ 
+     foreach($subject_id as $s){
+        $exams =Online_exam::where('subject_id',$s->id)->get();
+        foreach($exams as $exam){
+          array_push($online_exams,$exam);
+        }
+
+     }
+    
+
+        return view('student\dashboard', ["online_exams" => $online_exams]);
+    }
+
+   public function viewExam($idE)
+   {
+       $examFromDb = Online_exam::find($idE);
+       $exam_questions = [];
+       $exam_structures = Exam_structure::where('exam_id', $idE)->get();
+       foreach($exam_structures as $structure){
+           if($structure->question_type == 1){
+                // MCQ
+                $questions = question::where([
+                    ['category_id', $structure->category_id],
+                    ['chapter_id', $structure->chaper_number],
+                    ['subject_id', $examFromDb->subject_id]
+                ])->limit($structure->num_of_question)->inRandomOrder()->get();
+                foreach($questions as $question){
+                    array_push($exam_questions, $question);
+                }
+
+           }
+           else {
+               // True /F
+               $questions = quest_t_f::where([
+                ['category_id', $structure->category_id],
+                ['chapter_id', $structure->chaper_number],
+                ['subject_id', $examFromDb->subject_id]
+            ])->limit($structure->num_of_question)->inRandomOrder()->get();
+            foreach($questions as $question){
+                array_push($exam_questions, $question);
+            }
+           }
+       }
+      
+      // $exam_questions->shuffle();
+
+        return view('student\viewExam',['questions'=>$exam_questions]);
+
+   }
+
     public function vieweQuestionMcq($id)
     {
         $questions =question::where('subject_id',$id)->get();

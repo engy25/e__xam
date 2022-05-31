@@ -42,8 +42,9 @@
                     <td>{{$exam->onlineExam_marks}}</td>
                     <td>{{$exam->onlineExam_pass}}</td>
                     <td>{{$exam->onlineExam_datetime}}</td>
+                        
                     <td> <a class="btn btn-success" href="{{ route('ViewQuestionsExam.Sub',['idE'=>$exam -> id,'idS'=>$exam -> subject_id]) }}" >Questions</a> </td>
-                    <td><a  class="btn btn-primary"  href="{{route('doctorViewQuestions',['id'=>$exam->id])}}" >View</a> </td>
+                    <td><a  class="btn btn-primary"  href="{{route('doctviewExam',$exam->id)}}" >View</a> </td>
                     <td> <a class="btn btn-danger" href="{{route('doctorDeleteExam',['id'=>$exam->id])}}" >Delete</a> </td>
                    
                    

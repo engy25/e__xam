@@ -13,8 +13,11 @@ use App\Models\quest_t_f;
 use App\Models\User;
 use App\Models\Exam_structure;
 use App\Models\Professor_subject;
+use App\Http\Requests\QuestMcqRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ExamRequest;
+use App\Http\Requests\QuestTfRequest;
 use function auth;
 use function compact;
 use function redirect;
@@ -54,14 +57,24 @@ class DoctorController extends Controller
         return view('doctor\addExam', compact('exams','professor_subjects'));
     }
 
+    public function viewExams($id)
+    {
+        $examStructure=Exam_structure::where('exam_id',$id)->get();
+     
+      
+        return view('doctor.viewExamStructure',['examStructure'=>$examStructure]);
+
+    }
+
 
     public function ViewExamQuestions($idE,$idS)
     {
-        $exam_structure=Exam_structure::find($idE);
-        $subjects=Subject::where('id',$idS)->get();
+    
+        $Online_exam=Online_exam::find($idE);
+        $subjects=Subject::where('id',$idS)->first();
         $chapters=Chapter::where('subject_id',$idS)->get();
         $categorie=Category::get();
-        return view('doctor\examquesSt',compact('exam_structure','subjects','chapters','categorie'));
+        return view('doctor\examquesSt',compact('Online_exam','subjects','chapters','categorie'));
     }
 
 
@@ -254,6 +267,29 @@ class DoctorController extends Controller
 
 
     }
+
+   public function  storeExamStruc($idE,$idS,Request $request)
+   {
+       Exam_structure::create([
+            
+        'exam_id' => $idE,
+        'subject_id' => $idS,
+        'chapter_number' => $request->chapter,
+        'num_of_question' => $request->num_of_question,
+        'category_id' => $request->category,
+        'question_type'=> $request->type,
+    ]);
+
+
+    return redirect()->back()->with(['success' => 'Question Added Successfully!']);
+
+
+
+
+   }
+
+
+
     public function viewEQuestion($id)
     {
         $questions =question::where('subject_id',$id)->get();
@@ -361,100 +397,11 @@ class DoctorController extends Controller
       
     }
 
-    protected function getUpdatedRulesExam()
-    {
-        return $rules = [
+   
 
-            'question_title' => 'required',
-            'mark' => 'required | max:100 | numeric',
-            'category' => 'required',
-            'option_one' => 'required',
-            'option_two' => 'required',
-            'option_three' => 'required',
-            'option_four' => 'required',
-        ];
-    }
+ 
+   
 
-    protected function getUpdatedMessagesExam()
-    {
-        return $messages = [
-            'question_title.required' => 'This Field is required',
-            'mark.required' => 'This Field is required',
-            'mark.max:100' => 'Question Mark must not exceed 100',
-            'mark.numeric' => 'Question Mark must be Numeric',
-            'category.required' => 'This Field is required',
-            'option_one.required' => 'This Field is required',
-            'option_two.required' => 'This Field is required',
-            'option_three.required' => 'This Field is required',
-            'option_four.required' => 'This Field is required',
-
-        ];
-    }
-
-    protected function getRulesExam()
-    {
-        return $rules = [
-            'onlineExam_name' => 'required | unique:online_exams,onlineExam_name',
-            'onlineExam_marks' => 'required | max:100 | numeric',
-            'onlineExam_pass' => 'required | max:60 | numeric',
-            'onlineExam_datetime' => 'required',
-            'total_questions' => 'required | numeric',
-            'onlineExam_createBy'=>'required',
-            'onlineExam_duration' => 'required | numeric',
-        ];
-    }
-
-    protected function getMessagesExam()
-    {
-        return $messages = [
-            'onlineExam_name.required' => 'This Field is required',
-            'onlineExam_name.unique:online_exams,onlineExam_name' => 'Name should be Unique',
-            'onlineExam_marks.required' => 'This Field is required',
-            'onlineExam_marks.max:100' => 'Total Marks must not exceed 100',
-            'onlineExam_marks.numeric' => 'Total Marks must be Numeric',
-            'onlineExam_marks.required' => 'This Field is required',
-            'onlineExam_marks.max:60' => 'Pass Mark must not exceed 60',
-            'onlineExam_marks.numeric' => 'Pass Mark must be Numeric',
-            'onlineExam_datetime.required' => 'This Field is required',
-            'questionCount.required' => 'This Field is required',
-            'total_questions.numeric' => 'Number of Questions must be Numeric',
-            'onlineExam_duration.required' => 'This Field is required',
-            'onlineExam_duration.numeric' => 'Duration of Exam must be Numeric',
-            'onlineExam_createBy'=>'required',
-        ];
-    }
-    protected function getRulesQuestions()
-    {
-        return $rules = [
-            'questionName' => 'required',
-            'questionTitle' => 'required',
-            'questionMark' => 'required | max:100 | numeric',
-            'category_id' => 'required',
-            'questionOptionOne' => 'required',
-            'questionOptionTwo' => 'required',
-            'questionOptionThree' => 'required',
-            'questionOptionFour' => 'required',
-            'questionAnswer' => 'required',
-        ];
-    }
-
-    protected function getMessagesQuestions()
-    {
-        return $messages = [
-            'questionName.required' => 'This Field is required',
-            'questionQuestion.required' => 'This Field is required',
-            'questionMark.required' => 'This Field is required',
-            'questionMark.max:100' => 'Question Mark must not Exceed 100',
-            'questionMark.numeric' => 'This Field is required',
-            'category_id.required' => 'This Field is required',
-            'questionOptionOne.required' => 'This Field is required',
-            'questionOptionTwo.required' => 'This Field is required',
-            'questionOptionThree.required' => 'This Field is required',
-            'questionOptionFour.required' => 'This Field is required',
-            'questionAnswer.required' => 'This Field is required',
-            'chapter_name.required' => 'This Field is required',
-        ];
-
-    }
+   
 
 }

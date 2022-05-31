@@ -12,12 +12,12 @@ class Exam_structure extends Model
         'id',
         'exam_id',
         'subject_id',
-        'chapter_number ',
+        'chapter_number',
         'num_of_question',
         'category_id',
         'created_at',
         'updated_at',
-        
+        'question_type',
        
 
 
