@@ -1,40 +1,8 @@
 ﻿@extends('layouts/doctor.app2')
-<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>E-Exam</title>
-    <!--start admin base-->
-    <link rel="stylesheet" href="{{ asset('css/AdminBase.css') }}" />
-    <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css') }}">
-    <!--end admin base-->
-
-    <link href="{{ asset('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css') }}" rel="stylesheet" id="{{ asset('bootstrap-css') }}">
-    <script src="{{ asset('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('https://code.jquery.com/jquery-1.11.1.min.js') }}"></script>
-
-    <style>
-    body{
-            background-color:#F0F0F0;
-        }
-
-    a:link {
-      text-decoration: none;
-    }
-
-    h6 {
-      text-align: center;
-    }
-
-    .row {
-      margin: 100px;
-    }
-    </style>
-
-</head>
-<body>
 @section('content')
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{{ asset('css/css/Teacher-ViewExams.css') }}"/>
+
 <div class="content">
         <br><br><br><br><br>
 
@@ -51,43 +19,46 @@
                     <div class="panel-heading" style="background-color:#005450;">
                         <h6 class="panel-title">Report</h6>
                     </div>
-                    <div class="container">
-                    <table class="table align-middle mb-0 bg-white">
-  <thead class="bg-light">
-    <tr>
-      <th>Subject</th>
-      <th> Question MCQ</th>
-      <th> Question True $ False</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    @foreach($professor_subjects as $subject)
-    <tr>
-     
-      <td id="{{$subject->id}}">
-        <p class="fw-normal mb-1">{{$subject->subject_name}}</p>
-       
-      </td>
-      <td>
-      <a href="{{url('doctor/subjectAddQues',['id'=>$subject->id])}}" class="btn btn-primary">Add Question MCq</a>
-      <a href="{{url('doctor/viewQuestion',['id'=>$subject->id])}}" class="btn btn-primary">View Question</a>
+          
+                    <table class="table table-hover" id="dev-table">
+                          <tr>
+                            <th>Subject</th>
+                            <th> Question MCQ</th>
+                            <th> Question True $ False</th>
+                            
+                          </tr>
+                      
+                          @foreach($professor_subjects as $subject)
+                          <tr>
+                          
+                            <td id="{{$subject->id}}">
+                              <p class="fw-normal mb-1">{{$subject->subject_name}}</p>
+                            
+                            </td>
+                            <td>
+                            <a href="{{url('doctor/subjectAddQues',['id'=>$subject->id])}}" class="btn btn-primary btn-xs" style="font-weight:bolder;"><span>Add</span></a>
+                            <a href="{{url('doctor/viewQuestion',['id'=>$subject->id])}}" class="btn btn-primary btn-xs" style="font-weight:bolder;"><span>View</span></a>
 
-           </td>
+                                </td>
 
-      <td>
-      
-      <a href="{{url('doctor/subjectAddQuTF/'.$subject -> id)}}" class="btn btn-primary">Add Question True & False</a>
-      <a href="{{url('doctor/viewQuestionTF',['id'=>$subject->id])}}" class="btn btn-primary">View Question</a>
-      </td>
-      
-    </tr>
-    @endforeach
-   
-  </tbody>
-</table>
+                            <td>
+                            
+                            <a href="{{url('doctor/subjectAddQuTF/'.$subject -> id)}}" class="btn btn-primary btn-xs" style="font-weight:bolder;"><span>Add</span></a>
+                            <a href="{{url('doctor/viewQuestionTF',['id'=>$subject->id])}}" style="font-weight:bolder;"><span>View</span></a>
+                            </td>
+                            
+                          </tr>
+                          @endforeach
+                        
+                    
+                    </table>
+
+                </div>
 
 </div>
 
+<br><br><br>
+</div>
+<!--content end-->
  
 @endsection

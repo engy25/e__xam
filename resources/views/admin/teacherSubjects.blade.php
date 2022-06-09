@@ -1,5 +1,9 @@
-﻿
+﻿<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
 @extends('layouts/admin.app')
+<link rel="stylesheet" href="{{ asset('css/css/Admin-TeacherSubjects.css') }}"/>
 @section('content')
    
     <!--end Admin base-->
@@ -12,10 +16,10 @@
         @csrf
             <div class="content-header">
                 <div class="content-header-labels">
-                    <label for="TeacherName">Teacher Name</label>
-                    <label for="Level" style="margin-right:227px;">Level</label>
-                    <label for="Department" style="margin-right:166px;">Department</label>
-                    <label for="Subject">Subject</label>
+                    <label for="userDoctors">Teacher Name</label>
+                    <label for="levels" style="margin-right:227px;">Level</label>
+                    <label for="departments" style="margin-right:166px;">Department</label>
+                    <label for="subjects">Subject</label>
                 </div>
 
                 <div class="content-header-select">
@@ -51,14 +55,14 @@
 
                    
                 </div>
-                <br> 
+            
 
                 <div class="content-header-btn">
                     <button>Clear</button>
                     <button  type="submit" >Add</button>
                     
                 </div>
-<br>
+
             </div>
 
 

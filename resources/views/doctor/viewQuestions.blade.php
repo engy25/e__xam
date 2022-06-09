@@ -1,6 +1,7 @@
 ﻿@extends('layouts/doctor.app2')
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/css/Teacher-ViewQuestions.css') }}"/>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{{ asset('css/css/Teacher-ViewExams.css') }}"/>
 
     <!--content start-->
     <div class="content">
@@ -45,9 +46,9 @@
                             <td>{{$question->option_three}}</td>
                             <td>{{$question->option_four}}</td>
                             <td>{{$question->answer_option}}</td> 
-                            <td><a  class="btn btn-primary" href="{{ route('viewQuestion.Sub.chapt.cat',['idQ'=>$question -> id,'idS'=>$question -> subject_id,'idCh'=>$question -> id,'idC'=>$question -> subject_id]) }}" >View</a>
-                            <td><a  class="btn btn-primary" href="{{ route('editQuestion.Sub',['idQ'=>$question -> id,'idS'=>$question -> subject_id]) }}" >Edit</a>
-                            <td><a  class="btn btn-danger" href="{{route('doctorDeleteQuestion',$question->id)}}" >Delete</a><td>
+                            <td><a  class="btn btn-primary btn-xs" href="{{ route('viewQuestion.Sub.chapt.cat',['idQ'=>$question -> id,'idS'=>$question -> subject_id,'idCh'=>$question -> id,'idC'=>$question -> subject_id]) }}" style="font-weight:bolder;"><span>View</span></a>
+                            <td><a  class="btn btn-primary btn-xs" href="{{ route('editQuestion.Sub',['idQ'=>$question -> id,'idS'=>$question -> subject_id]) }}" style="font-weight:bolder;"><span>Edit</span></a>
+                            <td><a  href="{{route('doctorDeleteQuestion',$question->id)}}"  class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a><td>
    
 
                         

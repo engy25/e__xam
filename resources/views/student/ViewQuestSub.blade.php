@@ -52,10 +52,7 @@
                         <label class="form-txt"> {{$questions->answer_option}}  </label>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-labels">Chapter</label>
-                        <label name="chapter_id" class="form-txt"> {{$questions->chapter->chapter_name}} </label>
-                    </div>
+                   
 
                     <div class="form-group">
                         <label class="form-labels">Subject</label>

@@ -17,7 +17,7 @@
                     <h6 class="panel-title">Questions</h6>
                 </div>
                 <table class="table table-hover" id="dev-table">
-                    <thead>
+            
                     <tr>
                         <th>Question</th>
                         <th>Mark</th>
@@ -30,7 +30,7 @@
 
 
                     </tr>
-                    </thead>
+                
                     @foreach($questions as $question)
 
                         <tr>
@@ -40,7 +40,7 @@
                             <td>{{$question->op_false}}</td>
                             
                             <td>{{$question->answer_option}}</td> 
-                            <td><a  class="btn btn-primary" href="{{ route('viewQuestioTf.Sub.chapt.cat',['idQ'=>$question -> id,'idS'=>$question -> subject_id,'idCh'=>$question -> id,'idC'=>$question -> subject_id]) }}" >View</a>
+                            <td><a href="{{ route('viewQuestioTf.Sub.chapt.cat',['idQ'=>$question -> id,'idS'=>$question -> subject_id,'idCh'=>$question -> id,'idC'=>$question -> subject_id]) }}"  class="btn btn-primary btn-xs" style="font-weight:bolder;"><span>View</span></a>
                     
    
 
@@ -48,7 +48,7 @@
                             </td>
 
                         </tr>
-                        <br><br>
+                
 
                     @endforeach
                 </table>

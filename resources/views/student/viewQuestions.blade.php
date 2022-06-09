@@ -44,7 +44,7 @@
                             <td>{{$question->option_three}}</td>
                             <td>{{$question->option_four}}</td>
                             <td>{{$question->answer_option}}</td> 
-                            <td><a  class="btn btn-primary" href="{{ route('viewQuestionM.Sub.chapt.cat',['idQ'=>$question -> id,'idS'=>$question -> subject_id,'idCh'=>$question -> id,'idC'=>$question -> subject_id]) }}" >View</a>
+                            <td><a   class="btn btn-primary btn-xs" href="{{ route('viewQuestionM.Sub.chapt.cat',['idQ'=>$question -> id,'idS'=>$question -> subject_id,'idCh'=>$question -> id,'idC'=>$question -> subject_id]) }}" style="font-weight:bolder;"><span>View</span></a>
     
    
 
@@ -52,7 +52,6 @@
                             </td>
 
                         </tr>
-                        <br><br>
 
                     @endforeach
                 </table>

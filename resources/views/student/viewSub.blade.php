@@ -32,8 +32,8 @@
                 <tr>
                     <td style="display:none;"> </td>
                     <td value="{{$subject->subject_name}}">{{$subject->subject_name}}</td>
-                    <td><a class="btn btn-primary" href="{{route('stviewQuestionMcq',$subject->id)}}"> View </a></td>
-                    <td><a class="btn btn-primary" href="{{route('stuViewQuestioTf',$subject->id)}}"> View </a></td>
+                    <td><a class="btn btn-primary btn-xs" href="{{route('stviewQuestionMcq',$subject->id)}}" style="font-weight:bolder;"><span>View</span></a></td>
+                    <td><a class="btn btn-primary btn-xs" href="{{route('stuViewQuestioTf',$subject->id)}}" style="font-weight:bolder;"><span>View</span></a></td>
                     
                 </tr>
                 @endforeach

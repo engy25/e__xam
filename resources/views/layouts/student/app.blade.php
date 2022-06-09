@@ -102,7 +102,7 @@
 <!--sidebar start-->
 <div class="sidebar">
     <center>
-
+        <img src="{{ asset('images/student1.png') }}" class="profile_image">
         <h4>{{auth()->user()->first_name}}</h4>
     </center>
 

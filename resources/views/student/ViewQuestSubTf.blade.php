@@ -1,5 +1,9 @@
 @extends('layouts/student.app')
 @section('content')
+
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="css/Teacher-ViewquestionDetail.css"/>
+
 <div class="content" id="c">
         <br><br><br><br><br>
 
@@ -43,10 +47,7 @@
                         <label class="form-txt"> {{$questions->answer_option}}  </label>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-labels">Chapter</label>
-                        <label name="chapter_id" class="form-txt"> {{$questions->chapter->chapter_name}} </label>
-                    </div>
+                   
 
                     <div class="form-group">
                         <label class="form-labels">Subject</label>

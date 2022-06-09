@@ -1,5 +1,9 @@
 @extends('layouts/doctor.app2')
 @section('content')
+
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="css/Teacher-ViewquestionDetail.css"/>
+
 <div class="content" id="c">
         <br><br><br><br><br>
 

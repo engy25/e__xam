@@ -1,5 +1,9 @@
 ﻿@extends('layouts/student.app')
 @section('content')
+
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{{ asset('css/css/Student-StartExam.css') }}"/>
+
     <!--content start-->
     <div class="content" id="c">
         <br><br><br><br><br>
@@ -16,16 +20,14 @@
                                 style="text-align: right;color:#484848;">[{{$question->mark}} Marks]</h4>
 
                         <div class="form-check mx-4">
-                            <input class="form-check-input" type="radio" name="option" id="option1"
-                                >
+                            <input class="form-check-input" type="radio" name="option" id="option1"  >
                             <label class="form-check-label" for="option1">
                                
                             </label>
                         </div>
 
                         <div class="form-check mx-4">
-                            <input class="form-check-input" type="radio" name="option" id="option2"
-                                   >
+                            <input class="form-check-input" type="radio" name="option" id="option2" >
                             <label class="form-check-label" for="option2">
                                
                             </label>

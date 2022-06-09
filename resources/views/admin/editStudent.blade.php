@@ -1,50 +1,19 @@
-﻿@extends('layouts/admin.app')
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>E-Exam</title>
-    <!--start Admin Base-->
-    <link rel="stylesheet" href="{{ asset('css/AdminBase.css') }}"/>
-    <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css') }}">
-    <!--end admin base-->
+﻿<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js') }}"></script>
+<link href="{{ asset('http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css') }}">
+<link href="{{ asset('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css') }}" rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js') }}"></script>
-    <link href="{{ asset('http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css') }}">
-    <link href="{{ asset('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css') }}" rel="stylesheet">
-
-      <style type="{{ asset('text/css') }}">
-      body{
-        background-color:#F0F0F0;
-      }
-      a:link {
-        text-decoration: none;
-      }
-  
-      .order-card {
-        color: rgb(255, 255, 255);
-      }
-  
-      .bg-c-blue {
-        background: #04868f;
-      }
-  
-      .bg-c-green {
-        background:#4C51BF;
-      }
-      </style>
-
-</head>
-    </body>
+@extends('layouts/admin.app')
+<link rel="stylesheet" href="{{ asset('css/css/editDepartment.css') }}"/>
 @section('content')
 <div class="content">
+    <br><br><br><br><br>
 <div class="container">
+
     <div class="row">
         <div class="col-md-12">
-
         @if ( Session::get('success'))
                              <div class="alert alert-success">
                                  {{ Session::get('success') }}
@@ -58,8 +27,8 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Edit & Update Subject
-                        <a href="{{ url('admin/totalStudent') }}" class="btn btn-danger float-end">BACK</a>
+                    <h4>Edit & Update Student
+                        <a href="{{ url('admin/totalStudents') }}" class="btn btn-danger float-end" style="float: right; background-color:#005450;border:#005450 1px solid;">BACK</a>
                     </h4>
                 </div>
                 <div class="card-body">
@@ -68,10 +37,10 @@
                     <form action="{{url('admin/update/stu/'.$users -> id)}}" method="POST">
                         @csrf
                         @method('PUT')
-</div>
+            </div>
 
                         <div class="form-group mb-3">
-                            <label for="first_name">Doctor Name</label>
+                            <label for="first_name">First Name</label>
                             
                             <input id="first_name" type="text" name="first_name" value="{{$users->first_name}}"  autofocus placeholder="Enter Fist name"  class="form-control">
                             
@@ -98,7 +67,7 @@
                         <div class="form-group mb-3">
                             <label for="email">Email</label>
                             
-                            <input id="email" type="text" name="email" value="{{$users->email}}"  autofocus placeholder="Enter email "  class="form-control">
+                            <input id="email" type="text" name="email" value="{{$users->email}}"  autofocus placeholder="Enter Email "  class="form-control">
                             
                             @error('email')
                         <small class="form-text text-danger">
@@ -110,7 +79,7 @@
                         <div class="form-group mb-3">
                             <label for="mobile">Mobile</label>
                             
-                            <input id="mobile" type="text" name="mobile" value="{{$users->mobile}}"  autofocus placeholder="Enter mobile "  class="form-control">
+                            <input id="mobile" type="text" name="mobile" value="{{$users->mobile}}"  autofocus placeholder="Enter Mobile "  class="form-control">
                             
                             @error('mobile')
                         <small class="form-text text-danger">
@@ -121,15 +90,16 @@
 
 
                         <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-primary">Update Professor</button>
+                            <button type="submit" class="btn btn-primary" style="background-color:#005450;border:#005450 1px solid;">Update Professor</button>
                         </div>
 
-                    </form>
+                    
 </div>
                 </div>
             </div>
         </div>
     </div>
+    <br><br><br>
 </div>
 
 @endsection

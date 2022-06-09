@@ -1,78 +1,76 @@
-﻿<!DOCTYPE html>
+﻿@extends('layouts/doctor.app2')
+@section('content')
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8"/>
-    <title>E-Exam</title>
-    <!--start Admin Base-->
-    <link rel="stylesheet" href="{{ asset('css/change_password.css') }}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-    <!--end admin base-->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{{ asset('css/css/ChangePassword.css') }}"/>
 
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"
-          id="bootstrap-css">
 
-</head>
-<body>
-
-<!--start admin base-->
-<!--header area start-->
-<!--header area start-->
-<header>
-    <div class="left_area">
-        <h3>E-Exam</h3>
-    </div>
-    <div class="right_area">
-
-        <a href="{{ route('login') }}" class="logout_btn">Logout</a>
-        <button class="ChangePassword_btn">Back</button>
-    </div>
-
-</header>
-<!--header area end-->
-<!--end Admin base-->
-
-<!--content start-->
-
-<br><br><br><br><br>
+<div class="content">
+    <br><br><br><br><br>
 <div class="container">
+    
+            <div class="content-card">
+                <div class="content-card-header">
+                <h1>Change password</h1>
+                </div>
 
-    <div class="content-card">
-        <div class="content-card-header">
-            <h1>Change Password</h1>
-        </div>
+                <div class="panel-body">
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if($errors)
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                    <form class="form-horizontal" method="POST" action="{{ route('changePasswordPost') }}">
+                        {{ csrf_field() }}
 
-        <div class="content-card-center">
+                        <div class="content-parts{{ $errors->has('current-password') ? ' has-error' : '' }}">
+                            <label for="new-password">Current Password</label>                         
+                            <input id="current-password" type="password" name="current-password" required>
 
-            <div class="content-parts">
-                <label>Current Password</label>
-                <input type="text"/>
+                                @if ($errors->has('current-password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('current-password') }}</strong>
+                                    </span>
+                                @endif
+                        </div>
+
+                        <div class="content-parts{{ $errors->has('new-password') ? ' has-error' : '' }}">
+                            <label for="new-password">New Password</label>           
+                            <input id="new-password" type="password" name="new-password" required>
+
+                                @if ($errors->has('new-password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('new-password') }}</strong>
+                                    </span>
+                                @endif              
+                        </div>
+
+                        <div class="content-parts">
+                            <label for="new-password-confirm">Confirm New Password</label>
+                            <input id="new-password-confirm" type="password" name="new-password_confirmation" required>
+                        </div>
+
+                        <div class="content-card-footer">       
+                                <button type="submit">
+                                    Change Password
+                                </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="content-parts">
-                <label>New Password</label>
-                <input type="text"/>
-            </div>
-
-            <div class="content-parts">
-                <label>Confirm Password</label>
-                <input type="text"/>
-            </div>
-
-        </div>
-
-        <div class="content-card-footer">
-            <button>Update</button>
-        </div>
+        
     </div>
-
 </div>
 <br><br><br>
-
-<!--content end-->
-
-<!--JS code start-->
-<script src="js/AdminBase.js"></script>
-<!--JS code end-->
-</body>
-</html>
+</div>
+@endsection

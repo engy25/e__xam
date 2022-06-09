@@ -1,5 +1,9 @@
 ﻿@extends('layouts/student.app')
 @section('content')
+
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{{ asset('css/css/Student-Results.css') }}"/>
+
     <!--content start-->
     <div class="content">
         <br><br><br><br><br>

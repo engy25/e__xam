@@ -1,5 +1,13 @@
-
-
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>E-Exam</title>
+    <!--start Admin Base-->
+    <link rel="stylesheet" href="{{ asset('css/AdminBase.css') }}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <!--end admin base-->
+</head>
 <body>
     <!--start admin base-->
     <!--header area start-->
@@ -20,13 +28,10 @@
     <!--sidebar start-->
     <div class="sidebar">
         <center>
-       
-       <a href="{{ asset('css/AdminBase.css') }}" width="100px" class="profile_image">
-</a>
+            <img src="{{ asset('images/admin2.jpg') }}" class="profile_image">
             <h4>Admin</h4>
         </center>
-       
-       
+             
         <a  href="{{route('adminDashboard')}}"  class="sidebar-items"><i class="fas fa-tachometer-alt"></i>     Dashboard</a> 
             
         <label onclick="Function1()" class="sidebar-items"><i class="fas fa-chalkboard-teacher"></i>     Doctors</label>
@@ -62,9 +67,8 @@
 
 
     
-<!--JS code start-->
-    
-<script src="{{ asset('js/AdminBase.js') }}"></script>
+    <!--JS code start--> 
+    <script src="{{ asset('js/AdminBase.js') }}"></script>
     <script src="{{ asset('http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js') }}"></script>
     <!--JS code end-->
 </body>

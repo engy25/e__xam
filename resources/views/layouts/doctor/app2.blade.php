@@ -87,7 +87,7 @@
         <form action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
         </form>
-        <a href="{{ route('logout') }}" class="logout_btn">Logout</a>
+        <a href="{{ route('login') }}" class="logout_btn">Logout</a>
 
         <a href="{{ route('doctorChangePassword') }}" class="ChangePassword_btn">Change Password</a>
     </div>
@@ -98,7 +98,7 @@
 <!--sidebar start-->
 <div class="sidebar">
     <center>
-
+        <img src="{{ asset('images/admin.png') }}" class="profile_image">
         <h4>{{auth()->user()->first_name}}</h4>
     </center>
 

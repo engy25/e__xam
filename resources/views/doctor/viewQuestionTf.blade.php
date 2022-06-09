@@ -41,9 +41,9 @@
                             <td>{{$question->op_false}}</td>
                             
                             <td>{{$question->answer_option}}</td> 
-                            <td><a  class="btn btn-primary" href="{{ route('viewQuestionTf.Sub.chapt.cat',['idQ'=>$question -> id,'idS'=>$question -> subject_id,'idCh'=>$question -> id,'idC'=>$question -> subject_id]) }}" >View</a>
-                            <td><a  class="btn btn-primary" href="{{ route('editQuestionTf.Sub',['idQ'=>$question -> id,'idS'=>$question -> subject_id]) }}" >Edit</a>
-                            <td><a  class="btn btn-danger" href="{{route('destroyQuesTF',$question->id)}}" >Delete</a><td>
+                            <td><a  class="btn btn-primary btn-xs" href="{{ route('viewQuestionTf.Sub.chapt.cat',['idQ'=>$question -> id,'idS'=>$question -> subject_id,'idCh'=>$question -> id,'idC'=>$question -> subject_id]) }}" style="font-weight:bolder;"><span>View</span></a>
+                            <td><a  class="btn btn-primary btn-xs" href="{{ route('editQuestionTf.Sub',['idQ'=>$question -> id,'idS'=>$question -> subject_id]) }}" style="font-weight:bolder;"><span>Edit</span></a>
+                            <td><a href="{{route('destroyQuesTF',$question->id)}}" class="btn btn-danger btn-xs" style="height:20px;"><span class="glyphicon glyphicon-remove"></span></a><td>
    
 
                         

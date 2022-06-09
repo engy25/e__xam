@@ -1,15 +1,7 @@
 @extends('layouts/student.app')
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{{ asset('css/css/Student-StartExam.css') }}"/>
 
 
 <div class="content">
@@ -18,11 +10,12 @@
         <div class="container">
 
 
-            <div class="jumbotron my-4" style="background-color:#F0F0F0;margin-top:-20px;">
+            <div class="jumbotron my-4" style="background-color:#F0F0F0;margin-top:-50px;">
 
                 <form class="form"  method="post" action= "{{route('storeAnsweres')}}">
                     @csrf 
-                    <h1 style="text-align: center;color:#484848;"></h1>
+
+                    <h1 style="text-align: center;color:#484848;margin-top:-9px;font-size:45px;">Exam</h1>
                     @foreach($questions as $question)
                     <input type="hidden" name="questions[{{ $question->id }}]" value="">
 
@@ -87,7 +80,7 @@
 
 
 
-<button type="submit"> Submit</button>
+<button type="submit" class="submitbtn"> Submit</button>
                 </form>
                 
             </div>
@@ -96,6 +89,18 @@
 
         <br><br><br>
     </div>
+
+
+<!--PopUp box Start-->
+<div class="card open" id="pupup">
+    <img src="images/mark.png" />
+    <h1>Time Over!</h1>
+    <button onclick="hide_pupup()">Ok</button>
+</div>
+<!--PopUp box End-->
+
+
+
     <script>
         // const TIME_LIMIT =document.getElementById('timer').Value;
         const TIME_LIMIT ={{$timer}};
@@ -215,8 +220,26 @@
                 document.getElementById("base-timer-path-remaining").style.stroke = remainingPathColor;
             }
         }
-    </script>
 
-</body>
-</html>
+//statr functions of pupup
+        function show_pupup() {
+            
+            var x = document.getElementById("c");
+            x.style.visibility = "hidden";
+
+            var y = document.getElementById("pupup");
+            y.style.opacity = "1";
+            y.style.top = "30%";
+            
+            document.getElementById("pupup").classList.add('card');
+            
+        }
+       
+        function hide_pupup() {
+            document.getElementById("pupup").classList.remove('card');
+            window.open("Student-ExamResult.html","_self");
+        }
+
+//end functions of pupup
+    </script>
 @endsection

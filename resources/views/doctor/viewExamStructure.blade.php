@@ -1,6 +1,7 @@
 @extends('layouts/doctor.app2')
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/css/Teacher-ViewExams.css') }}"/>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{{ asset('css/css/Teacher-ViewExams.css') }}"/>
 
 <!--content start-->
 <div class="content">
@@ -18,18 +19,18 @@
                 <h6 class="panel-title">Created Exams</h6>
             </div>
             <table class="table table-hover" id="dev-table">
-                <thead>
+
                 <tr>
                     <th>Exam Name</th>
-                    <th>subject_name</th>
-                    <th>chapter_number</th>
+                    <th>Subject Name</th>
+                    <th>Chapter Number</th>
                     <th>Number of Question</th>
-                    <th>category_name</th>
+                    <th>Category Name</th>
                    
                    
                    
                 </tr>
-                </thead>
+        
                 @foreach($examStructure as $exam)
                 <tr>
                    

@@ -1,5 +1,6 @@
 ﻿@extends('layouts/doctor.app2')
 @section('content')
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="{{ asset('css/css/Teacher-AssignExam.css') }}"/>
 
 <!--content start-->

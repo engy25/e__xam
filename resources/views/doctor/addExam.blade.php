@@ -1,6 +1,9 @@
 ﻿@extends('layouts/doctor.app2')
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/css/Teacher-AddExam.css') }}"/>
+
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{{ asset('css/css/Teacher-AddExam.css') }}"/>
+
     <!--content start-->
     <div class="content">
         <br><br><br><br><br>
@@ -39,7 +42,7 @@
                         {{$message}}
                     </small>
                     @enderror
-                    <input type="text" name="onlineExam_marks" class="content-header-select"/>
+                    <input type="text" name="onlineExam_marks" class="content-header-select" style="margin-left:38px;"/>
                     @error('onlineExam_marks')
                     <small class="form-text text-danger">
                         {{$message}}
@@ -50,8 +53,8 @@
 
                 <div class="row-labels">
                     <label>Total Time (Minutes)</label>
-                    <label>Pass Mark</label>
-                    <label>Exam Date</label>
+                    <label style="margin-left:-75px;">Pass Mark</label>
+                    <label style="margin-left:50px;">Exam Date</label>
                 </div>
 
                 <div class="row-inputs">
@@ -67,7 +70,7 @@
                         {{$message}}
                     </small>
                     @enderror
-                    <input type="date" name="onlineExam_datetime" class="content-header-select"/>
+                    <input type="date" name="onlineExam_datetime" class="content-header-select" style="margin-left:38px;"/>
                     @error('onlineExam_datetime')
                     <small class="form-text text-danger">
                         {{$message}}

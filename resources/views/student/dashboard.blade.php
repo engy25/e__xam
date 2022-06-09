@@ -1,5 +1,6 @@
 ﻿@extends('layouts/student.app')
 @section('content')
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="{{ asset('css/css/Teacher-ViewQuestions.css') }}"/>
 
     <!--content start-->
@@ -20,13 +21,8 @@
                     <thead>
                     <tr>
                         <th>Subjects</th>
-                        <th>Exam_name</th>
-                        
+                        <th>Exam_name</th>               
                         <th>Exam</th>
-                       
-                       
-
-
                     </tr>
                     </thead>
                     @foreach($online_exams as $online_exam)
@@ -35,16 +31,9 @@
                             <td>{{$online_exam->subject->subject_name}}</td>
                             <td>{{$online_exam->onlineExam_name}}</td>
                             
-                            <td><a href="{{url('student/viewExam',['id'=>$online_exam->id])}}" class="btn btn-primary" href="" >Start</a>
-    
-   
-
-                        
-                            </td>
+                            <td><a href="{{url('student/viewExam',['id'=>$online_exam->id])}}" class="btn btn-primary" href="" >Start</a> </td>
 
                         </tr>
-                        <br><br>
-
                     @endforeach
                 </table>
             </div>

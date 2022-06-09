@@ -1,6 +1,8 @@
 ﻿@extends('layouts/doctor.app2')
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/css/Teacher-ViewExams.css') }}"/>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{{ asset('css/css/Teacher-ViewExams.css') }}"/>
+
 
 <!--content start-->
 <div class="content">
@@ -26,7 +28,7 @@
                     <th>Total Mark</th>
                     <th>Pass Mark</th>
                     <th>Exam Date</th>
-                    <th>Add </th>
+                    <th>Question</th>
                     <th>Questions</th>
                     <th>Delete</th>
                    
@@ -43,11 +45,11 @@
                     <td>{{$exam->onlineExam_pass}}</td>
                     <td>{{$exam->onlineExam_datetime}}</td>
                         
-                    <td> <a class="btn btn-success" href="{{ route('ViewQuestionsExam.Sub',['idE'=>$exam -> id,'idS'=>$exam -> subject_id]) }}" >Questions</a> </td>
-                    <td><a  class="btn btn-primary"  href="{{route('doctviewExam',$exam->id)}}" >View</a> </td>
-                    <td> <a class="btn btn-danger" href="{{route('doctorDeleteExam',['id'=>$exam->id])}}" >Delete</a> </td>
+                    <td> <a class="btn btn-primary btn-xs" href="{{ route('ViewQuestionsExam.Sub',['idE'=>$exam -> id,'idS'=>$exam -> subject_id]) }}" style="font-weight:bolder;"><span>Add</span></a> </td>
+                    <td><a class="btn btn-primary btn-xs"  href="{{route('doctviewExam',$exam->id)}}" style="font-weight:bolder;"><span>View</span></a> </td>
+                    <td> <a href="{{route('doctorDeleteExam',['id'=>$exam->id])}}" class="btn btn-danger btn-xs" style="height:20px;"><span class="glyphicon glyphicon-remove"></span></a> </td>
                    
-                   
+                    
                 </tr>
                 @endforeach
             </table>

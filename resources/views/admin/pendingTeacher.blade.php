@@ -1,39 +1,9 @@
-﻿@extends('layouts/admin.app')
-<!DOCTYPE html>
+﻿<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>E-Exam</title>
-    <!--start admin base-->
-    <link rel="stylesheet" href="{{ asset('css/AdminBase.css') }}" />
-    <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css') }}">
-    <!--end admin base-->
-
-    <link href="{{ asset('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css') }}" rel="stylesheet" id="{{ asset('bootstrap-css') }}">
-    <script src="{{ asset('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('https://code.jquery.com/jquery-1.11.1.min.js') }}"></script>
-
-    <style>
-    body{
-            background-color:#F0F0F0;
-        }
-
-    a:link {
-      text-decoration: none;
-    }
-
-    h6 {
-      text-align: center;
-    }
-
-    .row {
-      margin: 100px;
-    }
-    </style>
-
-</head>
-<body>
+@extends('layouts/admin.app')
+<link rel="stylesheet" href="{{ asset('css/css/Admin-PendingTeacher.css') }}"/>
 @section('content')
     <!--content start-->
     <div class="content">
@@ -63,12 +33,12 @@
                        
                         <td> {{$userDoctore->email}}</td>
                         <td>{{$userDoctore->mobile}}</td>
-                         <td>
-                         
-                        <a href="{{route('adminapprovePendingTeacher',$userDoctore->id)}}" class="btn btn-success"> Approve</a>
+
+                        <td> 
+                        <a href="{{route('adminapprovePendingTeacher',$userDoctore->id)}}"  class="btn btn-primary btn-xs" style="height: 20px;"><span class="glyphicon glyphicon-ok"></span></a>
                         </td>
                         <td>
-                        <a  href= "{{route('adminpendingTeacherdelete',$userDoctore->id)}}" class="btn btn-danger"> Delete</a>
+                        <a  href= "{{route('adminpendingTeacherdelete',$userDoctore->id)}}"  class="btn btn-danger btn-xs" style="height: 20px;"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>    
       
   

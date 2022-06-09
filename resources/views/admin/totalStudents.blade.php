@@ -18,15 +18,12 @@
     body{
             background-color:#F0F0F0;
         }
-
     a:link {
       text-decoration: none;
     }
-
     h6 {
       text-align: center;
     }
-
     .row {
       margin: 100px;
     }
