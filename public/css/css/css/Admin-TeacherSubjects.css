@@ -21,20 +21,26 @@
         }
 
         .content-header-select{
-            margin-bottom:20px;
+            margin-bottom:50px;
         }
 
         .content-header-btn{
-            margin-bottom:120px;
+            margin-bottom:180px;
             
         }
 
-        .content-header-select input{
-            width:300px;
+        .content-header-labels label{
+            margin-right:145px;
+        }
+
+        .content-header-select select{
+            width:200px;
             padding:5px;
             background-color:white;
             border-radius:5px;
-            border:1px solid #75a3a3;            
+            border:1px solid #75a3a3;
+            margin-right:80px;
+            
         }
         
         .content-header-btn button{

@@ -1,0 +1,19 @@
+﻿ body{
+        background-color:#F0F0F0;
+      }
+
+      a:link {
+        text-decoration: none;
+      }
+  
+      .order-card {
+        color: rgb(255, 255, 255);
+      }
+  
+      .bg-c-blue {
+        background: #04868f;
+      }
+  
+      .bg-c-green {
+        background:#4C51BF;
+      }

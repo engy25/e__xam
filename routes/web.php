@@ -193,6 +193,7 @@ Route::get('viewQuestioTf/{idQ}/Sub/{idS}/chapt/{idCh}/cat/{idC}',[
     'uses' => 'App\Http\Controllers\StudentController@ViewQuesttTf'
 ]);
 Route::get('/viewExam/{idE}', [App\Http\Controllers\StudentController::class, 'viewExam'])->name('viewExam');
+Route::post('/storeAnsweres', [App\Http\Controllers\StudentController::class, 'storeAnsweres'])->name('storeAnsweres');
 
 });
 

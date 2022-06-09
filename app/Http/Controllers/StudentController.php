@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Online_exam;
-use App\Models\question;
+use App\Models\Question;
 use App\Models\User;
 use App\Models\Subject;
 use App\Models\Category;
@@ -11,6 +11,7 @@ use App\Models\Exam_structure;
 use App\Models\Chapter;
 use App\Models\Department;
 use App\Models\Level;
+use App\Models\Result;
 use App\Models\quest_t_f;
 use Illuminate\Http\Request;
 use function auth;
@@ -52,10 +53,8 @@ class StudentController extends Controller
 
     public function showResult()
     {
-        //$users = User::where('id', auth()->user()->id)->select('id', 'level_id', 'department_id')->get();
-        //foreach ($users as $user)
-        $exams = Online_exam::where('level_id', auth()->user()->level_id)->select('id', 'onlineExam_name', 'onlineExam_marks')->get();
-        return view('student\Student-Results', compact('exams'));
+       $results=Result::where('user_id', auth()->user()->id)->get();
+        return view('student\Student-Results', compact('results'));
     }
 
 
@@ -93,17 +92,23 @@ class StudentController extends Controller
 
    public function viewExam($idE)
    {
+   
        $examFromDb = Online_exam::find($idE);
+       $exams_id=session()->put('x',$examFromDb->id);
        $exam_questions = [];
+       $exam_questiontF = [];
        $exam_structures = Exam_structure::where('exam_id', $idE)->get();
+    //    dd($exam_structures);
        foreach($exam_structures as $structure){
+        //    dd($structure);
            if($structure->question_type == 1){
                 // MCQ
-                $questions = question::where([
-                    ['category_id', $structure->category_id],
-                    ['chapter_id', $structure->chaper_number],
-                    ['subject_id', $examFromDb->subject_id]
-                ])->limit($structure->num_of_question)->inRandomOrder()->get();
+                $questions = Question::where([
+                    ['category_id', '=', $structure->category_id],
+                   ['chapter_id', '=', $structure->chapter_number],
+                     ['subject_id', '=', $examFromDb->subject_id]
+                ])->inRandomOrder()->limit($structure->num_of_question)->get();
+               // dd($questions);
                 foreach($questions as $question){
                     array_push($exam_questions, $question);
                 }
@@ -113,24 +118,65 @@ class StudentController extends Controller
                // True /F
                $questions = quest_t_f::where([
                 ['category_id', $structure->category_id],
-                ['chapter_id', $structure->chaper_number],
+                ['chapter_id', $structure->chapter_number],
                 ['subject_id', $examFromDb->subject_id]
             ])->limit($structure->num_of_question)->inRandomOrder()->get();
             foreach($questions as $question){
-                array_push($exam_questions, $question);
+                array_push($exam_questiontF, $question);
             }
            }
        }
       
+      
       // $exam_questions->shuffle();
+      $timer = $examFromDb->onlineExam_duration;
+      $timer = $timer * 60;
+    //   dd($timer);
 
-        return view('student\viewExam',['questions'=>$exam_questions]);
+  
+ 
+        return view('student\viewExam',['questions'=>$exam_questions, 'timer' => $timer,'questiontF'=>$exam_questiontF]);
 
    }
+   public function storeAnsweres(Request $request)
+   {
+    $options = $request->input('questions');
+    $optionTf=$request->input('questiontF');
+    $score = 0;
+    foreach ($options as $key => $value)
+    {
+        $question = Question::find($key);
+        if($question->answer_option == $value) {
+             $score += $question->mark;
+        }
+    }
+    foreach ($optionTf as $key => $value)
+    {
+        $question = quest_t_f::find($key);
+        if($question->answer_option == $value) {
+             $score += $question->mark;
+        }
+    }
 
+    $exam_id=session()->get('x');
+    $user_id=auth()->user()->id;
+    
+    Result::create([
+                
+        'result' => $score,
+           
+       'user_id' =>$user_id,
+       'exam_id'=>$exam_id,
+          
+       ]);
+      // return view('showResultStudent');
+       return redirect()->route('showResultStudent');
+      // return redirect()->back()->with(['success' => 'submitted Successfully!']);
+
+   }
     public function vieweQuestionMcq($id)
     {
-        $questions =question::where('subject_id',$id)->get();
+        $questions =Question::where('subject_id',$id)->get();
         return view('student.viewQuestions',compact('questions'));
     }
     public function ViewQuesM($idQ,$idS,$idCh,$idC)

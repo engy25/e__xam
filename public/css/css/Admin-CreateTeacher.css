@@ -7,7 +7,7 @@
         }
 
         .form{
-            height:1070px;
+            height:810px;
             width:630px;
             background-color:#fff;
             margin:auto;
@@ -65,7 +65,6 @@
         }
 
         .form-header h3{
-            color:black;
             font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding-left:30px;
             padding-top:18px;

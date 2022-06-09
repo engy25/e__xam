@@ -15,22 +15,21 @@
                     <tr>
                         <th>Exam Name</th>
                         <th>Total Mark</th>
-                        <th>Mark Obtain</th>
                         <th>Result</th>
 
 
                     </tr>
                     </thead>
-                
+                    @foreach($results as $Result)
                         <tr>
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td value="{{$Result->exam_id}}">{{$Result->online_exam->onlineExam_name}}</td>
+                            <td value="{{$Result->exam_id}}">{{$Result->online_exam->onlineExam_marks}}</td>
+                            <td value="{{$Result->exam_id}}">{{$Result->result}}</td>
+                          
 
                         </tr>
-                   
+                   @endforeach
                 </table>
             </div>
 

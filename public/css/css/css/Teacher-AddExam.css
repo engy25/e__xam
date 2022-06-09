@@ -6,31 +6,36 @@
             text-decoration: none;
         }
 
-        .container label{
-            display:block;
-            font-size: 25px;
+        .row-labels label {
+            font-size: 20px;
             margin-bottom: 10px;
             color:#484848;
         }
 
-        .container select{
-            width: 370px;
-            padding: 15px;
+        .row-inputs {
+            margin-bottom: 50px;
+        }
+
+        .row-labels label {
+            margin-right: 220px;          
+        }
+
+        .row-inputs input,select{
+            width: 200px;
+            padding: 5px;
             background-color: white;
             border-radius: 5px;
             border: 1px solid #75a3a3;
-            margin-right: 125px;
-            font-size:16px;
+            margin-right: 135px;
         }
 
-        .container a{
-            padding: 15px;
-            width: 130px;
+        .container-btn button {            
+            padding: 10px;
+            width: 110px;
             margin-top:0px;
             background-color: #005450;
             color: white;
             border: 1px solid #75a3a3;
             border-radius: 5px;
             font-weight: bold;
-            font-size:16px;
         }

@@ -11,6 +11,7 @@ use App\Models\Subject;
 use App\Models\Category;
 use App\Models\quest_t_f;
 use App\Models\User;
+use App\Models\Result;
 use App\Models\Exam_structure;
 use App\Models\Professor_subject;
 use App\Http\Requests\QuestMcqRequest;
@@ -327,8 +328,9 @@ class DoctorController extends Controller
 
     public function results()
     {
+        $results=Result::get();
 
-        return view('doctor.results');
+        return view('doctor.viewResults',compact('results'));
     }
 
     public function viewQuestions(Request $request)

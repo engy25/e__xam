@@ -13,17 +13,22 @@
                 </div>
                 <table class="table table-hover" id="dev-table">
                     <thead>
+                       
                     <tr>
+                        <th>Exam Name</th>
                         <th>Student Name</th>
                         <th>Mark</th>
 
                         <th>Result</th>
                     </tr>
                     </thead>
+                   @foreach($results as $result)
                     <tr>
-<!--                        <td>Yomna Mohamed</td>
-                        <td>20</td>
-                        <td>Passed</td>-->
+                    <td value="{{$result->id}}"> {{$result->online_exam->onlineExam_name}}</td>
+                    <td value="{{$result->id}}"> {{$result->user->first_name}}</td>
+                    <td value="{{$result->id}}"> {{$result->result}}</td>
+                    <td value="{{$result->id}}"> {{$result->online_exam->onlineExam_marks}}</td>
+                    @endforeach
 
                     </tr>
                 </table>
